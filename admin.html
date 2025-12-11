@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지 | 메타모션 (METAMOTION)</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .language-label {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .language-ko {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .language-en {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <a href="index" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </a>
+
+                <div id="user-info" class="hidden items-center gap-4">
+                    <span id="user-email" class="text-sm text-slate-600"></span>
+                    <button onclick="logout()" class="text-sm text-red-600 hover:text-red-700 font-medium transition-colors">
+                        <i class="fa-solid fa-sign-out-alt mr-1"></i> 로그아웃
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <div id="login-section" class="max-w-md mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12">
+            <div class="text-center mb-8">
+                <i class="fa-solid fa-lock text-4xl text-blue-600 mb-4"></i>
+                <h1 class="text-3xl font-black text-slate-900 mb-2">관리자 로그인</h1>
+                <p class="text-sm text-slate-500">콘텐츠 관리를 위해 로그인하세요</p>
+            </div>
+
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">이메일</label>
+                    <input type="email" id="email" required
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">비밀번호</label>
+                    <input type="password" id="password" required
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                <button type="submit"
+                    class="w-full px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-sign-in-alt mr-2"></i> 로그인
+                </button>
+            </form>
+            <div id="login-error" class="mt-4 text-red-600 text-sm text-center hidden"></div>
+        </div>
+    </div>
+
+    <!-- Admin Content Section -->
+    <div id="admin-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+
+        <!-- Hero Slides Section -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Hero Slides</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">메인 슬라이드 관리 (다국어 지원)</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-600 mt-4">
+                    <i class="fa-solid fa-info-circle mr-1"></i>
+                    히어로 슬라이드는 총 <strong>3개</strong>로 고정되며, 자동으로 5초마다 로테이션됩니다.
+                </p>
+            </div>
+
+            <div id="hero-slides-container" class="space-y-6"></div>
+
+            <div class="mt-8 text-center">
+                <button onclick="saveHeroSlides()"
+                    class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> Hero Slides 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- Solution Slides Section -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Solution Slides</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">솔루션 슬라이드 관리 (다국어 지원)</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div id="solution-slides-container" class="space-y-6"></div>
+
+            <div class="mt-8 text-center">
+                <button onclick="saveSolutionSlides()"
+                    class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> Solution Slides 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- Section Images Section -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Section Images</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">섹션 이미지 관리 (다국어 지원)</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-600 mt-4">
+                    <i class="fa-solid fa-info-circle mr-1"></i>
+                    기존방식, 인프라, 기술 섹션의 이미지 URL을 관리합니다.
+                </p>
+            </div>
+
+            <div id="section-images-container" class="space-y-6"></div>
+
+            <div class="mt-8 text-center">
+                <button onclick="saveSectionImages()"
+                    class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> 섹션 이미지 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- Image Upload Section -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Image Upload</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">이미지 업로드</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-slate-50 p-6 rounded-xl border-2 border-dashed border-slate-300">
+                    <input type="file" id="image-upload" accept="image/*"
+                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button onclick="uploadImage()"
+                        class="w-full mt-4 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                        <i class="fa-solid fa-upload mr-2"></i> 이미지 업로드
+                    </button>
+                </div>
+                <div id="upload-status" class="mt-4 text-sm text-center"></div>
+                <div id="uploaded-url" class="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl hidden">
+                    <p class="text-sm font-medium text-green-800 mb-2">업로드 완료!</p>
+                    <input type="text" id="uploaded-url-text" readonly
+                        class="w-full px-3 py-2 bg-white border border-green-300 rounded text-sm">
+                    <button onclick="copyToClipboard()"
+                        class="mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-all">
+                        <i class="fa-solid fa-copy mr-1"></i> URL 복사
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let heroSlidesData = [];
+        let solutionSlidesData = [];
+        let sectionImagesData = [];
+
+        // 페이지 로드 시 인증 확인
+        window.addEventListener('load', async () => {
+            await checkAuth();
+        });
+
+        // 인증 확인
+        async function checkAuth() {
+            try {
+                const response = await fetch('auth.php?action=check');
+                const data = await response.json();
+
+                if (data.authenticated) {
+                    currentUser = { email: data.email };
+                    showAdminSection();
+                    await loadContent();
+                } else {
+                    showLoginSection();
+                }
+            } catch (error) {
+                console.error('인증 확인 오류:', error);
+                showLoginSection();
+            }
+        }
+
+        // 로그인
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+
+            try {
+                const response = await fetch('auth.php?action=login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    errorDiv.classList.add('hidden');
+                    await checkAuth();
+                } else {
+                    errorDiv.textContent = data.error || '로그인 실패';
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (error) {
+                errorDiv.textContent = '로그인 처리 중 오류가 발생했습니다.';
+                errorDiv.classList.remove('hidden');
+            }
+        });
+
+        // 로그아웃
+        async function logout() {
+            try {
+                await fetch('auth.php?action=logout', { method: 'POST' });
+                currentUser = null;
+                showLoginSection();
+            } catch (error) {
+                console.error('로그아웃 오류:', error);
+            }
+        }
+
+        // 로그인 섹션 표시
+        function showLoginSection() {
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('admin-section').classList.add('hidden');
+            document.getElementById('user-info').classList.add('hidden');
+        }
+
+        // 관리자 섹션 표시
+        function showAdminSection() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('admin-section').classList.remove('hidden');
+            document.getElementById('user-info').classList.remove('hidden');
+            document.getElementById('user-info').classList.add('flex');
+            document.getElementById('user-email').textContent = currentUser.email;
+        }
+
+        // 콘텐츠 로드 - 업데이트된 API 엔드포인트 사용
+        async function loadContent() {
+            try {
+                // Hero Slides 로드 (최대 3개로 제한) - 다국어 버전
+                const heroResponse = await fetch('api.php?type=hero_admin');
+                const heroData = await heroResponse.json();
+                heroSlidesData = (heroData.slides || []).slice(0, 3);
+
+                // 3개 미만이면 빈 슬라이드 추가
+                while (heroSlidesData.length < 3) {
+                    heroSlidesData.push({
+                        title_ko: '',
+                        title_en: '',
+                        description_ko: '',
+                        description_en: '',
+                        image_url_ko: '',
+                        image_url_en: ''
+                    });
+                }
+                renderHeroSlides();
+
+                // Solution Slides 로드 - 다국어 버전
+                const solutionResponse = await fetch('api.php?type=solution_admin');
+                const solutionData = await solutionResponse.json();
+                solutionSlidesData = solutionData.slides || [];
+                renderSolutionSlides();
+
+                // Section Images 로드 - 다국어 버전
+                const sectionsResponse = await fetch('api.php?type=sections_admin');
+                const sectionsData = await sectionsResponse.json();
+                sectionImagesData = sectionsData.sections || [];
+                renderSectionImages();
+            } catch (error) {
+                console.error('콘텐츠 로드 오류:', error);
+                alert('콘텐츠 로드 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Hero Slides 렌더링 - 다국어 필드 포함
+        function renderHeroSlides() {
+            const container = document.getElementById('hero-slides-container');
+            container.innerHTML = heroSlidesData.map((slide, index) => `
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">슬라이드 ${index + 1}</h3>
+                    <div class="space-y-6">
+                        <!-- Korean Language Section -->
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="language-label language-ko">
+                                <i class="fa-solid fa-language mr-1"></i> 한국어 (Korean)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (한국어)</label>
+                                    <input type="text" id="hero-title-ko-${index}" value="${slide.title_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (한국어)</label>
+                                    <input type="text" id="hero-desc-ko-${index}" value="${slide.description_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
+                                    <input type="text" id="hero-img-ko-${index}" value="${slide.image_url_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                ${slide.image_url_ko ? `<img src="${slide.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">` : ''}
+                            </div>
+                        </div>
+
+                        <!-- English Language Section -->
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="language-label language-en">
+                                <i class="fa-solid fa-language mr-1"></i> 영어 (English)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (영어)</label>
+                                    <input type="text" id="hero-title-en-${index}" value="${slide.title_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (영어)</label>
+                                    <input type="text" id="hero-desc-en-${index}" value="${slide.description_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
+                                    <input type="text" id="hero-img-en-${index}" value="${slide.image_url_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                ${slide.image_url_en ? `<img src="${slide.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Solution Slides 렌더링 - 다국어 필드 포함
+        function renderSolutionSlides() {
+            const container = document.getElementById('solution-slides-container');
+            container.innerHTML = solutionSlidesData.map((slide, index) => `
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">슬라이드 ${index + 1}</h3>
+                    <div class="space-y-6">
+                        <!-- Korean Language Section -->
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="language-label language-ko">
+                                <i class="fa-solid fa-language mr-1"></i> 한국어 (Korean)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (한국어)</label>
+                                    <input type="text" id="solution-title-ko-${index}" value="${slide.title_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (한국어)</label>
+                                    <input type="text" id="solution-desc-ko-${index}" value="${slide.description_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
+                                    <input type="text" id="solution-img-ko-${index}" value="${slide.image_url_ko || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                ${slide.image_url_ko ? `<img src="${slide.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">` : ''}
+                            </div>
+                        </div>
+
+                        <!-- English Language Section -->
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="language-label language-en">
+                                <i class="fa-solid fa-language mr-1"></i> 영어 (English)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (영어)</label>
+                                    <input type="text" id="solution-title-en-${index}" value="${slide.title_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (영어)</label>
+                                    <input type="text" id="solution-desc-en-${index}" value="${slide.description_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
+                                    <input type="text" id="solution-img-en-${index}" value="${slide.image_url_en || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                </div>
+                                ${slide.image_url_en ? `<img src="${slide.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Hero Slides 저장 - 다국어 필드 포함
+        async function saveHeroSlides() {
+            try {
+                const slides = heroSlidesData.map((slide, index) => ({
+                    title_ko: document.getElementById(`hero-title-ko-${index}`).value,
+                    title_en: document.getElementById(`hero-title-en-${index}`).value,
+                    description_ko: document.getElementById(`hero-desc-ko-${index}`).value,
+                    description_en: document.getElementById(`hero-desc-en-${index}`).value,
+                    image_url_ko: document.getElementById(`hero-img-ko-${index}`).value,
+                    image_url_en: document.getElementById(`hero-img-en-${index}`).value
+                })).slice(0, 3); // 3개로 제한
+
+                const response = await fetch('api.php?type=hero&action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slides })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Hero Slides가 성공적으로 저장되었습니다!');
+                    await loadContent();
+                } else {
+                    alert('저장 실패: ' + (data.error || '알 수 없는 오류'));
+                }
+            } catch (error) {
+                console.error('저장 오류:', error);
+                alert('저장 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Solution Slides 저장 - 다국어 필드 포함
+        async function saveSolutionSlides() {
+            try {
+                const slides = solutionSlidesData.map((slide, index) => ({
+                    title_ko: document.getElementById(`solution-title-ko-${index}`).value,
+                    title_en: document.getElementById(`solution-title-en-${index}`).value,
+                    description_ko: document.getElementById(`solution-desc-ko-${index}`).value,
+                    description_en: document.getElementById(`solution-desc-en-${index}`).value,
+                    image_url_ko: document.getElementById(`solution-img-ko-${index}`).value,
+                    image_url_en: document.getElementById(`solution-img-en-${index}`).value
+                }));
+
+                const response = await fetch('api.php?type=solution&action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slides })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Solution Slides가 성공적으로 저장되었습니다!');
+                    await loadContent();
+                } else {
+                    alert('저장 실패: ' + (data.error || '알 수 없는 오류'));
+                }
+            } catch (error) {
+                console.error('저장 오류:', error);
+                alert('저장 중 오류가 발생했습니다.');
+            }
+        }
+
+        // Section Images 렌더링 - 다국어 필드 포함
+        function renderSectionImages() {
+            const container = document.getElementById('section-images-container');
+
+            const sectionLabels = {
+                'problem_image': '기존방식 (Problem) 이미지',
+                'infra_mocap': '모션 캡쳐 스튜디오',
+                'infra_photo': '포토그래메트리 부스',
+                'infra_tech': 'Tech Specs',
+                'tech_bigdata_bg': '빅데이터 파이프라인 배경',
+                'tech_ai_bg': 'AI 분석 알고리즘 배경',
+                'tech_vrpe_bg': 'VRPE 배경'
+            };
+
+            container.innerHTML = sectionImagesData.map((section, index) => `
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">
+                        <i class="fa-solid fa-image mr-2 text-blue-600"></i>
+                        ${sectionLabels[section.section_key] || section.section_key}
+                    </h3>
+                    <div class="space-y-6">
+                        <!-- Korean Language Section -->
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <div class="language-label language-ko">
+                                <i class="fa-solid fa-language mr-1"></i> 한국어 (Korean)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
+                                    <input type="text" id="section-img-ko-${index}" value="${section.image_url_ko || ''}"
+                                        placeholder="https://example.com/image.jpg"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <p class="text-xs text-slate-500 mt-1">섹션 키: <code class="bg-slate-200 px-1 rounded">${section.section_key}</code></p>
+                                </div>
+                                ${section.image_url_ko ? `
+                                    <div class="relative">
+                                        <img src="${section.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">
+                                        <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded text-xs">
+                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
+                                        </div>
+                                    </div>
+                                ` : `
+                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
+                                        <div class="text-center text-slate-400">
+                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
+                                            <p class="text-sm">이미지 URL을 입력하세요</p>
+                                        </div>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- English Language Section -->
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <div class="language-label language-en">
+                                <i class="fa-solid fa-language mr-1"></i> 영어 (English)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
+                                    <input type="text" id="section-img-en-${index}" value="${section.image_url_en || ''}"
+                                        placeholder="https://example.com/image.jpg"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <p class="text-xs text-slate-500 mt-1">섹션 키: <code class="bg-slate-200 px-1 rounded">${section.section_key}</code></p>
+                                </div>
+                                ${section.image_url_en ? `
+                                    <div class="relative">
+                                        <img src="${section.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">
+                                        <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs">
+                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
+                                        </div>
+                                    </div>
+                                ` : `
+                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
+                                        <div class="text-center text-slate-400">
+                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
+                                            <p class="text-sm">이미지 URL을 입력하세요</p>
+                                        </div>
+                                    </div>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Section Images 저장 - 다국어 필드 포함
+        async function saveSectionImages() {
+            try {
+                const sections = sectionImagesData.map((section, index) => ({
+                    section_key: section.section_key,
+                    image_url_ko: document.getElementById(`section-img-ko-${index}`).value,
+                    image_url_en: document.getElementById(`section-img-en-${index}`).value,
+                    title: section.title,
+                    description: section.description
+                }));
+
+                const response = await fetch('api.php?type=sections&action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sections })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('섹션 이미지가 성공적으로 저장되었습니다!');
+                    await loadContent();
+                } else {
+                    alert('저장 실패: ' + (data.error || '알 수 없는 오류'));
+                }
+            } catch (error) {
+                console.error('저장 오류:', error);
+                alert('저장 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 이미지 업로드
+        async function uploadImage() {
+            const fileInput = document.getElementById('image-upload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('파일을 선택해주세요.');
+                return;
+            }
+
+            const statusDiv = document.getElementById('upload-status');
+            statusDiv.textContent = '업로드 중...';
+            statusDiv.className = 'mt-4 text-sm text-center text-blue-600';
+
+            try {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                const response = await fetch('upload.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    document.getElementById('uploaded-url-text').value = data.url;
+                    document.getElementById('uploaded-url').classList.remove('hidden');
+                    statusDiv.textContent = '업로드 완료!';
+                    statusDiv.className = 'mt-4 text-sm text-center text-green-600';
+                } else {
+                    throw new Error(data.error || '업로드 실패');
+                }
+            } catch (error) {
+                console.error('업로드 오류:', error);
+                statusDiv.textContent = '업로드 실패: ' + error.message;
+                statusDiv.className = 'mt-4 text-sm text-center text-red-600';
+            }
+        }
+
+        // URL 클립보드 복사
+        function copyToClipboard() {
+            const urlText = document.getElementById('uploaded-url-text');
+            urlText.select();
+            document.execCommand('copy');
+            alert('URL이 클립보드에 복사되었습니다!');
+        }
+    </script>
+</body>
+</html>

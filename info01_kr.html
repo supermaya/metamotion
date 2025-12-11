@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보 처리방침 | 메타모션 (METAMOTION)</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 기본 폰트 및 레이아웃 설정 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+            line-height: 1.6;
+        }
+
+        /* 섹션 헤더 강조 라인 */
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* 카드 호버 애니메이션 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 배경 애니메이션 (은은한 효과) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <a href="index" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">홈으로</a>
+                    <a href="info01_en" class="px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium rounded-lg transition-colors">
+                        <i class="fa-solid fa-language mr-1"></i> EN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Privacy Policy</span>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">개인정보 처리방침</h1>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-500 mt-6">최종 수정일: 2024년 12월 5일</p>
+            </div>
+
+            <!-- Content -->
+            <div class="prose prose-slate max-w-none space-y-8">
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제1조 (목적)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        메타모션(이하 '회사')은 이용자의 개인정보를 중요시하며, "정보통신망 이용촉진 및 정보보호에 관한 법률", "개인정보 보호법" 등 관련 법규를 준수하고 있습니다.
+                        회사는 개인정보 처리방침을 통하여 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제2조 (수집하는 개인정보의 항목 및 수집방법)</h2>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">1. 수집하는 개인정보 항목</h3>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>필수항목: 이름, 이메일 주소, 연락처</li>
+                                <li>선택항목: 회사명, 직책, 문의내용</li>
+                                <li>자동수집 항목: IP주소, 쿠키, 서비스 이용기록, 접속 로그</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">2. 개인정보 수집방법</h3>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>홈페이지 문의 양식</li>
+                                <li>이메일을 통한 문의</li>
+                                <li>전화 상담</li>
+                                <li>협력사 및 제휴사로부터의 제공</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제3조 (개인정보의 수집 및 이용목적)</h2>
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                        <ul class="list-disc list-inside space-y-2 text-slate-700">
+                            <li>서비스 제공 및 계약의 이행</li>
+                            <li>회원 관리 및 본인 확인</li>
+                            <li>고객 문의 및 불만 처리</li>
+                            <li>신규 서비스 개발 및 마케팅 활용</li>
+                            <li>서비스 개선 및 통계 분석</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제4조 (개인정보의 보유 및 이용기간)</h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 회사는 아래와 같이 관계법령에서 정한 일정한 기간 동안 회원정보를 보관합니다.
+                    </p>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                        <ul class="list-disc list-inside space-y-2 text-slate-700">
+                            <li>계약 또는 청약철회 등에 관한 기록: 5년 (전자상거래법)</li>
+                            <li>대금결제 및 재화 등의 공급에 관한 기록: 5년 (전자상거래법)</li>
+                            <li>소비자의 불만 또는 분쟁처리에 관한 기록: 3년 (전자상거래법)</li>
+                            <li>접속에 관한 기록: 3개월 (통신비밀보호법)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제5조 (개인정보의 제3자 제공)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 다만, 아래의 경우에는 예외로 합니다.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700 mt-4">
+                        <li>이용자가 사전에 동의한 경우</li>
+                        <li>법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제6조 (개인정보의 파기절차 및 방법)</h2>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">1. 파기절차</h3>
+                            <p class="text-slate-700">이용자가 입력한 정보는 목적 달성 후 별도의 DB에 옮겨져 내부 방침 및 기타 관련 법령에 따라 일정기간 저장된 후 혹은 즉시 파기됩니다.</p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">2. 파기방법</h3>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li>전자적 파일 형태: 복구 및 재생되지 않도록 안전하게 삭제</li>
+                                <li>종이에 출력된 개인정보: 분쇄기로 분쇄하거나 소각</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제7조 (이용자의 권리와 그 행사방법)</h2>
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        이용자는 언제든지 등록되어 있는 자신의 개인정보를 조회하거나 수정할 수 있으며, 개인정보의 수집·이용·제공에 대한 동의 철회를 요청할 수 있습니다.
+                    </p>
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                        <p class="text-slate-700 font-medium">
+                            개인정보 관련 문의: <a href="mailto:service@metamotion.io" class="text-blue-600 hover:underline">service@metamotion.io</a>
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제8조 (개인정보 보호책임자)</h2>
+                    <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                        <p class="text-slate-700 mb-2"><strong>개인정보 보호책임자</strong></p>
+                        <ul class="space-y-1 text-slate-700">
+                            <li>성명: 고영준</li>
+                            <li>직책: 대표이사</li>
+                            <li>전화: 02-6925-1546</li>
+                            <li>이메일: service@metamotion.io</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제9조 (개인정보 처리방침 변경)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        본 개인정보 처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다.
+                    </p>
+                </section>
+
+            </div>
+
+            <!-- Back Button -->
+            <div class="mt-12 text-center">
+                <a href="index" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> 메인으로 돌아가기
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+        <div class="mb-6 text-2xl text-slate-300">
+            <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                <p class="mb-2"><strong>대표이사:</strong> 고영준</p>
+                <p><strong>사업자번호:</strong> 558-87-02658</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                <p class="mb-2"><strong>개발실:</strong> 서울시 구로구 디지털로 285 에이스트윈타워 1차 B102호</p>
+                <p><strong>스튜디오:</strong> 동 건물 B103호</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> 제휴: gounbada@metamotion.io</p>
+                <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> 기타: service@metamotion.io</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+            <a href="info01_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">개인정보 처리방침</a>
+            <span class="hidden md:inline text-slate-300">|</span>
+            <a href="info02_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">이용약관</a>
+        </div>
+        <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

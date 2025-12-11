@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용약관 | 메타모션 (METAMOTION)</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 기본 폰트 및 레이아웃 설정 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+            line-height: 1.6;
+        }
+
+        /* 섹션 헤더 강조 라인 */
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* 카드 호버 애니메이션 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 배경 애니메이션 (은은한 효과) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <a href="index" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">홈으로</a>
+                    <a href="info02_en" class="px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium rounded-lg transition-colors">
+                        <i class="fa-solid fa-language mr-1"></i> EN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Terms of Service</span>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">이용약관</h1>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-500 mt-6">최종 수정일: 2024년 12월 5일</p>
+            </div>
+
+            <!-- Content -->
+            <div class="prose prose-slate max-w-none space-y-8">
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제1조 (목적)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        본 약관은 메타모션(이하 "회사")이 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 회사의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제2조 (약관의 효력 및 변경)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 본 약관은 서비스를 이용하고자 하는 모든 이용자에 대하여 그 효력을 발생합니다.</p>
+                        <p>2. 본 약관의 내용은 서비스 화면에 게시하거나 기타의 방법으로 이용자에게 공지하고, 이에 동의한 이용자가 서비스에 가입함으로써 효력이 발생합니다.</p>
+                        <p>3. 회사는 필요하다고 인정되는 경우 본 약관을 변경할 수 있으며, 약관을 변경할 경우에는 적용일자 및 변경사유를 명시하여 현행약관과 함께 서비스 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제3조 (약관 외 준칙)</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        본 약관에 명시되지 않은 사항은 전기통신기본법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 기타 관련 법령의 규정에 따릅니다.
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제4조 (용어의 정의)</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3 text-slate-700">
+                        <p><strong>1. 이용자:</strong> 본 약관에 따라 회사가 제공하는 서비스를 받는 자</p>
+                        <p><strong>2. 가입:</strong> 회사가 제공하는 신청서 양식에 해당 정보를 기입하고, 본 약관에 동의하여 서비스 이용계약을 완료시키는 행위</p>
+                        <p><strong>3. 회원:</strong> 회사에 개인정보를 제공하여 회원등록을 한 자로서 회사의 정보를 지속적으로 제공받으며 회사가 제공하는 서비스를 계속적으로 이용할 수 있는 자</p>
+                        <p><strong>4. 아이디(ID):</strong> 회원의 식별과 서비스 이용을 위하여 회원이 정하고 회사가 승인하는 문자와 숫자의 조합</p>
+                        <p><strong>5. 비밀번호:</strong> 회원이 부여받은 아이디와 일치된 회원임을 확인하고 회원 자신의 비밀을 보호하기 위하여 회원 자신이 정한 문자와 숫자의 조합</p>
+                        <p><strong>6. 탈퇴:</strong> 회사 또는 회원이 서비스 이용계약을 해지하는 행위</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제5조 (이용계약의 성립)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 이용계약은 이용자의 이용신청에 대한 회사의 승낙과 이용자의 약관 내용에 대한 동의로 성립됩니다.</p>
+                        <p>2. 회원에 가입하여 서비스를 이용하고자 하는 희망자는 회사에서 요청하는 개인 신상정보를 제공해야 합니다.</p>
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100">
+                            <p class="font-medium mb-2">3. 회사는 다음 각 호에 해당하는 이용계약에 대하여는 가입을 취소할 수 있습니다.</p>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li>다른 사람의 명의를 사용하여 신청하였을 때</li>
+                                <li>이용계약 신청서의 내용을 허위로 기재하였을 때</li>
+                                <li>사회의 안녕질서 혹은 미풍양속을 저해할 목적으로 신청하였을 때</li>
+                                <li>기타 회사가 정한 이용신청 요건이 만족되지 않았을 때</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제6조 (서비스의 이용)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 서비스 이용은 회사의 업무상 또는 기술상 특별한 지장이 없는 한 연중무휴, 1일 24시간을 원칙으로 합니다.</p>
+                        <p>2. 제1항의 이용시간은 정기점검 등의 필요로 인하여 회사가 정한 날 또는 시간은 예외로 합니다.</p>
+                        <p>3. 회사는 서비스를 일정범위로 분할하여 각 범위별로 이용가능 시간을 별도로 정할 수 있으며, 이 경우 그 내용을 사전에 공지합니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제7조 (서비스의 변경 및 중지)</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3 text-slate-700">
+                        <p>1. 회사는 다음 각 호에 해당하는 경우 서비스의 전부 또는 일부를 제한하거나 중지할 수 있습니다.</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>서비스용 설비의 보수 등 공사로 인한 부득이한 경우</li>
+                            <li>전기통신사업법에 규정된 기간통신사업자가 전기통신 서비스를 중지했을 경우</li>
+                            <li>국가비상사태, 정전, 서비스 설비의 장애 또는 서비스 이용의 폭주 등으로 정상적인 서비스 이용에 지장이 있는 경우</li>
+                        </ul>
+                        <p class="mt-4">2. 회사는 제1항의 규정에 의하여 서비스의 이용을 제한하거나 중지한 때에는 그 사유 및 제한기간 등을 지체 없이 이용자에게 알려야 합니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제8조 (이용자의 의무)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p class="font-medium">이용자는 다음 각 호의 행위를 하여서는 안됩니다.</p>
+                        <div class="bg-red-50 p-5 rounded-xl border border-red-100">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>다른 회원의 ID를 부정하게 사용하는 행위</li>
+                                <li>서비스에서 얻은 정보를 회사의 사전승낙 없이 회원의 이용 이외의 목적으로 복제하거나 이를 출판 및 방송 등에 사용하거나 제3자에게 제공하는 행위</li>
+                                <li>회사의 저작권, 제3자의 저작권 등 기타 권리를 침해하는 행위</li>
+                                <li>공공질서 및 미풍양속에 위반되는 내용의 정보, 문장, 도형 등을 타인에게 유포하는 행위</li>
+                                <li>범죄와 결부된다고 객관적으로 판단되는 행위</li>
+                                <li>기타 관계법령에 위배되는 행위</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제9조 (회사의 의무)</h2>
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 space-y-3 text-slate-700">
+                        <p>1. 회사는 법령과 본 약관이 금지하거나 미풍양속에 반하는 행위를 하지 않으며, 계속적이고 안정적으로 서비스를 제공하기 위하여 최선을 다하여 노력합니다.</p>
+                        <p>2. 회사는 이용자가 안전하게 서비스를 이용할 수 있도록 개인정보(신용정보 포함) 보호를 위해 보안시스템을 갖추어야 하며 개인정보 처리방침을 공시하고 준수합니다.</p>
+                        <p>3. 회사는 서비스 이용과 관련하여 이용자로부터 제기된 의견이나 불만이 정당하다고 인정할 경우에는 이를 처리하여야 합니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제10조 (저작권의 귀속 및 이용제한)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 회사가 작성한 저작물에 대한 저작권 기타 지적재산권은 회사에 귀속합니다.</p>
+                        <p>2. 이용자는 서비스를 이용함으로써 얻은 정보를 회사의 사전 승낙 없이 복제, 송신, 출판, 배포, 방송 기타 방법에 의하여 영리목적으로 이용하거나 제3자에게 이용하게 하여서는 안됩니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제11조 (분쟁의 해결)</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3 text-slate-700">
+                        <p>1. 회사와 이용자는 서비스와 관련하여 발생한 분쟁을 원만하게 해결하기 위하여 필요한 모든 노력을 하여야 합니다.</p>
+                        <p>2. 제1항의 규정에도 불구하고, 동 분쟁으로 인하여 소송이 제기될 경우 동 소송은 회사의 본사 소재지를 관할하는 법원의 관할로 합니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">제12조 (면책조항)</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 회사는 천재지변, 전쟁 및 기타 이에 준하는 불가항력으로 인하여 서비스를 제공할 수 없는 경우에는 서비스 제공에 대한 책임이 면제됩니다.</p>
+                        <p>2. 회사는 기간통신 사업자가 전기통신 서비스를 중지하거나 정상적으로 제공하지 아니하여 손해가 발생한 경우 책임이 면제됩니다.</p>
+                        <p>3. 회사는 서비스용 설비의 보수, 교체, 정기점검, 공사 등 부득이한 사유로 발생한 손해에 대한 책임이 면제됩니다.</p>
+                        <p>4. 회사는 이용자의 귀책사유로 인한 서비스 이용의 장애 또는 손해에 대하여 책임을 지지 않습니다.</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">부칙</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 text-slate-700">
+                        <p class="mb-2"><strong>1. 시행일:</strong> 본 약관은 2024년 12월 5일부터 시행합니다.</p>
+                        <p><strong>2. 문의:</strong> 본 약관에 대한 문의사항은 service@metamotion.io로 연락 주시기 바랍니다.</p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Back Button -->
+            <div class="mt-12 text-center">
+                <a href="index" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> 메인으로 돌아가기
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+        <div class="mb-6 text-2xl text-slate-300">
+            <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                <p class="mb-2"><strong>대표이사:</strong> 고영준</p>
+                <p><strong>사업자번호:</strong> 558-87-02658</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                <p class="mb-2"><strong>개발실:</strong> 서울시 구로구 디지털로 285 에이스트윈타워 1차 B102호</p>
+                <p><strong>스튜디오:</strong> 동 건물 B103호</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> 제휴: gounbada@metamotion.io</p>
+                <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> 기타: service@metamotion.io</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+            <a href="info01_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">개인정보 처리방침</a>
+            <span class="hidden md:inline text-slate-300">|</span>
+            <a href="info02_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">이용약관</a>
+        </div>
+        <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

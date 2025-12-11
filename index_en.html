@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METAMOTION | Interactive Infographic</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Basic font and layout settings */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+            line-height: 1.6;
+        }
+
+        /* Section header emphasis line */
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* Card hover animation */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Tab button style */
+        .tab-btn {
+            border-bottom: 3px solid transparent;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            color: #475569;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        /* Image zoom effect */
+        .img-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.5s ease;
+        }
+        .img-container:hover .img-zoom {
+            transform: scale(1.1);
+        }
+
+        /* Background animation (subtle effect) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2" onclick="scrollToSection('hero')">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('hero')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</button>
+                    <button onclick="scrollToSection('solution')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Step Master</button>
+                    <button onclick="scrollToSection('tech')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Core Technology</button>
+                    <button onclick="scrollToSection('track-record')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Track Record</button>
+                    <a href="index.html" onclick="window.location.href='index.html'; return false;" class="px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium rounded-lg transition-colors">
+                        <i class="fa-solid fa-language mr-1"></i> 한국어
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-xl text-slate-600">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-2 shadow-lg absolute w-full z-50">
+            <button onclick="scrollToSection('hero')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">About Us</button>
+            <button onclick="scrollToSection('solution')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Step Master</button>
+            <button onclick="scrollToSection('tech')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Core Technology</button>
+            <button onclick="scrollToSection('track-record')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Track Record</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-0 space-y-24">
+
+        <!-- SECTION 1: HERO & VISION -->
+        <section id="hero" class="text-center space-y-8 py-0 animate-fade-in relative">
+
+            <!-- Hero Image Slider -->
+            <div class="relative w-full h-[500px] overflow-hidden mb-12 shadow-2xl bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900">
+                <!-- Loading Placeholder -->
+                <div id="hero-loading" class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900 z-10">
+                    <div class="text-center">
+                        <div class="inline-block w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+                        <p class="text-white text-lg font-medium">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- Slides -->
+                <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="VR Learning" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">Immersive VR Training</h3>
+                        <p class="text-lg opacity-90">Perfect motion learning through immersive 3D lessons</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Motion Capture" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">Korea's Largest Motion Capture Studio</h3>
+                        <p class="text-lg opacity-90">48 OptiTrack Prime 41 cameras</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="AI Analysis" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">AI-Powered Motion Analysis</h3>
+                        <p class="text-lg opacity-90">Real-time posture correction with VRPE technology</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- Slide Indicators -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+                    <button onclick="goToSlide(0)" class="slide-indicator w-3 h-3 rounded-full bg-white transition-all"></button>
+                    <button onclick="goToSlide(1)" class="slide-indicator w-3 h-3 rounded-full bg-white/40 transition-all"></button>
+                    <button onclick="goToSlide(2)" class="slide-indicator w-3 h-3 rounded-full bg-white/40 transition-all"></button>
+                </div>
+            </div>
+
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-100 rounded-full blur-3xl opacity-30 -z-10 animate-blob"></div>
+
+            <span class="inline-block px-4 py-1.5 bg-white border border-blue-100 text-blue-600 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm">
+                Motion Tech Innovator
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-black leading-tight text-slate-900 tracking-tight">
+                Shaping the Future of<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Immersive Education with Big Data</span>
+            </h1>
+
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                METAMOTION leverages <strong>ultra-precise motion datasets and motion content production technology</strong>,<br class="hidden md:block">
+                combining <strong>HPE and VR</strong> to enable perfect motion transfer without temporal or spatial constraints.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 max-w-5xl mx-auto">
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-slate-900">2021</div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium uppercase tracking-wide">Founded</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-blue-600">48<span class="text-lg align-top">+</span></div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">HPE Datasets</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-orange-500">120<span class="text-lg align-top">+</span></div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">VR Motion Learning Content</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-slate-900">100K</div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">App Downloads (Pre)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PLATFORM (STEP MASTER) -->
+        <section id="solution" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Virtual Reality Education</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 pb-2">
+                    Platform : <span class="text-blue-600">STEP MASTER</span>
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-lg text-slate-500 mt-6 font-medium">Innovative immersive lesson platform based on AI motion analysis (VRPE)</p>
+            </div>
+
+            <div class="flex justify-center space-x-8 mb-10 border-b border-slate-100">
+                <button id="tab-problem" class="pb-3 text-lg font-medium tab-btn flex items-center gap-2" onclick="switchTab('problem')">
+                    <i class="fa-regular fa-circle-xmark"></i> Traditional Methods (Problem)
+                </button>
+                <button id="tab-solution" class="pb-3 text-lg font-medium tab-btn active flex items-center gap-2" onclick="switchTab('solution')">
+                    <i class="fa-regular fa-circle-check"></i> METAMOTION (Solution)
+                </button>
+            </div>
+
+            <div class="min-h-[350px]">
+                <!-- Problem Content -->
+                <div id="content-problem" class="hidden grid md:grid-cols-2 gap-8 items-center animate-fade-in">
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">1</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">Limitations of Flat Learning</h4>
+                                <p class="text-sm text-slate-500 mt-1">2D videos (YouTube, etc.) make it difficult to grasp the three-dimensional movements and depth of dance or martial arts.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">Lack of Objective Feedback</h4>
+                                <p class="text-sm text-slate-500 mt-1">When practicing alone, it is difficult to judge and correct your posture in real-time.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">Boring Repetitive Practice</h4>
+                                <p class="text-sm text-slate-500 mt-1">Lack of motivating elements leads to low persistence in simple repetitive training and frequent abandonment.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="problem-image" class="bg-slate-100 rounded-2xl h-80 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-400 overflow-hidden relative">
+                        <i class="fa-solid fa-tv text-6xl mb-4"></i>
+                        <span class="font-medium text-base">Limitations of one-way 2D experience</span>
+                    </div>
+                </div>
+
+                <!-- Solution Content -->
+                <div id="content-solution" class="grid md:grid-cols-2 gap-8 items-center animate-fade-in">
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">1</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">Ultra-Realistic 3D Lessons</h4>
+                                <p class="text-sm text-slate-600 mt-1">Rotate digital twin instructors 360 degrees for immersive, realistic learning.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">AI Precision Coaching (VRPE)</h4>
+                                <p class="text-sm text-slate-600 mt-1">HPE technology tracks your joints and precisely analyzes similarity to expert movements.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">Gamification</h4>
+                                <p class="text-sm text-slate-600 mt-1">Make training enjoyable and sustainable like a game through ranking competitions, achievement systems, and reward mechanisms.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution Image Slider -->
+                    <div class="relative h-80 rounded-2xl overflow-hidden shadow-lg">
+                        <!-- Slides -->
+                        <div class="solution-slide absolute inset-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="K-POP" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">K-POP Dance</h4>
+                                <p class="text-sm opacity-90">Learn choreography from professional dancers in VR</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Taekwondo" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">Taekwondo</h4>
+                                <p class="text-sm opacity-90">Learn precise poomsae and sparring movements</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Yoga" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">Yoga</h4>
+                                <p class="text-sm opacity-90">Perfect your movements with accurate postures</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Golf" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/80 via-cyan-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">Golf</h4>
+                                <p class="text-sm opacity-90">Swing posture analysis and correction</p>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button onclick="changeSolutionSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="changeSolutionSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+
+                        <!-- Slide Indicators -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                            <button onclick="goToSolutionSlide(0)" class="solution-indicator w-2 h-2 rounded-full bg-white transition-all"></button>
+                            <button onclick="goToSolutionSlide(1)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                            <button onclick="goToSolutionSlide(2)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                            <button onclick="goToSolutionSlide(3)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CORE TECHNOLOGY & ASSETS -->
+        <section id="tech" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="mb-12 text-center">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Proprietary Technology</span>
+                <h2 class="text-2xl font-bold text-slate-800 pb-2">
+                    Motion Content & Big Data Development Infrastructure
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-base text-slate-500 mt-6 max-w-3xl mx-auto">
+                    We have multiplied our development capabilities by utilizing dedicated infrastructure for building HPE datasets and developing AI content
+                </p>
+            </div>
+
+            <!-- Infra Grid (3 Columns) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- 1. Motion Capture Studio -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img id="infra-mocap-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Motion Capture" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-person-running"></i></div>
+                            <h3 class="font-bold text-lg">Motion Capture Studio</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>OptiTrack Prime 41 (48 cameras)</strong><br>
+                            Korea's largest effective shooting space (10m x 8m)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Photogrammetry Booth -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img id="infra-photo-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Photogrammetry" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-camera"></i></div>
+                            <h3 class="font-bold text-lg">Photogrammetry Booth</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>120 DSLR synchronized system</strong><br>
+                            Ultra-high resolution 3D modeling and texture extraction
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Contents Technology -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img id="infra-tech-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Contents Technology" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-server"></i></div>
+                            <h3 class="font-bold text-lg">Contents Technology</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>Motion capture-based dynamic pose image generation</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology & Assets Grid (3x2 Grid) -->
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Technology & Digital Asset</span>
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">Core Technologies & Digital Assets</h3>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 mb-6 rounded-full"></div>
+                <p class="text-base text-slate-500 max-w-3xl mx-auto">
+                    METAMOTION possesses core digital assets including dataset construction pipelines, VRPE, AI analysis algorithms, and realistic avatars.
+                </p>
+            </div>
+
+            <!-- 3x2 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Big Data Pipeline -->
+                <div id="tech-bigdata" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mb-4">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">Big Data Pipeline</h3>
+                    <p class="relative z-10 text-sm text-slate-500">Automated data collection, refinement, and labeling<br><span class="text-blue-600 font-semibold">High-speed processing system</span></p>
+                </div>
+
+                <!-- 2. AI Analysis -->
+                <div id="tech-ai" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600 text-2xl mb-4">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">AI Analysis Algorithm</h3>
+                    <p class="relative z-10 text-sm text-slate-500">Motion similarity evaluation model training<br><span class="text-indigo-600 font-semibold">Precision coaching engine</span></p>
+                </div>
+
+                <!-- 3. VRPE -->
+                <div id="tech-vrpe" class="bg-white p-6 rounded-2xl border-2 border-blue-100 shadow-md card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">VRPE (Pose Estimation)</h3>
+                    <p class="relative z-10 text-sm text-slate-500">Real-time joint tracking in VR environment<br><span class="text-blue-700 font-semibold">Ultra-precise posture analysis technology</span></p>
+                </div>
+
+                <!-- 4. Realistic Avatar -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-orange-100 shadow-md card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">Realistic Avatar Generation</h3>
+                    <p class="text-sm text-slate-500">Celebrity instructor Digital Twin implementation<br><span class="text-orange-600 font-semibold">Photorealistic rendering technology</span></p>
+                </div>
+
+                <!-- 5. Content Assetization -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4">
+                        <i class="fa-brands fa-unity"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">Content Assetization</h3>
+                    <p class="text-sm text-slate-500">Motion DB and AI training synthetic data<br><span class="text-emerald-600 font-semibold">One-Source Multi-Use</span></p>
+                </div>
+
+                <!-- 6. SaaS & API Solution -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 text-2xl mb-4">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">SaaS & API Solutions</h3>
+                    <p class="text-sm text-slate-500">B2B AI evaluation model provision<br><span class="text-slate-700 font-semibold">Global service expansion</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TRACK RECORD (2x3 Grid) -->
+        <section id="track-record" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Proven Success</span>
+                <h2 class="text-2xl font-black text-slate-900 pb-2">
+                    Track Record
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-base text-slate-500 mt-6 max-w-3xl mx-auto">METAMOTION's technology has been validated through collaborations with government agencies and major corporations.</p>
+            </div>
+
+            <!-- 2 Rows x 3 Columns Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Government -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-landmark"></i> GOVERNMENT
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">Ministry of Culture, Sports and Tourism</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Selected for Technology Innovation Infrastructure Construction Project<br>(Total project budget of 8.24 billion KRW)</p>
+                </div>
+
+                <!-- 2. R&D -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-flask"></i> R&D PARTNER
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">ETRI & NIA</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Intelligent NPC motion dataset and<br>human posture 3D data construction</p>
+                </div>
+
+                <!-- 3. Corporate 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-regular fa-handshake"></i> CORPORATE
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">KT & ALCHERA</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">AI dataset and DL training data supply</p>
+                </div>
+
+                <!-- 4. Enterprise -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-regular fa-building"></i> ENTERPRISE
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">Hyundai Motor Company</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Realistic avatar and learning motion data supply</p>
+                </div>
+
+                <!-- 5. Game & Content -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad"></i> GAME & CONTENT
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">NCSOFT / KRAFTON</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Motion content production and supply</p>
+                </div>
+
+                <!-- 6. Platform -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> PLATFORM
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">Step Master / Megamocap</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Dataset construction and VR platform development</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+            <div class="mb-6 text-2xl text-slate-300">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                    <p class="mb-2"><strong>CEO:</strong> Young-Jun Ko</p>
+                    <p><strong>Business Number:</strong> 558-87-02658</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                    <p class="mb-2"><strong>Office:</strong> B102, Ace Twin Tower 1, 285 Digital-ro, Guro-gu, Seoul</p>
+                    <p><strong>Studio:</strong> B103, Same Building</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> Partnership: gounbada@metamotion.io</p>
+                    <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> General: service@metamotion.io</p>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+                <a href="info01_en" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Privacy Policy</a>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <a href="info02_en" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Terms of Service</a>
+            </div>
+            <p class="mt-6 opacity-60">� 2024 METAMOTION. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script -->
+    <script>
+        // Hero Slider
+        let currentSlide = 0;
+        let slideInterval;
+        let heroImagesLoaded = false;
+
+        // Preload hero images
+        function preloadHeroImages() {
+            const slides = document.querySelectorAll('.hero-slide img');
+            const loadingIndicator = document.getElementById('hero-loading');
+
+            let loadedCount = 0;
+            const totalImages = slides.length;
+
+            // Check if all images are already cached
+            const allCached = Array.from(slides).every(img => img.complete);
+
+            if (allCached) {
+                // Already loaded
+                heroImagesLoaded = true;
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                showSlide(0);
+                startSlideInterval();
+                return;
+            }
+
+            slides.forEach((img) => {
+                if (img.complete) {
+                    loadedCount++;
+                } else {
+                    img.addEventListener('load', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            heroImagesLoaded = true;
+                            if (loadingIndicator) {
+                                loadingIndicator.style.opacity = '0';
+                                loadingIndicator.style.transition = 'opacity 0.5s';
+                                setTimeout(() => {
+                                    loadingIndicator.style.display = 'none';
+                                }, 500);
+                            }
+                            showSlide(0);
+                            startSlideInterval();
+                        }
+                    });
+                    img.addEventListener('error', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            heroImagesLoaded = true;
+                            if (loadingIndicator) loadingIndicator.style.display = 'none';
+                            showSlide(0);
+                            startSlideInterval();
+                        }
+                    });
+                }
+            });
+
+            // Already all loaded
+            if (loadedCount === totalImages) {
+                heroImagesLoaded = true;
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                showSlide(0);
+                startSlideInterval();
+            }
+        }
+
+        // Start slide auto-advance
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+        }
+
+        function showSlide(index) {
+            if (!heroImagesLoaded) return;
+
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.slide-indicator');
+
+            // 순환 처리
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === currentSlide ? '1' : '0';
+            });
+
+            indicators.forEach((indicator, i) => {
+                indicator.style.backgroundColor = i === currentSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
+            });
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+            resetSlideInterval();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetSlideInterval();
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            startSlideInterval();
+        }
+
+        // Solution Slider
+        let currentSolutionSlide = 0;
+        let solutionSlideInterval;
+
+        function showSolutionSlide(index) {
+            const slides = document.querySelectorAll('.solution-slide');
+            const indicators = document.querySelectorAll('.solution-indicator');
+
+            // 순환 처리
+            if (index >= slides.length) {
+                currentSolutionSlide = 0;
+            } else if (index < 0) {
+                currentSolutionSlide = slides.length - 1;
+            } else {
+                currentSolutionSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === currentSolutionSlide ? '1' : '0';
+            });
+
+            indicators.forEach((indicator, i) => {
+                indicator.style.backgroundColor = i === currentSolutionSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
+            });
+        }
+
+        function changeSolutionSlide(direction) {
+            showSolutionSlide(currentSolutionSlide + direction);
+            resetSolutionSlideInterval();
+        }
+
+        function goToSolutionSlide(index) {
+            showSolutionSlide(index);
+            resetSolutionSlideInterval();
+        }
+
+        function resetSolutionSlideInterval() {
+            clearInterval(solutionSlideInterval);
+            solutionSlideInterval = setInterval(() => {
+                showSolutionSlide(currentSolutionSlide + 1);
+            }, 4000);
+        }
+
+        // Auto-advance solution slides every 4 seconds
+        solutionSlideInterval = setInterval(() => {
+            showSolutionSlide(currentSolutionSlide + 1);
+        }, 4000);
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        function switchTab(tabName) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('content-problem').classList.add('hidden');
+            document.getElementById('content-solution').classList.add('hidden');
+
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+
+            const targetContent = document.getElementById(`content-${tabName}`);
+            targetContent.classList.remove('hidden');
+            targetContent.classList.add('grid');
+        }
+
+        // API� XP  \�
+        async function loadContentFromAPI() {
+            try {
+                console.log('Loading data from API...');
+
+                // Hero Slides \�
+                const heroResponse = await fetch('api.php?type=hero&lang=en');
+                if (heroResponse.ok) {
+                    const heroData = await heroResponse.json();
+                    console.log('Hero Slides data:', heroData);
+                    const heroSlides = document.querySelectorAll('.hero-slide');
+
+                    if (heroData.slides && heroData.slides.length > 0) {
+                        heroData.slides.forEach((slide, index) => {
+                            if (heroSlides[index]) {
+                                const slideElement = heroSlides[index];
+
+                                // t�� �pt�
+                                if (slide.image_url) {
+                                    const img = slideElement.querySelector('img');
+                                    if (img) {
+                                        img.src = slide.image_url;
+                                        console.log(`Hero slide ${index + 1} image updated:`, slide.image_url);
+                                    }
+                                }
+
+                                // M�� �pt�
+                                const titleElement = slideElement.querySelector('h3');
+                                const descElement = slideElement.querySelector('p');
+
+                                if (titleElement && slide.title) {
+                                    titleElement.textContent = slide.title;
+                                }
+
+                                if (descElement && slide.description) {
+                                    descElement.textContent = slide.description;
+                                }
+                            }
+                        });
+                        console.log('Hero Slides loaded');
+                    }
+                } else {
+                    console.log('Hero Slides data loading failed');
+                }
+
+                // Solution Slides \�
+                const solutionResponse = await fetch('api.php?type=solution&lang=en');
+                if (solutionResponse.ok) {
+                    const solutionData = await solutionResponse.json();
+                    console.log('Solution Slides data:', solutionData);
+                    const solutionSlides = document.querySelectorAll('.solution-slide');
+
+                    if (solutionData.slides && solutionData.slides.length > 0) {
+                        solutionData.slides.forEach((slide, index) => {
+                            if (solutionSlides[index]) {
+                                const slideElement = solutionSlides[index];
+
+                                // t�� �pt�
+                                if (slide.image_url) {
+                                    const img = slideElement.querySelector('img');
+                                    if (img) {
+                                        img.src = slide.image_url;
+                                        console.log(`Solution slide ${index + 1} image updated:`, slide.image_url);
+                                    }
+                                }
+
+                                // M�� �pt�
+                                const titleElement = slideElement.querySelector('h4');
+                                const descElement = slideElement.querySelector('p');
+
+                                if (titleElement && slide.title) {
+                                    titleElement.textContent = slide.title;
+                                }
+
+                                if (descElement && slide.description) {
+                                    descElement.textContent = slide.description;
+                                }
+                            }
+                        });
+                        console.log('Solution Slides loaded');
+                    }
+                } else {
+                    console.log('Solution Slides data loading failed');
+                }
+
+                // Section Images loading
+                const sectionsResponse = await fetch('api.php?type=sections&lang=en');
+                if (sectionsResponse.ok) {
+                    const sectionsData = await sectionsResponse.json();
+                    console.log('Section Images data:', sectionsData);
+
+                    if (sectionsData.sections && sectionsData.sections.length > 0) {
+                        sectionsData.sections.forEach(section => {
+                            if (section.image_url) {
+                                // Problem image
+                                if (section.section_key === 'problem_image') {
+                                    const problemDiv = document.getElementById('problem-image');
+                                    if (problemDiv) {
+                                        problemDiv.style.backgroundImage = `url(${section.image_url})`;
+                                        problemDiv.style.backgroundSize = 'cover';
+                                        problemDiv.style.backgroundPosition = 'center';
+                                        // Hide placeholder content when image is set
+                                        problemDiv.innerHTML = '';
+                                        console.log('Problem image updated:', section.image_url);
+                                    }
+                                }
+                                // Infrastructure images
+                                else if (section.section_key === 'infra_mocap') {
+                                    const img = document.getElementById('infra-mocap-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('Motion Capture image updated:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'infra_photo') {
+                                    const img = document.getElementById('infra-photo-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('Photogrammetry image updated:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'infra_tech') {
+                                    const img = document.getElementById('infra-tech-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('Tech Specs image updated:', section.image_url);
+                                    }
+                                }
+                                // Technology card backgrounds
+                                else if (section.section_key === 'tech_bigdata_bg') {
+                                    const card = document.getElementById('tech-bigdata');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('Big Data background image updated:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'tech_ai_bg') {
+                                    const card = document.getElementById('tech-ai');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('AI background image updated:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'tech_vrpe_bg') {
+                                    const card = document.getElementById('tech-vrpe');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('VRPE background image updated:', section.image_url);
+                                    }
+                                }
+                            }
+                        });
+                        console.log('Section Images loaded');
+                    }
+                } else {
+                    console.log('Section Images data loading failed');
+                }
+            } catch (error) {
+                console.error('API data loading error:', error);
+            } finally {
+                // 로딩 스피너 숨기기 (데이터 로드 완료 후)
+                const loadingIndicator = document.getElementById('hero-loading');
+                if (loadingIndicator) {
+                    loadingIndicator.style.opacity = '0';
+                    loadingIndicator.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 500);
+                }
+
+                // 첫 번째 슬라이드 즉시 표시
+                showSlide(0);
+                startSlideInterval();
+            }
+        }
+
+        // Load API data on page load
+        window.addEventListener('load', () => {
+            preloadHeroImages(); // Preload hero images
+            loadContentFromAPI();
+            initSPARouter();
+        });
+
+        // SPA Router initialization
+        function initSPARouter() {
+            // Intercept all internal link clicks
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href]');
+                if (!link) return;
+
+                const href = link.getAttribute('href');
+
+                // Exclude external links and special links
+                if (!href || href.startsWith('http') || href.startsWith('mailto:') ||
+                    href.startsWith('tel:') || href.startsWith('#') ||
+                    href.startsWith('javascript:') || href.includes('admin')) {
+                    return;
+                }
+
+                // Intercept internal page links
+                e.preventDefault();
+                loadPageContent(href);
+            });
+
+            // Handle browser back/forward
+            window.addEventListener('popstate', function(e) {
+                if (e.state && e.state.page) {
+                    loadPageContent(e.state.page, false);
+                }
+            });
+
+            // Handle initial page load
+            const currentPath = window.location.pathname;
+            if (currentPath !== '/' && currentPath !== '/index' && currentPath !== '/index.html' && currentPath !== '/index_en') {
+                loadPageContent(currentPath, false);
+            }
+        }
+
+        // Load page content
+        async function loadPageContent(path, pushState = true) {
+            try {
+                // Normalize path
+                let pagePath = path.replace(/^\//, '').replace(/\.html$/, '');
+                if (!pagePath || pagePath === 'index') {
+                    pagePath = 'index_en';
+                }
+
+                // Determine page filename
+                const filename = `${pagePath}.html`;
+
+                // Load page
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filename}`);
+                }
+
+                const htmlText = await response.text();
+
+                // Parse HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+
+                // Replace body content only
+                document.body.innerHTML = doc.body.innerHTML;
+
+                // Update title
+                const newTitle = doc.querySelector('title');
+                if (newTitle) {
+                    document.title = newTitle.textContent;
+                }
+
+                // Re-execute scripts - DISABLED to prevent variable redeclaration errors
+                // const scripts = document.body.querySelectorAll('script');
+                // scripts.forEach(oldScript => {
+                //     if (!oldScript.src) { // Only inline scripts
+                //         const newScript = document.createElement('script');
+                //         newScript.textContent = oldScript.textContent;
+                //         oldScript.parentNode.replaceChild(newScript, oldScript);
+                //     }
+                // });
+
+                // Keep URL at root (using History API)
+                if (pushState) {
+                    history.pushState({ page: pagePath }, '', '/');
+                } else {
+                    history.replaceState({ page: pagePath }, '', '/');
+                }
+
+                // Scroll to top
+                window.scrollTo(0, 0);
+
+                // Reinitialize SPA router
+                initSPARouter();
+
+            } catch (error) {
+                console.error('Page load error:', error);
+                // On error, navigate to actual page
+                window.location.href = path;
+            }
+        }
+    </script>
+</body>
+</html>

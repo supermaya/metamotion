@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메타모션 (METAMOTION) | 인터랙티브 인포그래픽</title>
+    
+    <!-- Tailwind CSS (스타일링 프레임워크) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js (차트 라이브러리 - 필요 시 확장 가능) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Google Fonts (Noto Sans KR - 본문 폰트) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome (아이콘 라이브러리) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 기본 폰트 및 레이아웃 설정 */
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            font-size: 0.9rem; 
+            background-color: #f8fafc; /* Slate-50 */
+            color: #1e293b; /* Slate-800 */
+            line-height: 1.6;
+        }
+        
+        /* 섹션 헤더 강조 라인 */
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* 카드 호버 애니메이션 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 탭 버튼 스타일 */
+        .tab-btn {
+            border-bottom: 3px solid transparent;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            color: #475569;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #2563eb;
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        /* 이미지 줌 효과 */
+        .img-container {
+            overflow: hidden;
+        }
+        .img-zoom {
+            transition: transform 0.5s ease;
+        }
+        .img-container:hover .img-zoom {
+            transform: scale(1.1);
+        }
+
+        /* 배경 애니메이션 (은은한 효과) */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2" onclick="scrollToSection('hero')">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('hero')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">회사소개</button>
+                    <button onclick="scrollToSection('solution')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">스텝마스터</button>
+                    <button onclick="scrollToSection('tech')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">핵심기술</button>
+                    <button onclick="scrollToSection('track-record')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">주요실적</button>
+                    <a href="index_en.html" onclick="window.location.href='index_en.html'; return false;" class="px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium rounded-lg transition-colors">
+                        <i class="fa-solid fa-language mr-1"></i> EN
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-xl text-slate-600">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-2 shadow-lg absolute w-full z-50">
+            <button onclick="scrollToSection('hero')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">회사소개</button>
+            <button onclick="scrollToSection('solution')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">스텝마스터</button>
+            <button onclick="scrollToSection('tech')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">핵심기술</button>
+            <button onclick="scrollToSection('track-record')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">주요실적</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 pt-0 space-y-24">
+
+        <!-- SECTION 1: HERO & VISION -->
+        <section id="hero" class="text-center space-y-8 py-0 animate-fade-in relative">
+
+            <!-- Hero Image Slider -->
+            <div class="relative w-full h-[500px] overflow-hidden mb-12 shadow-2xl bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900">
+                <!-- Loading Placeholder -->
+                <div id="hero-loading" class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900 z-10">
+                    <div class="text-center">
+                        <div class="inline-block w-16 h-16 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+                        <p class="text-white text-lg font-medium">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- Slides -->
+                <div class="hero-slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="VR Learning" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">실감형 VR 교육</h3>
+                        <p class="text-lg opacity-90">몰입형 3D 레슨으로 완벽한 동작 학습</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Motion Capture" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">국내 최대 모션캡처 스튜디오</h3>
+                        <p class="text-lg opacity-90">OptiTrack Prime 41 카메라 48대 보유</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="AI Analysis" class="w-full h-full object-cover" loading="eager">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/40 to-transparent"></div>
+                    <div class="absolute bottom-12 left-12 text-white text-left">
+                        <h3 class="text-4xl font-black mb-3">AI 정밀 동작 분석</h3>
+                        <p class="text-lg opacity-90">VRPE 기술로 실시간 자세 교정</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button onclick="changeSlide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="changeSlide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- Slide Indicators -->
+                <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+                    <button onclick="goToSlide(0)" class="slide-indicator w-3 h-3 rounded-full bg-white transition-all"></button>
+                    <button onclick="goToSlide(1)" class="slide-indicator w-3 h-3 rounded-full bg-white/40 transition-all"></button>
+                    <button onclick="goToSlide(2)" class="slide-indicator w-3 h-3 rounded-full bg-white/40 transition-all"></button>
+                </div>
+            </div>
+
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-100 rounded-full blur-3xl opacity-30 -z-10 animate-blob"></div>
+
+            <span class="inline-block px-4 py-1.5 bg-white border border-blue-100 text-blue-600 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm">
+                Motion Tech Innovator
+            </span>
+            
+            <h1 class="text-4xl md:text-6xl font-black leading-tight text-slate-900 tracking-tight">
+                빅데이터로 구현하는<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">실감형 교육의 미래</span>
+            </h1>
+            
+            <p class="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                메타모션은 <strong>초정밀 동작데이터셋과 모션 콘텐츠 제작기술</strong>을 바탕으로<br class="hidden md:block">
+                <strong>HPE와 VR</strong>을 결합하여 시공간의 제약 없는 완벽한 동작의 전수를 실현합니다.
+            </p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 max-w-5xl mx-auto">
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-slate-900">2021</div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium uppercase tracking-wide">Founded</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-blue-600">48<span class="text-lg align-top">+</span></div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">HPE 데이터셋</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-orange-500">120<span class="text-lg align-top">+</span></div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">VR 동작학습 콘텐츠</div>
+                </div>
+                <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
+                    <div class="text-3xl font-black text-slate-900">100K</div>
+                    <div class="text-xs text-slate-500 mt-2 font-medium">App Downloads (Pre)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: PLATFORM (STEP MASTER) -->
+        <section id="solution" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Virtual Reality Education</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 pb-2">
+                    Platform : <span class="text-blue-600">STEP MASTER</span>
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-lg text-slate-500 mt-6 font-medium">AI 모션 분석(VRPE) 기반의 혁신적인 실감형 레슨 플랫폼</p>
+            </div>
+
+            <div class="flex justify-center space-x-8 mb-10 border-b border-slate-100">
+                <button id="tab-problem" class="pb-3 text-lg font-medium tab-btn flex items-center gap-2" onclick="switchTab('problem')">
+                    <i class="fa-regular fa-circle-xmark"></i> 기존 방식 (Problem)
+                </button>
+                <button id="tab-solution" class="pb-3 text-lg font-medium tab-btn active flex items-center gap-2" onclick="switchTab('solution')">
+                    <i class="fa-regular fa-circle-check"></i> 메타모션 (Solution)
+                </button>
+            </div>
+
+            <div class="min-h-[350px]">
+                <!-- Problem Content -->
+                <div id="content-problem" class="hidden grid md:grid-cols-2 gap-8 items-center animate-fade-in">
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">1</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">평면적 학습의 한계</h4>
+                                <p class="text-sm text-slate-500 mt-1">2D 영상(YouTube 등)으로는 춤이나 무술의 입체적 동작과 깊이감을 파악하기 어렵습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">객관적 피드백의 부재</h4>
+                                <p class="text-sm text-slate-500 mt-1">혼자 연습 시 자신의 자세가 정확한지 실시간으로 판단하고 교정받기 어렵습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600 text-sm font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">지루한 반복 연습</h4>
+                                <p class="text-sm text-slate-500 mt-1">동기 부여 요소가 부족하여 단순 반복 훈련의 지속성이 떨어지고 중도 포기가 잦습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="problem-image" class="bg-slate-100 rounded-2xl h-80 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 text-slate-400 overflow-hidden relative">
+                        <i class="fa-solid fa-tv text-6xl mb-4"></i>
+                        <span class="font-medium text-base">단방향 2D 경험의 한계</span>
+                    </div>
+                </div>
+
+                <!-- Solution Content -->
+                <div id="content-solution" class="grid md:grid-cols-2 gap-8 items-center animate-fade-in">
+                    <div class="space-y-6">
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">1</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">초실감형 3D 레슨</h4>
+                                <p class="text-sm text-slate-600 mt-1">디지털 트윈 강사를 360도로 돌려보며, 현장감 있는 몰입 학습을 제공합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">AI 정밀 코칭 (VRPE)</h4>
+                                <p class="text-sm text-slate-600 mt-1">HPE 기술로 사용자의 관절을 추적, 전문가 동작과의 유사도를 정밀 분석합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
+                            <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="text-base font-bold text-slate-800">게이미피케이션</h4>
+                                <p class="text-sm text-slate-600 mt-1">랭킹 경쟁, 업적 달성, 보상 시스템을 통해 훈련을 게임처럼 즐겁게 지속합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solution Image Slider -->
+                    <div class="relative h-80 rounded-2xl overflow-hidden shadow-lg">
+                        <!-- Slides -->
+                        <div class="solution-slide absolute inset-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="K-POP" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">K-POP 댄스</h4>
+                                <p class="text-sm opacity-90">전문 안무가의 동작을 VR로 배우기</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Taekwondo" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">태권도</h4>
+                                <p class="text-sm opacity-90">정확한 품새와 겨루기 동작 학습</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Yoga" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">요가</h4>
+                                <p class="text-sm opacity-90">정확한 자세로 완벽한 동작 완성</p>
+                            </div>
+                        </div>
+
+                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Golf" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/80 via-cyan-900/40 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <h4 class="text-2xl font-black mb-2">골프</h4>
+                                <p class="text-sm opacity-90">스윙 자세 분석 및 교정</p>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Arrows -->
+                        <button onclick="changeSolutionSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+                        <button onclick="changeSolutionSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+
+                        <!-- Slide Indicators -->
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                            <button onclick="goToSolutionSlide(0)" class="solution-indicator w-2 h-2 rounded-full bg-white transition-all"></button>
+                            <button onclick="goToSolutionSlide(1)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                            <button onclick="goToSolutionSlide(2)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                            <button onclick="goToSolutionSlide(3)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CORE TECHNOLOGY & ASSETS -->
+        <section id="tech" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="mb-12 text-center">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Proprietary Technology</span>
+                <h2 class="text-2xl font-bold text-slate-800 pb-2">
+                    모션 콘텐츠 및 빅데이터 개발 인프라
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-base text-slate-500 mt-6 max-w-3xl mx-auto">
+                    HPE 데이터셋을 구축 및 AI 콘텐츠 개발 전용 인프라를 활용하여 개발 역량을 배가 하였습니다
+                </p>
+            </div>
+
+            <!-- Infra Grid (3 Columns) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- 1. Motion Capture Studio -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Placeholder image -->
+                        <img id="infra-mocap-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Motion Capture" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-person-running"></i></div>
+                            <h3 class="font-bold text-lg">모션 캡쳐 스튜디오</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>OptiTrack Prime 41 (48대)</strong><br>
+                            국내 최대 유효 촬영 공간(10m x 8m)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Photogrammetry Booth -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Placeholder image -->
+                        <img id="infra-photo-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Photogrammetry" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-camera"></i></div>
+                            <h3 class="font-bold text-lg">포토그래메트리 부스</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>120대 DSLR 동기화 시스템</strong><br>
+                            초고해상도 3D 모델링 및 텍스처 추출
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. 모션 콘티 생성 시스템 -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden card-hover h-full flex flex-col group">
+                    <div class="h-48 overflow-hidden relative">
+                        <!-- Placeholder image -->
+                        <img id="infra-tech-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="모션 콘티 생성 시스템" class="w-full h-full object-cover img-zoom">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                        <div class="absolute bottom-4 left-5 text-white">
+                            <div class="text-2xl mb-1"><i class="fa-solid fa-server"></i></div>
+                            <h3 class="font-bold text-lg">모션 콘티 생성 시스템</h3>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow">
+                        <p class="text-sm text-slate-600">
+                            <strong>모션캡쳐 기반 다이나믹 포즈 이미지 생성</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology & Assets Grid (3x2 Grid) -->
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Technology & Digital Asset</span>
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">보유기술 및 디지털 자산</h3>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 mb-6 rounded-full"></div>
+                <p class="text-base text-slate-500 max-w-3xl mx-auto">
+                    메타모션은 데이터셋 구축 파이프라인과 VRPE, AI 분석 알고리즘, 실감 아바타 등 핵심 디지털 Asset을 보유하고 있습니다.
+                </p>
+            </div>
+            
+            <!-- 3x2 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Big Data Pipeline -->
+                <div id="tech-bigdata" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-2xl mb-4">
+                        <i class="fa-solid fa-database"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">빅데이터 파이프라인</h3>
+                    <p class="relative z-10 text-sm text-slate-500">데이터 수집·정제·라벨링 자동화<br><span class="text-blue-600 font-semibold">고속 처리 시스템</span></p>
+                </div>
+
+                <!-- 2. AI Analysis -->
+                <div id="tech-ai" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-indigo-50 rounded-full flex items-center justify-center text-indigo-600 text-2xl mb-4">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">AI 분석 알고리즘</h3>
+                    <p class="relative z-10 text-sm text-slate-500">동작 유사도 평가 모델 학습<br><span class="text-indigo-600 font-semibold">정밀 코칭 엔진</span></p>
+                </div>
+
+                <!-- 3. VRPE -->
+                <div id="tech-vrpe" class="bg-white p-6 rounded-2xl border-2 border-blue-100 shadow-md card-hover h-full flex flex-col justify-center items-center text-center bg-cover bg-center relative">
+                    <div class="absolute inset-0 bg-white/90 rounded-2xl"></div>
+                    <div class="relative z-10 w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3 class="relative z-10 font-bold text-base text-slate-800 mb-2">VRPE (Pose Estimation)</h3>
+                    <p class="relative z-10 text-sm text-slate-500">VR 환경 내 실시간 관절 추적<br><span class="text-blue-700 font-semibold">초정밀 자세 분석 기술</span></p>
+                </div>
+
+                <!-- 4. Realistic Avatar -->
+                <div class="bg-white p-6 rounded-2xl border-2 border-orange-100 shadow-md card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">실감 아바타 생성</h3>
+                    <p class="text-sm text-slate-500">유명 강사 Digital Twin 구현<br><span class="text-orange-600 font-semibold">실사급 렌더링 기술</span></p>
+                </div>
+
+                <!-- 5. Content Assetization -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4">
+                        <i class="fa-brands fa-unity"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">콘텐츠 자산화</h3>
+                    <p class="text-sm text-slate-500">모션 DB 및 AI 학습용 합성 데이터<br><span class="text-emerald-600 font-semibold">One-Source Multi-Use</span></p>
+                </div>
+
+                <!-- 6. SaaS & API Solution -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm card-hover h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 text-2xl mb-4">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-800 mb-2">SaaS & API 솔루션</h3>
+                    <p class="text-sm text-slate-500">B2B AI 평가 모델 제공<br><span class="text-slate-700 font-semibold">글로벌 서비스 확장</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: TRACK RECORD (2x3 Grid) -->
+        <section id="track-record" class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Proven Success</span>
+                <h2 class="text-2xl font-black text-slate-900 pb-2">
+                    주요실적
+                </h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
+                <p class="text-base text-slate-500 mt-6 max-w-3xl mx-auto">메타모션은 정부 기관 및 대기업과의 협업을 통해 기술력을 검증받았습니다.</p>
+            </div>
+            
+            <!-- 2 Rows x 3 Columns Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Government -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-landmark"></i> GOVERNMENT
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">문화체육관광부</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">기술혁신 인프라 조성 사업 선정<br>(총 사업비 82.4억 규모)</p>
+                </div>
+
+                <!-- 2. R&D -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-flask"></i> R&D PARTNER
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">ETRI & NIA</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">지능형 NPC 동작 데이터셋 및<br>인체 자세 3D 데이터 구축</p>
+                </div>
+
+                <!-- 3. Corporate 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-600 card-hover">
+                    <div class="text-sm text-blue-600 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-regular fa-handshake"></i> CORPORATE
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">KT & ALCHERA</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">AI 데이터셋 및 DL 학습 데이터 공급</p>
+                </div>
+
+                <!-- 4. Enterprise -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-regular fa-building"></i> ENTERPRISE
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">현대자동차</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">실감형 아바타 및 학습용 동작데이터 공급</p>
+                </div>
+
+                <!-- 5. Game & Content -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-gamepad"></i> GAME & CONTENT
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">엔씨소프트 / 크래프톤</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">모션 콘텐츠 제작 및 공급</p>
+                </div>
+
+                <!-- 6. Platform -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 card-hover">
+                    <div class="text-sm text-orange-500 font-bold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> PLATFORM
+                    </div>
+                    <h4 class="text-lg font-bold text-slate-800 mb-2">스텝마스터 / 메가모캡</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">데이터셋 구축 및 VR 플랫폼 개발</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+            <div class="mb-6 text-2xl text-slate-300">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                    <p class="mb-2"><strong>대표이사:</strong> 고영준</p>
+                    <p><strong>사업자번호:</strong> 558-87-02658</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                    <p class="mb-2"><strong>개발실:</strong> 서울시 구로구 디지털로 285 에이스트윈타워 1차 B102호</p>
+                    <p><strong>스튜디오:</strong> 동 건물 B103호</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> 제휴: gounbada@metamotion.io</p>
+                    <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> 기타: service@metamotion.io</p>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+                <a href="info01_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">개인정보 처리방침</a>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <a href="info02_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">이용약관</a>
+            </div>
+            <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Script -->
+    <script>
+        // Hero Slider
+        let currentSlide = 0;
+        let slideInterval;
+        let heroImagesLoaded = false;
+
+        // 히어로 이미지 프리로드
+        function preloadHeroImages() {
+            const slides = document.querySelectorAll('.hero-slide img');
+            const loadingIndicator = document.getElementById('hero-loading');
+
+            let loadedCount = 0;
+            const totalImages = slides.length;
+
+            // 모든 이미지가 이미 캐시되어 있는지 확인
+            const allCached = Array.from(slides).every(img => img.complete);
+
+            if (allCached) {
+                // 이미 로드됨
+                heroImagesLoaded = true;
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                showSlide(0);
+                startSlideInterval(); // 자동 전환 시작
+                return;
+            }
+
+            slides.forEach((img) => {
+                if (img.complete) {
+                    loadedCount++;
+                } else {
+                    img.addEventListener('load', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            heroImagesLoaded = true;
+                            if (loadingIndicator) {
+                                loadingIndicator.style.opacity = '0';
+                                loadingIndicator.style.transition = 'opacity 0.5s';
+                                setTimeout(() => {
+                                    loadingIndicator.style.display = 'none';
+                                }, 500);
+                            }
+                            showSlide(0);
+                            startSlideInterval(); // 자동 전환 시작
+                        }
+                    });
+                    img.addEventListener('error', () => {
+                        loadedCount++;
+                        if (loadedCount === totalImages) {
+                            heroImagesLoaded = true;
+                            if (loadingIndicator) loadingIndicator.style.display = 'none';
+                            showSlide(0);
+                            startSlideInterval(); // 자동 전환 시작
+                        }
+                    });
+                }
+            });
+
+            // 이미 모두 로드된 경우
+            if (loadedCount === totalImages) {
+                heroImagesLoaded = true;
+                if (loadingIndicator) loadingIndicator.style.display = 'none';
+                showSlide(0);
+                startSlideInterval(); // 자동 전환 시작
+            }
+        }
+
+        // 슬라이드 자동 전환 시작
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+        }
+
+        function showSlide(index) {
+            if (!heroImagesLoaded) return;
+
+            const slides = document.querySelectorAll('.hero-slide');
+            const indicators = document.querySelectorAll('.slide-indicator');
+
+            // 순환 처리
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === currentSlide ? '1' : '0';
+            });
+
+            indicators.forEach((indicator, i) => {
+                indicator.style.backgroundColor = i === currentSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
+            });
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+            resetSlideInterval();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetSlideInterval();
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            startSlideInterval();
+        }
+
+        // Solution Slider
+        let currentSolutionSlide = 0;
+        let solutionSlideInterval;
+
+        function showSolutionSlide(index) {
+            const slides = document.querySelectorAll('.solution-slide');
+            const indicators = document.querySelectorAll('.solution-indicator');
+
+            // 순환 처리
+            if (index >= slides.length) {
+                currentSolutionSlide = 0;
+            } else if (index < 0) {
+                currentSolutionSlide = slides.length - 1;
+            } else {
+                currentSolutionSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === currentSolutionSlide ? '1' : '0';
+            });
+
+            indicators.forEach((indicator, i) => {
+                indicator.style.backgroundColor = i === currentSolutionSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
+            });
+        }
+
+        function changeSolutionSlide(direction) {
+            showSolutionSlide(currentSolutionSlide + direction);
+            resetSolutionSlideInterval();
+        }
+
+        function goToSolutionSlide(index) {
+            showSolutionSlide(index);
+            resetSolutionSlideInterval();
+        }
+
+        function resetSolutionSlideInterval() {
+            clearInterval(solutionSlideInterval);
+            solutionSlideInterval = setInterval(() => {
+                showSolutionSlide(currentSolutionSlide + 1);
+            }, 4000);
+        }
+
+        // Auto-advance solution slides every 4 seconds
+        solutionSlideInterval = setInterval(() => {
+            showSolutionSlide(currentSolutionSlide + 1);
+        }, 4000);
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        function switchTab(tabName) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById('content-problem').classList.add('hidden');
+            document.getElementById('content-solution').classList.add('hidden');
+
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+
+            const targetContent = document.getElementById(`content-${tabName}`);
+            targetContent.classList.remove('hidden');
+            targetContent.classList.add('grid');
+        }
+
+        // API에서 콘텐츠 로드
+        async function loadContentFromAPI() {
+            try {
+                console.log('API에서 데이터 로드 시작...');
+
+                // Hero Slides 로드
+                const heroResponse = await fetch('api.php?type=hero&lang=ko');
+                if (heroResponse.ok) {
+                    const heroData = await heroResponse.json();
+                    console.log('Hero Slides 데이터:', heroData);
+                    const heroSlides = document.querySelectorAll('.hero-slide');
+
+                    if (heroData.slides && heroData.slides.length > 0) {
+                        heroData.slides.forEach((slide, index) => {
+                            if (heroSlides[index]) {
+                                const slideElement = heroSlides[index];
+
+                                // 이미지 업데이트
+                                if (slide.image_url) {
+                                    const img = slideElement.querySelector('img');
+                                    if (img) {
+                                        img.src = slide.image_url;
+                                        console.log(`Hero 슬라이드 ${index + 1} 이미지 업데이트:`, slide.image_url);
+                                    }
+                                }
+
+                                // 텍스트 업데이트
+                                const titleElement = slideElement.querySelector('h3');
+                                const descElement = slideElement.querySelector('p');
+
+                                if (titleElement && slide.title) {
+                                    titleElement.textContent = slide.title;
+                                }
+
+                                if (descElement && slide.description) {
+                                    descElement.textContent = slide.description;
+                                }
+                            }
+                        });
+                        console.log('Hero Slides 로드 완료');
+                    }
+                } else {
+                    console.log('Hero Slides 데이터 로드 실패');
+                }
+
+                // Solution Slides 로드
+                const solutionResponse = await fetch('api.php?type=solution&lang=ko');
+                if (solutionResponse.ok) {
+                    const solutionData = await solutionResponse.json();
+                    console.log('Solution Slides 데이터:', solutionData);
+                    const solutionSlides = document.querySelectorAll('.solution-slide');
+
+                    if (solutionData.slides && solutionData.slides.length > 0) {
+                        solutionData.slides.forEach((slide, index) => {
+                            if (solutionSlides[index]) {
+                                const slideElement = solutionSlides[index];
+
+                                // 이미지 업데이트
+                                if (slide.image_url) {
+                                    const img = slideElement.querySelector('img');
+                                    if (img) {
+                                        img.src = slide.image_url;
+                                        console.log(`Solution 슬라이드 ${index + 1} 이미지 업데이트:`, slide.image_url);
+                                    }
+                                }
+
+                                // 텍스트 업데이트
+                                const titleElement = slideElement.querySelector('h4');
+                                const descElement = slideElement.querySelector('p');
+
+                                if (titleElement && slide.title) {
+                                    titleElement.textContent = slide.title;
+                                }
+
+                                if (descElement && slide.description) {
+                                    descElement.textContent = slide.description;
+                                }
+                            }
+                        });
+                        console.log('Solution Slides 로드 완료');
+                    }
+                } else {
+                    console.log('Solution Slides 데이터 로드 실패');
+                }
+
+                // Section Images 로드
+                const sectionsResponse = await fetch('api.php?type=sections&lang=ko');
+                if (sectionsResponse.ok) {
+                    const sectionsData = await sectionsResponse.json();
+                    console.log('Section Images 데이터:', sectionsData);
+
+                    if (sectionsData.sections && sectionsData.sections.length > 0) {
+                        sectionsData.sections.forEach(section => {
+                            if (section.image_url) {
+                                // Problem image
+                                if (section.section_key === 'problem_image') {
+                                    const problemDiv = document.getElementById('problem-image');
+                                    if (problemDiv) {
+                                        problemDiv.style.backgroundImage = `url(${section.image_url})`;
+                                        problemDiv.style.backgroundSize = 'cover';
+                                        problemDiv.style.backgroundPosition = 'center';
+                                        // Hide placeholder content when image is set
+                                        problemDiv.innerHTML = '';
+                                        console.log('Problem 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                // Infrastructure images
+                                else if (section.section_key === 'infra_mocap') {
+                                    const img = document.getElementById('infra-mocap-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('모션 캡쳐 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'infra_photo') {
+                                    const img = document.getElementById('infra-photo-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('포토그래메트리 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'infra_tech') {
+                                    const img = document.getElementById('infra-tech-img');
+                                    if (img) {
+                                        img.src = section.image_url;
+                                        console.log('Tech Specs 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                // Technology card backgrounds
+                                else if (section.section_key === 'tech_bigdata_bg') {
+                                    const card = document.getElementById('tech-bigdata');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('빅데이터 배경 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'tech_ai_bg') {
+                                    const card = document.getElementById('tech-ai');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('AI 배경 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                                else if (section.section_key === 'tech_vrpe_bg') {
+                                    const card = document.getElementById('tech-vrpe');
+                                    if (card) {
+                                        card.style.backgroundImage = `url(${section.image_url})`;
+                                        console.log('VRPE 배경 이미지 업데이트:', section.image_url);
+                                    }
+                                }
+                            }
+                        });
+                        console.log('Section Images 로드 완료');
+                    }
+                } else {
+                    console.log('Section Images 데이터 로드 실패');
+                }
+            } catch (error) {
+                console.error('API 데이터 로드 오류:', error);
+            } finally {
+                // 로딩 스피너 숨기기 (데이터 로드 완료 후)
+                const loadingIndicator = document.getElementById('hero-loading');
+                if (loadingIndicator) {
+                    loadingIndicator.style.opacity = '0';
+                    loadingIndicator.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 500);
+                }
+
+                // 첫 번째 슬라이드 즉시 표시
+                showSlide(0);
+                startSlideInterval();
+            }
+        }
+
+        // 페이지 로드 시 API 데이터 로드
+        window.addEventListener('load', () => {
+            preloadHeroImages(); // 히어로 이미지 프리로드
+            loadContentFromAPI();
+            initSPARouter();
+        });
+
+        // SPA 라우터 초기화
+        function initSPARouter() {
+            // 모든 내부 링크 클릭 가로채기
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a[href]');
+                if (!link) return;
+
+                const href = link.getAttribute('href');
+
+                // 외부 링크나 특수 링크는 제외
+                if (!href || href.startsWith('http') || href.startsWith('mailto:') ||
+                    href.startsWith('tel:') || href.startsWith('#') ||
+                    href.startsWith('javascript:') || href.includes('admin')) {
+                    return;
+                }
+
+                // 내부 페이지 링크 가로채기
+                e.preventDefault();
+                loadPageContent(href);
+            });
+
+            // 브라우저 뒤로가기 처리
+            window.addEventListener('popstate', function(e) {
+                if (e.state && e.state.page) {
+                    loadPageContent(e.state.page, false);
+                }
+            });
+
+            // 초기 페이지 로드 처리
+            const currentPath = window.location.pathname;
+            if (currentPath !== '/' && currentPath !== '/index' && currentPath !== '/index.html') {
+                loadPageContent(currentPath, false);
+            }
+        }
+
+        // 페이지 콘텐츠 로드
+        async function loadPageContent(path, pushState = true) {
+            try {
+                // 경로 정규화
+                let pagePath = path.replace(/^\//, '').replace(/\.html$/, '');
+                if (!pagePath || pagePath === 'index') {
+                    // 메인 페이지로 새로고침
+                    window.location.href = '/';
+                    return;
+                }
+
+                // 페이지 파일명 결정
+                const filename = `${pagePath}.html`;
+
+                // 페이지 로드
+                const response = await fetch(filename);
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${filename}`);
+                }
+
+                const htmlText = await response.text();
+
+                // HTML 파싱
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+
+                // body 콘텐츠만 교체
+                document.body.innerHTML = doc.body.innerHTML;
+
+                // 타이틀 업데이트
+                const newTitle = doc.querySelector('title');
+                if (newTitle) {
+                    document.title = newTitle.textContent;
+                }
+
+                // 스크립트 재실행 - 변수 중복 선언 에러 방지를 위해 비활성화
+                // const scripts = document.body.querySelectorAll('script');
+                // scripts.forEach(oldScript => {
+                //     if (!oldScript.src) { // 인라인 스크립트만 재실행
+                //         const newScript = document.createElement('script');
+                //         newScript.textContent = oldScript.textContent;
+                //         oldScript.parentNode.replaceChild(newScript, oldScript);
+                //     }
+                // });
+
+                // URL은 루트로 유지 (History API 사용)
+                if (pushState) {
+                    history.pushState({ page: pagePath }, '', '/');
+                } else {
+                    history.replaceState({ page: pagePath }, '', '/');
+                }
+
+                // 페이지 최상단으로 스크롤
+                window.scrollTo(0, 0);
+
+                // SPA 라우터 재초기화
+                initSPARouter();
+
+            } catch (error) {
+                console.error('Page load error:', error);
+                // 에러 시 실제 페이지로 이동
+                window.location.href = path;
+            }
+        }
+    </script>
+</body>
+</html>

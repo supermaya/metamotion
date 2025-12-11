@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(\"D:\\98_Project\\metamotion\\info01_en.html\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
