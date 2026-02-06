@@ -179,6 +179,156 @@ try {
         exit;
     }
 
+    // Avatar Slides 저장 (인증 필요) - 양쪽 언어 모두 저장
+    if ($method === 'POST' && $type === 'avatar' && $action === 'save') {
+        checkAuth();
+
+        $data = json_decode(file_get_contents('php://input'), true);
+        $slides = $data['slides'] ?? [];
+
+        if (empty($slides)) {
+            http_response_code(400);
+            echo json_encode(['error' => '슬라이드 데이터가 없습니다.']);
+            exit;
+        }
+
+        $pdo->beginTransaction();
+
+        try {
+            // 기존 데이터 삭제
+            $pdo->exec("DELETE FROM avatar_slides");
+
+            // 새 데이터 삽입 (양쪽 언어)
+            $stmt = $pdo->prepare("
+                INSERT INTO avatar_slides (
+                    slide_order,
+                    title_ko, title_en,
+                    description_ko, description_en,
+                    image_url_ko, image_url_en
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+
+            foreach ($slides as $index => $slide) {
+                $stmt->execute([
+                    $index + 1,
+                    $slide['title_ko'] ?? '',
+                    $slide['title_en'] ?? '',
+                    $slide['description_ko'] ?? '',
+                    $slide['description_en'] ?? '',
+                    $slide['image_url_ko'] ?? '',
+                    $slide['image_url_en'] ?? ''
+                ]);
+            }
+
+            $pdo->commit();
+            echo json_encode(['success' => true, 'message' => 'Avatar Slides가 저장되었습니다.']);
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+        exit;
+    }
+
+    // Content Slides 저장 (인증 필요) - 양쪽 언어 모두 저장
+    if ($method === 'POST' && $type === 'content' && $action === 'save') {
+        checkAuth();
+
+        $data = json_decode(file_get_contents('php://input'), true);
+        $slides = $data['slides'] ?? [];
+
+        if (empty($slides)) {
+            http_response_code(400);
+            echo json_encode(['error' => '슬라이드 데이터가 없습니다.']);
+            exit;
+        }
+
+        $pdo->beginTransaction();
+
+        try {
+            // 기존 데이터 삭제
+            $pdo->exec("DELETE FROM content_slides");
+
+            // 새 데이터 삽입 (양쪽 언어)
+            $stmt = $pdo->prepare("
+                INSERT INTO content_slides (
+                    slide_order,
+                    title_ko, title_en,
+                    description_ko, description_en,
+                    image_url_ko, image_url_en
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+
+            foreach ($slides as $index => $slide) {
+                $stmt->execute([
+                    $index + 1,
+                    $slide['title_ko'] ?? '',
+                    $slide['title_en'] ?? '',
+                    $slide['description_ko'] ?? '',
+                    $slide['description_en'] ?? '',
+                    $slide['image_url_ko'] ?? '',
+                    $slide['image_url_en'] ?? ''
+                ]);
+            }
+
+            $pdo->commit();
+            echo json_encode(['success' => true, 'message' => 'Content Slides가 저장되었습니다.']);
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+        exit;
+    }
+
+    // SaaS Slides 저장 (인증 필요) - 양쪽 언어 모두 저장
+    if ($method === 'POST' && $type === 'saas' && $action === 'save') {
+        checkAuth();
+
+        $data = json_decode(file_get_contents('php://input'), true);
+        $slides = $data['slides'] ?? [];
+
+        if (empty($slides)) {
+            http_response_code(400);
+            echo json_encode(['error' => '슬라이드 데이터가 없습니다.']);
+            exit;
+        }
+
+        $pdo->beginTransaction();
+
+        try {
+            // 기존 데이터 삭제
+            $pdo->exec("DELETE FROM saas_slides");
+
+            // 새 데이터 삽입 (양쪽 언어)
+            $stmt = $pdo->prepare("
+                INSERT INTO saas_slides (
+                    slide_order,
+                    title_ko, title_en,
+                    description_ko, description_en,
+                    image_url_ko, image_url_en
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            ");
+
+            foreach ($slides as $index => $slide) {
+                $stmt->execute([
+                    $index + 1,
+                    $slide['title_ko'] ?? '',
+                    $slide['title_en'] ?? '',
+                    $slide['description_ko'] ?? '',
+                    $slide['description_en'] ?? '',
+                    $slide['image_url_ko'] ?? '',
+                    $slide['image_url_en'] ?? ''
+                ]);
+            }
+
+            $pdo->commit();
+            echo json_encode(['success' => true, 'message' => 'SaaS Slides가 저장되었습니다.']);
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            throw $e;
+        }
+        exit;
+    }
+
     // Hero Slide 업데이트 (인증 필요) - 양쪽 언어
     if ($method === 'PUT' && $type === 'hero') {
         checkAuth();
@@ -232,6 +382,63 @@ try {
         ]);
 
         echo json_encode(['success' => true, 'message' => '슬라이드가 업데이트되었습니다.']);
+        exit;
+    }
+
+    // Avatar Slides 가져오기 - 언어별
+    if ($method === 'GET' && $type === 'avatar') {
+        $stmt = $pdo->prepare("
+            SELECT
+                id,
+                slide_order,
+                title_{$lang} as title,
+                description_{$lang} as description,
+                image_url_{$lang} as image_url,
+                updated_at
+            FROM avatar_slides
+            ORDER BY slide_order ASC
+        ");
+        $stmt->execute();
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
+        exit;
+    }
+
+    // Content Slides 가져오기 - 언어별
+    if ($method === 'GET' && $type === 'content') {
+        $stmt = $pdo->prepare("
+            SELECT
+                id,
+                slide_order,
+                title_{$lang} as title,
+                description_{$lang} as description,
+                image_url_{$lang} as image_url,
+                updated_at
+            FROM content_slides
+            ORDER BY slide_order ASC
+        ");
+        $stmt->execute();
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
+        exit;
+    }
+
+    // SaaS Slides 가져오기 - 언어별
+    if ($method === 'GET' && $type === 'saas') {
+        $stmt = $pdo->prepare("
+            SELECT
+                id,
+                slide_order,
+                title_{$lang} as title,
+                description_{$lang} as description,
+                image_url_{$lang} as image_url,
+                updated_at
+            FROM saas_slides
+            ORDER BY slide_order ASC
+        ");
+        $stmt->execute();
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
         exit;
     }
 
@@ -330,6 +537,30 @@ try {
         $stmt = $pdo->query("SELECT * FROM section_images ORDER BY section_key ASC");
         $sections = $stmt->fetchAll();
         echo json_encode(['sections' => $sections]);
+        exit;
+    }
+
+    if ($method === 'GET' && $type === 'avatar_admin') {
+        checkAuth();
+        $stmt = $pdo->query("SELECT * FROM avatar_slides ORDER BY slide_order ASC");
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
+        exit;
+    }
+
+    if ($method === 'GET' && $type === 'content_admin') {
+        checkAuth();
+        $stmt = $pdo->query("SELECT * FROM content_slides ORDER BY slide_order ASC");
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
+        exit;
+    }
+
+    if ($method === 'GET' && $type === 'saas_admin') {
+        checkAuth();
+        $stmt = $pdo->query("SELECT * FROM saas_slides ORDER BY slide_order ASC");
+        $slides = $stmt->fetchAll();
+        echo json_encode(['slides' => $slides]);
         exit;
     }
 

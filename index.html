@@ -227,7 +227,7 @@
             <div class="text-center mb-12">
                 <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Virtual Reality Education</span>
                 <h2 class="text-3xl md:text-5xl font-black text-slate-900 pb-2">
-                    Platform : <span class="text-blue-600">STEP MASTER</span>
+                    <span class="text-blue-600">STEP MASTER</span>
                 </h2>
                 <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
                 <p class="text-lg text-slate-500 mt-6 font-medium">AI 모션 분석(VRPE) 기반의 혁신적인 실감형 레슨 플랫폼</p>
@@ -300,59 +300,13 @@
                         </div>
                     </div>
 
-                    <!-- Solution Image Slider -->
+                    <!-- Solution Image -->
                     <div class="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                        <!-- Slides -->
-                        <div class="solution-slide absolute inset-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="K-POP" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">K-POP 댄스</h4>
-                                <p class="text-sm opacity-90">전문 안무가의 동작을 VR로 배우기</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Taekwondo" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">태권도</h4>
-                                <p class="text-sm opacity-90">정확한 품새와 겨루기 동작 학습</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Yoga" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">요가</h4>
-                                <p class="text-sm opacity-90">정확한 자세로 완벽한 동작 완성</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Golf" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/80 via-cyan-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">골프</h4>
-                                <p class="text-sm opacity-90">스윙 자세 분석 및 교정</p>
-                            </div>
-                        </div>
-
-                        <!-- Navigation Arrows -->
-                        <button onclick="changeSolutionSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
-                            <i class="fa-solid fa-chevron-left text-sm"></i>
-                        </button>
-                        <button onclick="changeSolutionSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
-                            <i class="fa-solid fa-chevron-right text-sm"></i>
-                        </button>
-
-                        <!-- Slide Indicators -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                            <button onclick="goToSolutionSlide(0)" class="solution-indicator w-2 h-2 rounded-full bg-white transition-all"></button>
-                            <button onclick="goToSolutionSlide(1)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
-                            <button onclick="goToSolutionSlide(2)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
-                            <button onclick="goToSolutionSlide(3)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                        <img id="solution-main-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Step Master Solution" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h4 class="text-2xl font-black mb-2">STEP MASTER</h4>
+                            <p class="text-sm opacity-90">VR 기반 AI 동작 학습 플랫폼</p>
                         </div>
                     </div>
                 </div>
@@ -599,9 +553,9 @@
                 </div>
             </div>
             <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
-                <a href="info01_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">개인정보 처리방침</a>
+                <a href="info01_kr.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">개인정보 처리방침</a>
                 <span class="hidden md:inline text-slate-300">|</span>
-                <a href="info02_kr" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">이용약관</a>
+                <a href="info02_kr.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">이용약관</a>
             </div>
             <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
         </footer>
@@ -721,53 +675,7 @@
             startSlideInterval();
         }
 
-        // Solution Slider
-        let currentSolutionSlide = 0;
-        let solutionSlideInterval;
-
-        function showSolutionSlide(index) {
-            const slides = document.querySelectorAll('.solution-slide');
-            const indicators = document.querySelectorAll('.solution-indicator');
-
-            // 순환 처리
-            if (index >= slides.length) {
-                currentSolutionSlide = 0;
-            } else if (index < 0) {
-                currentSolutionSlide = slides.length - 1;
-            } else {
-                currentSolutionSlide = index;
-            }
-
-            slides.forEach((slide, i) => {
-                slide.style.opacity = i === currentSolutionSlide ? '1' : '0';
-            });
-
-            indicators.forEach((indicator, i) => {
-                indicator.style.backgroundColor = i === currentSolutionSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
-            });
-        }
-
-        function changeSolutionSlide(direction) {
-            showSolutionSlide(currentSolutionSlide + direction);
-            resetSolutionSlideInterval();
-        }
-
-        function goToSolutionSlide(index) {
-            showSolutionSlide(index);
-            resetSolutionSlideInterval();
-        }
-
-        function resetSolutionSlideInterval() {
-            clearInterval(solutionSlideInterval);
-            solutionSlideInterval = setInterval(() => {
-                showSolutionSlide(currentSolutionSlide + 1);
-            }, 4000);
-        }
-
-        // Auto-advance solution slides every 4 seconds
-        solutionSlideInterval = setInterval(() => {
-            showSolutionSlide(currentSolutionSlide + 1);
-        }, 4000);
+        // Solution Image (static - no slider needed)
 
         function scrollToSection(id) {
             const el = document.getElementById(id);
@@ -841,44 +749,24 @@
                     console.log('Hero Slides 데이터 로드 실패');
                 }
 
-                // Solution Slides 로드
+                // Solution Image 로드 (첫 번째 이미지만 사용)
                 const solutionResponse = await fetch('api.php?type=solution&lang=ko');
                 if (solutionResponse.ok) {
                     const solutionData = await solutionResponse.json();
-                    console.log('Solution Slides 데이터:', solutionData);
-                    const solutionSlides = document.querySelectorAll('.solution-slide');
+                    console.log('Solution Image 데이터:', solutionData);
 
                     if (solutionData.slides && solutionData.slides.length > 0) {
-                        solutionData.slides.forEach((slide, index) => {
-                            if (solutionSlides[index]) {
-                                const slideElement = solutionSlides[index];
+                        // 첫 번째 슬라이드 이미지만 사용
+                        const firstSlide = solutionData.slides[0];
+                        const solutionImg = document.getElementById('solution-main-image');
 
-                                // 이미지 업데이트
-                                if (slide.image_url) {
-                                    const img = slideElement.querySelector('img');
-                                    if (img) {
-                                        img.src = slide.image_url;
-                                        console.log(`Solution 슬라이드 ${index + 1} 이미지 업데이트:`, slide.image_url);
-                                    }
-                                }
-
-                                // 텍스트 업데이트
-                                const titleElement = slideElement.querySelector('h4');
-                                const descElement = slideElement.querySelector('p');
-
-                                if (titleElement && slide.title) {
-                                    titleElement.textContent = slide.title;
-                                }
-
-                                if (descElement && slide.description) {
-                                    descElement.textContent = slide.description;
-                                }
-                            }
-                        });
-                        console.log('Solution Slides 로드 완료');
+                        if (solutionImg && firstSlide.image_url) {
+                            solutionImg.src = firstSlide.image_url;
+                            console.log('Solution 이미지 업데이트:', firstSlide.image_url);
+                        }
                     }
                 } else {
-                    console.log('Solution Slides 데이터 로드 실패');
+                    console.log('Solution Image 데이터 로드 실패');
                 }
 
                 // Section Images 로드

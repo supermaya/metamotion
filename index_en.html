@@ -227,7 +227,7 @@
             <div class="text-center mb-12">
                 <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Virtual Reality Education</span>
                 <h2 class="text-3xl md:text-5xl font-black text-slate-900 pb-2">
-                    Platform : <span class="text-blue-600">STEP MASTER</span>
+                    <span class="text-blue-600">STEP MASTER</span>
                 </h2>
                 <div class="w-16 h-1.5 bg-orange-500 mx-auto mt-4 rounded-full"></div>
                 <p class="text-lg text-slate-500 mt-6 font-medium">Innovative immersive lesson platform based on AI motion analysis (VRPE)</p>
@@ -300,59 +300,13 @@
                         </div>
                     </div>
 
-                    <!-- Solution Image Slider -->
+                    <!-- Solution Image -->
                     <div class="relative h-80 rounded-2xl overflow-hidden shadow-lg">
-                        <!-- Slides -->
-                        <div class="solution-slide absolute inset-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="K-POP" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">K-POP Dance</h4>
-                                <p class="text-sm opacity-90">Learn choreography from professional dancers in VR</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Taekwondo" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-indigo-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">Taekwondo</h4>
-                                <p class="text-sm opacity-90">Learn precise poomsae and sparring movements</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Yoga" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">Yoga</h4>
-                                <p class="text-sm opacity-90">Perfect your movements with accurate postures</p>
-                            </div>
-                        </div>
-
-                        <div class="solution-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Golf" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-cyan-900/80 via-cyan-900/40 to-transparent"></div>
-                            <div class="absolute bottom-6 left-6 text-white">
-                                <h4 class="text-2xl font-black mb-2">Golf</h4>
-                                <p class="text-sm opacity-90">Swing posture analysis and correction</p>
-                            </div>
-                        </div>
-
-                        <!-- Navigation Arrows -->
-                        <button onclick="changeSolutionSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
-                            <i class="fa-solid fa-chevron-left text-sm"></i>
-                        </button>
-                        <button onclick="changeSolutionSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all">
-                            <i class="fa-solid fa-chevron-right text-sm"></i>
-                        </button>
-
-                        <!-- Slide Indicators -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                            <button onclick="goToSolutionSlide(0)" class="solution-indicator w-2 h-2 rounded-full bg-white transition-all"></button>
-                            <button onclick="goToSolutionSlide(1)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
-                            <button onclick="goToSolutionSlide(2)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
-                            <button onclick="goToSolutionSlide(3)" class="solution-indicator w-2 h-2 rounded-full bg-white/40 transition-all"></button>
+                        <img id="solution-main-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Step Master Solution" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-900/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <h4 class="text-2xl font-black mb-2">STEP MASTER</h4>
+                            <p class="text-sm opacity-90">VR-based AI Motion Learning Platform</p>
                         </div>
                     </div>
                 </div>
@@ -596,9 +550,9 @@
                 </div>
             </div>
             <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
-                <a href="info01_en" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Privacy Policy</a>
+                <a href="info01_en.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Privacy Policy</a>
                 <span class="hidden md:inline text-slate-300">|</span>
-                <a href="info02_en" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Terms of Service</a>
+                <a href="info02_en.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Terms of Service</a>
             </div>
             <p class="mt-6 opacity-60">� 2024 METAMOTION. All Rights Reserved.</p>
         </footer>
@@ -718,53 +672,7 @@
             startSlideInterval();
         }
 
-        // Solution Slider
-        let currentSolutionSlide = 0;
-        let solutionSlideInterval;
-
-        function showSolutionSlide(index) {
-            const slides = document.querySelectorAll('.solution-slide');
-            const indicators = document.querySelectorAll('.solution-indicator');
-
-            // 순환 처리
-            if (index >= slides.length) {
-                currentSolutionSlide = 0;
-            } else if (index < 0) {
-                currentSolutionSlide = slides.length - 1;
-            } else {
-                currentSolutionSlide = index;
-            }
-
-            slides.forEach((slide, i) => {
-                slide.style.opacity = i === currentSolutionSlide ? '1' : '0';
-            });
-
-            indicators.forEach((indicator, i) => {
-                indicator.style.backgroundColor = i === currentSolutionSlide ? 'white' : 'rgba(255, 255, 255, 0.4)';
-            });
-        }
-
-        function changeSolutionSlide(direction) {
-            showSolutionSlide(currentSolutionSlide + direction);
-            resetSolutionSlideInterval();
-        }
-
-        function goToSolutionSlide(index) {
-            showSolutionSlide(index);
-            resetSolutionSlideInterval();
-        }
-
-        function resetSolutionSlideInterval() {
-            clearInterval(solutionSlideInterval);
-            solutionSlideInterval = setInterval(() => {
-                showSolutionSlide(currentSolutionSlide + 1);
-            }, 4000);
-        }
-
-        // Auto-advance solution slides every 4 seconds
-        solutionSlideInterval = setInterval(() => {
-            showSolutionSlide(currentSolutionSlide + 1);
-        }, 4000);
+        // Solution Image (static - no slider needed)
 
         function scrollToSection(id) {
             const el = document.getElementById(id);
@@ -838,44 +746,24 @@
                     console.log('Hero Slides data loading failed');
                 }
 
-                // Solution Slides \�
+                // Solution Image loading (use first image only)
                 const solutionResponse = await fetch('api.php?type=solution&lang=en');
                 if (solutionResponse.ok) {
                     const solutionData = await solutionResponse.json();
-                    console.log('Solution Slides data:', solutionData);
-                    const solutionSlides = document.querySelectorAll('.solution-slide');
+                    console.log('Solution Image data:', solutionData);
 
                     if (solutionData.slides && solutionData.slides.length > 0) {
-                        solutionData.slides.forEach((slide, index) => {
-                            if (solutionSlides[index]) {
-                                const slideElement = solutionSlides[index];
+                        // Use only the first slide image
+                        const firstSlide = solutionData.slides[0];
+                        const solutionImg = document.getElementById('solution-main-image');
 
-                                // t�� �pt�
-                                if (slide.image_url) {
-                                    const img = slideElement.querySelector('img');
-                                    if (img) {
-                                        img.src = slide.image_url;
-                                        console.log(`Solution slide ${index + 1} image updated:`, slide.image_url);
-                                    }
-                                }
-
-                                // M�� �pt�
-                                const titleElement = slideElement.querySelector('h4');
-                                const descElement = slideElement.querySelector('p');
-
-                                if (titleElement && slide.title) {
-                                    titleElement.textContent = slide.title;
-                                }
-
-                                if (descElement && slide.description) {
-                                    descElement.textContent = slide.description;
-                                }
-                            }
-                        });
-                        console.log('Solution Slides loaded');
+                        if (solutionImg && firstSlide.image_url) {
+                            solutionImg.src = firstSlide.image_url;
+                            console.log('Solution image updated:', firstSlide.image_url);
+                        }
                     }
                 } else {
-                    console.log('Solution Slides data loading failed');
+                    console.log('Solution Image data loading failed');
                 }
 
                 // Section Images loading
