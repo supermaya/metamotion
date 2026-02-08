@@ -702,12 +702,30 @@
         }
 
         // API� XP  \�
+        // Fetch with timeout helper function
+        async function fetchWithTimeout(url, timeout = 5000) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+            try {
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                if (error.name === 'AbortError') {
+                    console.error('Fetch timeout:', url);
+                }
+                throw error;
+            }
+        }
+
         async function loadContentFromAPI() {
             try {
                 console.log('Loading data from API...');
 
-                // Hero Slides \�
-                const heroResponse = await fetch('api.php?type=hero&lang=en');
+                // Hero Slides load
+                const heroResponse = await fetchWithTimeout('api.php?type=hero&lang=en');
                 if (heroResponse.ok) {
                     const heroData = await heroResponse.json();
                     console.log('Hero Slides data:', heroData);
@@ -747,7 +765,7 @@
                 }
 
                 // Solution Image loading (use first image only)
-                const solutionResponse = await fetch('api.php?type=solution&lang=en');
+                const solutionResponse = await fetchWithTimeout('api.php?type=solution&lang=en');
                 if (solutionResponse.ok) {
                     const solutionData = await solutionResponse.json();
                     console.log('Solution Image data:', solutionData);
@@ -767,7 +785,7 @@
                 }
 
                 // Section Images loading
-                const sectionsResponse = await fetch('api.php?type=sections&lang=en');
+                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=en');
                 if (sectionsResponse.ok) {
                     const sectionsData = await sectionsResponse.json();
                     console.log('Section Images data:', sectionsData);

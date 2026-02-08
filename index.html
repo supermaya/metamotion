@@ -704,13 +704,31 @@
             targetContent.classList.add('grid');
         }
 
+        // Fetch with timeout helper function
+        async function fetchWithTimeout(url, timeout = 5000) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+            try {
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                if (error.name === 'AbortError') {
+                    console.error('Fetch timeout:', url);
+                }
+                throw error;
+            }
+        }
+
         // API에서 콘텐츠 로드
         async function loadContentFromAPI() {
             try {
                 console.log('API에서 데이터 로드 시작...');
 
                 // Hero Slides 로드
-                const heroResponse = await fetch('api.php?type=hero&lang=ko');
+                const heroResponse = await fetchWithTimeout('api.php?type=hero&lang=ko');
                 if (heroResponse.ok) {
                     const heroData = await heroResponse.json();
                     console.log('Hero Slides 데이터:', heroData);
@@ -750,7 +768,7 @@
                 }
 
                 // Solution Image 로드 (첫 번째 이미지만 사용)
-                const solutionResponse = await fetch('api.php?type=solution&lang=ko');
+                const solutionResponse = await fetchWithTimeout('api.php?type=solution&lang=ko');
                 if (solutionResponse.ok) {
                     const solutionData = await solutionResponse.json();
                     console.log('Solution Image 데이터:', solutionData);
@@ -770,7 +788,7 @@
                 }
 
                 // Section Images 로드
-                const sectionsResponse = await fetch('api.php?type=sections&lang=ko');
+                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=ko');
                 if (sectionsResponse.ok) {
                     const sectionsData = await sectionsResponse.json();
                     console.log('Section Images 데이터:', sectionsData);
