@@ -878,7 +878,26 @@
         // Load API data on page load
         window.addEventListener('load', () => {
             preloadHeroImages(); // Preload hero images
-            loadContentFromAPI();
+
+            // Set a maximum timeout for loading
+            const maxLoadTimeout = setTimeout(() => {
+                console.warn('Maximum load time exceeded, hiding loading screen');
+                const loadingIndicator = document.getElementById('hero-loading');
+                if (loadingIndicator && loadingIndicator.style.display !== 'none') {
+                    loadingIndicator.style.opacity = '0';
+                    loadingIndicator.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 500);
+                    showSlide(0);
+                    startSlideInterval();
+                }
+            }, 8000); // 8 seconds maximum
+
+            loadContentFromAPI().finally(() => {
+                clearTimeout(maxLoadTimeout);
+            });
+
             initSPARouter();
         });
 

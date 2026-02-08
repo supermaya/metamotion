@@ -881,7 +881,26 @@
         // 페이지 로드 시 API 데이터 로드
         window.addEventListener('load', () => {
             preloadHeroImages(); // 히어로 이미지 프리로드
-            loadContentFromAPI();
+
+            // 최대 로딩 시간 타임아웃 설정
+            const maxLoadTimeout = setTimeout(() => {
+                console.warn('최대 로딩 시간 초과, 로딩 화면 숨김');
+                const loadingIndicator = document.getElementById('hero-loading');
+                if (loadingIndicator && loadingIndicator.style.display !== 'none') {
+                    loadingIndicator.style.opacity = '0';
+                    loadingIndicator.style.transition = 'opacity 0.5s';
+                    setTimeout(() => {
+                        loadingIndicator.style.display = 'none';
+                    }, 500);
+                    showSlide(0);
+                    startSlideInterval();
+                }
+            }, 8000); // 최대 8초
+
+            loadContentFromAPI().finally(() => {
+                clearTimeout(maxLoadTimeout);
+            });
+
             initSPARouter();
         });
 
