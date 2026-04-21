@@ -49,6 +49,11 @@
             background-color: #dcfce7;
             color: #166534;
         }
+
+        .language-cn {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
     </style>
 </head>
 <body class="selection:bg-blue-100">
@@ -104,6 +109,23 @@
     <!-- Admin Content Section -->
     <div id="admin-section" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
 
+        <!-- Hero 텍스트 &amp; 통계 관리 -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-50 to-pink-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+            <div class="text-center mb-8">
+                <span class="block text-purple-600 font-bold tracking-wider uppercase mb-2 text-xs">Hero Text &amp; Stats</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">히어로 텍스트 &amp; 통계 관리</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-600 mt-4"><i class="fa-solid fa-info-circle mr-1"></i> 배지텝스트, 메인 제목, 설명, 통계 카드를 3개 언어로 관리합니다.</p>
+            </div>
+            <div id="hero-text-container"></div>
+            <div class="mt-8 text-center">
+                <button onclick="saveHeroTextAndStats()" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> 히어로 텍스트 &amp; 통계 저장
+                </button>
+            </div>
+        </div>
+
         <!-- Hero Slides Section -->
         <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
             <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
@@ -124,6 +146,46 @@
                 <button onclick="saveHeroSlides()"
                     class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
                     <i class="fa-solid fa-save mr-2"></i> Hero Slides 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP MASTER 특징 관리 -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-50 to-yellow-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+            <div class="text-center mb-8">
+                <span class="block text-orange-600 font-bold tracking-wider uppercase mb-2 text-xs">Step Master Features</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">STEP MASTER 특징 항목 관리</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-600 mt-4"><i class="fa-solid fa-info-circle mr-1"></i> 3개 특징 항목의 제목과 설명을 3개 언어로 관리합니다.</p>
+            </div>
+            <div id="stepmaster-features-container" class="space-y-6"></div>
+            <div class="mt-8 text-center">
+                <button onclick="saveStepMasterFeatures()" class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> STEP MASTER 특징 저장
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP MASTER 슬라이드 관리 (Solution Slideshow) -->
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+            <div class="text-center mb-8">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Step Master Slideshow</span>
+                <h2 class="text-2xl font-bold text-slate-800 mb-3">STEP MASTER 슬라이드 관리</h2>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-600 mt-4"><i class="fa-solid fa-info-circle mr-1"></i> STEP MASTER 세션 우측 슬라이드쇼 이미지를 언어별로 등록합니다. 각 슬라이드에 한/영/중 이미지 URL을 입력하세요.</p>
+            </div>
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-sm text-slate-500"><span id="solution-slide-count">0</span>개 슬라이드</span>
+                <button onclick="addSolutionImage()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-all">
+                    <i class="fa-solid fa-plus mr-1"></i> 슬라이드 추가
+                </button>
+            </div>
+            <div id="solution-slides-admin-container" class="space-y-6"></div>
+            <div class="mt-8 text-center">
+                <button onclick="saveSolutionSlides()" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-save mr-2"></i> STEP MASTER 슬라이드 저장
                 </button>
             </div>
         </div>
@@ -163,32 +225,55 @@
             </div>
 
             <div class="max-w-2xl mx-auto">
-                <div class="bg-slate-50 p-6 rounded-xl border-2 border-dashed border-slate-300">
-                    <input type="file" id="image-upload" accept="image/*"
-                        class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button onclick="uploadImage()"
-                        class="w-full mt-4 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all shadow-md hover:shadow-lg">
-                        <i class="fa-solid fa-upload mr-2"></i> 이미지 업로드
-                    </button>
+                <!-- DnD 업로드 존 -->
+                <div id="top-upload-zone"
+                    class="relative border-2 border-dashed border-slate-300 rounded-2xl bg-slate-50 transition-all cursor-pointer hover:border-blue-400 hover:bg-blue-50"
+                    style="min-height:220px;"
+                    ondragover="event.preventDefault(); this.classList.add('border-blue-500','bg-blue-50','ring-2','ring-blue-300')"
+                    ondragleave="this.classList.remove('border-blue-500','bg-blue-50','ring-2','ring-blue-300')"
+                    ondrop="topZoneDrop(event)"
+                    onclick="document.getElementById('image-upload').click()">
+                    <!-- 미리보기 -->
+                    <img id="top-upload-preview" src="" alt="" class="hidden w-full h-full object-contain rounded-2xl" style="max-height:300px;">
+                    <!-- Placeholder -->
+                    <div id="top-upload-ph" class="absolute inset-0 flex flex-col items-center justify-center gap-3 text-slate-400 select-none">
+                        <i class="fa-solid fa-cloud-arrow-up text-6xl"></i>
+                        <p class="text-lg font-medium">이미지를 드래그하거나 클릭하여 업로드</p>
+                        <p class="text-sm">JPG · PNG · GIF · WebP · 최대 10MB</p>
+                    </div>
+                    <!-- 스피너 -->
+                    <div id="top-upload-spinner" class="hidden absolute inset-0 bg-white/80 flex flex-col items-center justify-center gap-3 rounded-2xl">
+                        <i class="fa-solid fa-spinner fa-spin text-blue-500 text-4xl"></i>
+                        <p class="text-slate-500 text-sm font-medium">업로드 중...</p>
+                    </div>
+                    <!-- 숨겨진 파일 인풋 -->
+                    <input type="file" id="image-upload" accept="image/*" class="hidden" onchange="topZoneFileChange(event)">
                 </div>
-                <div id="upload-status" class="mt-4 text-sm text-center"></div>
+                <!-- 결과 -->
                 <div id="uploaded-url" class="mt-4 p-4 bg-green-50 border border-green-200 rounded-xl hidden">
-                    <p class="text-sm font-medium text-green-800 mb-2">업로드 완료!</p>
-                    <input type="text" id="uploaded-url-text" readonly
-                        class="w-full px-3 py-2 bg-white border border-green-300 rounded text-sm">
-                    <button onclick="copyToClipboard()"
-                        class="mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-all">
-                        <i class="fa-solid fa-copy mr-1"></i> URL 복사
-                    </button>
+                    <p class="text-sm font-medium text-green-800 mb-2"><i class="fa-solid fa-check-circle mr-1"></i>업로드 완료!</p>
+                    <div class="flex gap-2">
+                        <input type="text" id="uploaded-url-text" readonly
+                            class="flex-1 px-3 py-2 bg-white border border-green-300 rounded-lg text-sm text-slate-700">
+                        <button onclick="copyToClipboard()"
+                            class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-bold rounded-lg transition-all">
+                            <i class="fa-solid fa-copy mr-1"></i>복사
+                        </button>
+                    </div>
                 </div>
+                <div id="upload-status" class="mt-2 text-sm text-center"></div>
             </div>
         </div>
     </div>
 
     <script>
         let currentUser = null;
+        let heroTextData = {};
+        let heroStatsData = [];
         let heroSlidesData = [];
         let solutionSlidesData = [];
+        let stepMasterFeaturesData = [];
+
         let avatarSlidesData = [];
         let contentSlidesData = [];
         let saasSlidesData = [];
@@ -279,44 +364,105 @@
             try {
                 console.log('콘텐츠 로드 시작...');
 
+                // Hero 텍스트 &amp; 통계 로드
+                const htRes = await fetch('api.php?type=hero_text_admin');
+                const htData = await htRes.json();
+                heroTextData = htData.text || {};
+
+                const hsRes = await fetch('api.php?type=hero_stats_admin');
+                const hsData = await hsRes.json();
+                heroStatsData = (hsData.stats || []).map(s => ({
+                    stat_value: s.stat_value||'', stat_color: s.stat_color||'slate',
+                    label_ko: s.label_ko||'', label_en: s.label_en||'', label_cn: s.label_cn||''
+                }));
+                if (heroStatsData.length === 0) {
+                    heroStatsData = [
+                        {stat_value:'2021', stat_color:'slate', label_ko:'Founded', label_en:'Founded', label_cn:'创立年份'},
+                        {stat_value:'48+', stat_color:'blue', label_ko:'HPE 데이터셋', label_en:'HPE Dataset', label_cn:'HPE数据集'},
+                        {stat_value:'120+', stat_color:'orange', label_ko:'VR 동작학습 콘텐츠', label_en:'VR Motion Contents', label_cn:'VR动作内容'},
+                        {stat_value:'100K', stat_color:'slate', label_ko:'App Downloads (Pre)', label_en:'App Downloads (Pre)', label_cn:'App下载量(预)'}
+                    ];
+                }
+                renderHeroText();
+
                 // Hero Slides 로드 (최대 3개로 제한) - 다국어 버전
                 const heroResponse = await fetch('api.php?type=hero_admin');
                 const heroData = await heroResponse.json();
                 console.log('Hero Slides 데이터:', heroData);
-                heroSlidesData = (heroData.slides || []).slice(0, 3);
+                heroSlidesData = (heroData.slides || []).slice(0, 3).map(slide => ({
+                    title_ko: slide.title_ko || '',
+                    title_en: slide.title_en || '',
+                    title_cn: slide.title_cn || '',
+                    description_ko: slide.description_ko || '',
+                    description_en: slide.description_en || '',
+                    description_cn: slide.description_cn || '',
+                    image_url_ko: slide.image_url_ko || '',
+                    image_url_en: slide.image_url_en || '',
+                    image_url_cn: slide.image_url_cn || ''
+                }));
 
                 // 3개 미만이면 빈 슬라이드 추가
                 while (heroSlidesData.length < 3) {
                     heroSlidesData.push({
                         title_ko: '',
                         title_en: '',
+                        title_cn: '',
                         description_ko: '',
                         description_en: '',
+                        description_cn: '',
                         image_url_ko: '',
-                        image_url_en: ''
+                        image_url_en: '',
+                        image_url_cn: ''
                     });
                 }
                 console.log('Hero Slides 렌더링 시작, 개수:', heroSlidesData.length);
                 renderHeroSlides();
 
+                // Step Master Features 로드
+                try {
+                    const smRes = await fetch('api.php?type=stepmaster_features_admin');
+                    const smData = await smRes.json();
+                    stepMasterFeaturesData = (smData.features || []).map(f => ({
+                        title_ko: f.title_ko || '', title_en: f.title_en || '', title_cn: f.title_cn || '',
+                        desc_ko:  f.desc_ko  || '', desc_en:  f.desc_en  || '', desc_cn:  f.desc_cn  || ''
+                    }));
+                } catch(e) { console.warn('stepmaster_features 로드 실패:', e); }
+                if (stepMasterFeaturesData.length === 0) {
+                    stepMasterFeaturesData = [
+                        {title_ko:'초실감형 3D 레슨', title_en:'Ultra-Realistic 3D Lessons', title_cn:'超真实3D课程', desc_ko:'디지털 트윈 강사를 360도로 돌려보며, 현장감 있는 몰입 학습을 제공합니다.', desc_en:'Rotate digital twin instructors 360 degrees for immersive, realistic learning.', desc_cn:'360度旋转数字孪生讲师，提供身临其境的沉浸式学习体验。'},
+                        {title_ko:'AI 정밀 코칭 (VRPE)', title_en:'AI Precision Coaching (VRPE)', title_cn:'AI精准教练(VRPE)', desc_ko:'HPE 기술로 사용자의 관절을 추적, 전문가 동작과의 유사도를 정밀 분석합니다.', desc_en:'HPE technology tracks your joints and precisely analyzes similarity to expert movements.', desc_cn:'利用HPE技术追踪用户关节，精准分析与专家动作的相似度。'},
+                        {title_ko:'게이미피케이션', title_en:'Gamification', title_cn:'游戏化', desc_ko:'랭킹 경쟁, 업적 달성, 보상 시스템을 통해 훈련을 게임처럼 즐겁게 지속합니다.', desc_en:'Ranking, achievement, and reward systems make training as fun as a game.', desc_cn:'通过排名竞争、成就达成、奖励系统，让训练像游戏一样持续进行。'}
+                    ];
+                }
+                renderStepMasterFeatures();
+
                 // Solution Image 로드 - 다국어 버전
                 const solutionResponse = await fetch('api.php?type=solution_admin');
                 const solutionData = await solutionResponse.json();
                 console.log('Solution Image 데이터:', solutionData);
-                solutionSlidesData = solutionData.slides || [];
+                solutionSlidesData = (solutionData.slides || []).map(slide => ({
+                    title_ko: slide.title_ko || '',
+                    title_en: slide.title_en || '',
+                    title_cn: slide.title_cn || '',
+                    description_ko: slide.description_ko || '',
+                    description_en: slide.description_en || '',
+                    description_cn: slide.description_cn || '',
+                    image_url_ko: slide.image_url_ko || '',
+                    image_url_en: slide.image_url_en || '',
+                    image_url_cn: slide.image_url_cn || ''
+                }));
 
-                // 최소 1개의 이미지가 있도록 보장
-                if (solutionSlidesData.length === 0) {
-                    solutionSlidesData.push({
-                        title_ko: '',
-                        title_en: '',
-                        description_ko: '',
-                        description_en: '',
-                        image_url_ko: '',
-                        image_url_en: ''
-                    });
+                // 최소 3개의 슬라이드가 항상 표시되도록 보장
+                const emptySlide = () => ({
+                    title_ko: '', title_en: '', title_cn: '',
+                    description_ko: '', description_en: '', description_cn: '',
+                    image_url_ko: '', image_url_en: '', image_url_cn: ''
+                });
+                while (solutionSlidesData.length < 3) {
+                    solutionSlidesData.push(emptySlide());
                 }
                 console.log('Solution Image 로드 완료, 개수:', solutionSlidesData.length);
+                renderSolutionSlides();
 
                 // Avatar Image 로드 - 다국어 버전 (하나만 관리)
                 const avatarResponse = await fetch('api.php?type=avatar_admin');
@@ -325,14 +471,32 @@
                 const avatarSlides = avatarData.slides || [];
 
                 // 첫 번째 항목만 사용, 없으면 빈 객체
-                avatarSlidesData = avatarSlides.length > 0 ? [avatarSlides[0]] : [{
-                    title_ko: '',
-                    title_en: '',
-                    description_ko: '',
-                    description_en: '',
-                    image_url_ko: '',
-                    image_url_en: ''
-                }];
+                if (avatarSlides.length > 0) {
+                    const slide = avatarSlides[0];
+                    avatarSlidesData = [{
+                        title_ko: slide.title_ko || '',
+                        title_en: slide.title_en || '',
+                        title_cn: slide.title_cn || '',
+                        description_ko: slide.description_ko || '',
+                        description_en: slide.description_en || '',
+                        description_cn: slide.description_cn || '',
+                        image_url_ko: slide.image_url_ko || '',
+                        image_url_en: slide.image_url_en || '',
+                        image_url_cn: slide.image_url_cn || ''
+                    }];
+                } else {
+                    avatarSlidesData = [{
+                        title_ko: '',
+                        title_en: '',
+                        title_cn: '',
+                        description_ko: '',
+                        description_en: '',
+                        description_cn: '',
+                        image_url_ko: '',
+                        image_url_en: '',
+                        image_url_cn: ''
+                    }];
+                }
                 console.log('Avatar Image 로드 완료');
 
                 // Content Image 로드 - 다국어 버전 (하나만 관리)
@@ -342,14 +506,32 @@
                 const contentSlides = contentData.slides || [];
 
                 // 첫 번째 항목만 사용, 없으면 빈 객체
-                contentSlidesData = contentSlides.length > 0 ? [contentSlides[0]] : [{
-                    title_ko: '',
-                    title_en: '',
-                    description_ko: '',
-                    description_en: '',
-                    image_url_ko: '',
-                    image_url_en: ''
-                }];
+                if (contentSlides.length > 0) {
+                    const slide = contentSlides[0];
+                    contentSlidesData = [{
+                        title_ko: slide.title_ko || '',
+                        title_en: slide.title_en || '',
+                        title_cn: slide.title_cn || '',
+                        description_ko: slide.description_ko || '',
+                        description_en: slide.description_en || '',
+                        description_cn: slide.description_cn || '',
+                        image_url_ko: slide.image_url_ko || '',
+                        image_url_en: slide.image_url_en || '',
+                        image_url_cn: slide.image_url_cn || ''
+                    }];
+                } else {
+                    contentSlidesData = [{
+                        title_ko: '',
+                        title_en: '',
+                        title_cn: '',
+                        description_ko: '',
+                        description_en: '',
+                        description_cn: '',
+                        image_url_ko: '',
+                        image_url_en: '',
+                        image_url_cn: ''
+                    }];
+                }
                 console.log('Content Image 로드 완료');
 
                 // SaaS Image 로드 - 다국어 버전 (하나만 관리)
@@ -359,34 +541,71 @@
                 const saasSlides = saasData.slides || [];
 
                 // 첫 번째 항목만 사용, 없으면 빈 객체
-                saasSlidesData = saasSlides.length > 0 ? [saasSlides[0]] : [{
-                    title_ko: '',
-                    title_en: '',
-                    description_ko: '',
-                    description_en: '',
-                    image_url_ko: '',
-                    image_url_en: ''
-                }];
+                if (saasSlides.length > 0) {
+                    const slide = saasSlides[0];
+                    saasSlidesData = [{
+                        title_ko: slide.title_ko || '',
+                        title_en: slide.title_en || '',
+                        title_cn: slide.title_cn || '',
+                        description_ko: slide.description_ko || '',
+                        description_en: slide.description_en || '',
+                        description_cn: slide.description_cn || '',
+                        image_url_ko: slide.image_url_ko || '',
+                        image_url_en: slide.image_url_en || '',
+                        image_url_cn: slide.image_url_cn || ''
+                    }];
+                } else {
+                    saasSlidesData = [{
+                        title_ko: '',
+                        title_en: '',
+                        title_cn: '',
+                        description_ko: '',
+                        description_en: '',
+                        description_cn: '',
+                        image_url_ko: '',
+                        image_url_en: '',
+                        image_url_cn: ''
+                    }];
+                }
                 console.log('SaaS Image 로드 완료');
 
                 // Section Images 로드 - 다국어 버전
                 const sectionsResponse = await fetch('api.php?type=sections_admin');
                 const sectionsData = await sectionsResponse.json();
                 console.log('Section Images 데이터:', sectionsData);
-                sectionImagesData = sectionsData.sections || [];
+                sectionImagesData = (sectionsData.sections || []).map(section => ({
+                    section_key: section.section_key,
+                    title_ko: section.title_ko || '',
+                    title_en: section.title_en || '',
+                    title_cn: section.title_cn || '',
+                    description_ko: section.description_ko || '',
+                    description_en: section.description_en || '',
+                    description_cn: section.description_cn || '',
+                    image_url_ko: section.image_url_ko || '',
+                    image_url_en: section.image_url_en || '',
+                    image_url_cn: section.image_url_cn || ''
+                }));
 
-                // 데이터가 없으면 기본 섹션 추가
-                if (sectionImagesData.length === 0) {
-                    sectionImagesData = [
-                        { section_key: 'problem_image', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'infra_mocap', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'infra_photo', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'infra_tech', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'tech_bigdata_bg', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'tech_ai_bg', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' },
-                        { section_key: 'tech_vrpe_bg', title_ko: '', title_en: '', description_ko: '', description_en: '', image_url_ko: '', image_url_en: '' }
-                    ];
-                }
+                // DB 데이터와 필수 섹션을 항상 병합 (DB 데이터가 없는 섹션은 기본값으로 채움)
+                // → DB에 일부만 저장돼 있어도 6개 섹션이 항상 표시됨
+                const REQUIRED_SECTIONS = [
+                    'infra_mocap', 'infra_photo', 'infra_tech',
+                    'tech_bigdata_bg', 'tech_ai_bg', 'tech_vrpe_bg'
+                ];
+                const dbMap = {};
+                sectionImagesData.forEach(s => { dbMap[s.section_key] = s; });
+                sectionImagesData = REQUIRED_SECTIONS.map(key => dbMap[key] || {
+                    section_key: key,
+                    title_ko: '', title_en: '', title_cn: '',
+                    description_ko: '', description_en: '', description_cn: '',
+                    image_url_ko: '', image_url_en: '', image_url_cn: ''
+                });
+                // DB에 없는 섹션 키도 뒤에 추가 (사용자 정의 섹션)
+                Object.keys(dbMap).forEach(key => {
+                    if (!REQUIRED_SECTIONS.includes(key)) {
+                        sectionImagesData.push(dbMap[key]);
+                    }
+                });
                 console.log('Section Images 렌더링 시작, 개수:', sectionImagesData.length);
                 renderSectionImages();
 
@@ -396,6 +615,65 @@
                 alert('콘텐츠 로드 중 오류가 발생했습니다: ' + error.message);
             }
         }
+
+        // ── STEP MASTER 특징 렌더링 ────────────────────────────────
+        function renderStepMasterFeatures() {
+            const container = document.getElementById('stepmaster-features-container');
+            if (!container) return;
+            container.innerHTML = stepMasterFeaturesData.map((f, i) => `
+                <div class="bg-orange-50/50 p-6 rounded-xl border border-orange-100">
+                    <h3 class="text-lg font-bold text-orange-700 mb-4 flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 text-sm font-bold">${i+1}</span>
+                        특징 항목 ${i+1}
+                    </h3>
+                    <div class="space-y-5">
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">제목</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇰🇷 한국어</label><input type="text" id="sm-title-ko-${i}" value="${f.title_ko}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"></div>
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇺🇸 English</label><input type="text" id="sm-title-en-${i}" value="${f.title_en}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"></div>
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇨🇳 中文</label><input type="text" id="sm-title-cn-${i}" value="${f.title_cn}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-500 uppercase mb-2">설명</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇰🇷 한국어</label><textarea id="sm-desc-ko-${i}" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">${f.desc_ko}</textarea></div>
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇺🇸 English</label><textarea id="sm-desc-en-${i}" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">${f.desc_en}</textarea></div>
+                                <div><label class="text-xs text-slate-500 mb-1 block">🇨🇳 中文</label><textarea id="sm-desc-cn-${i}" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">${f.desc_cn}</textarea></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // STEP MASTER 특징 저장
+        async function saveStepMasterFeatures() {
+            try {
+                const features = stepMasterFeaturesData.map((_, i) => ({
+                    title_ko: document.getElementById(`sm-title-ko-${i}`)?.value || '',
+                    title_en: document.getElementById(`sm-title-en-${i}`)?.value || '',
+                    title_cn: document.getElementById(`sm-title-cn-${i}`)?.value || '',
+                    desc_ko:  document.getElementById(`sm-desc-ko-${i}`)?.value  || '',
+                    desc_en:  document.getElementById(`sm-desc-en-${i}`)?.value  || '',
+                    desc_cn:  document.getElementById(`sm-desc-cn-${i}`)?.value  || ''
+                }));
+                const res = await fetch('api.php?type=stepmaster_features&action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ features })
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    alert('STEP MASTER 특징이 저장되었습니다!');
+                    await loadContent();
+                } else {
+                    alert('저장 실패: ' + (data.error || res.status + ' ' + res.statusText));
+                }
+            } catch(e) { alert('저장 오류: ' + e.message); }
+        }
+        // ───────────────────────────────────────────────────────────
 
         // Hero Slides 렌더링 - 다국어 필드 포함
         function renderHeroSlides() {
@@ -421,11 +699,9 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
-                                    <input type="text" id="hero-img-ko-${index}" value="${slide.image_url_ko || ''}"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 <span class="text-xs text-blue-400">(드래그 or 클릭)</span></label>
+                                    ${dndZone('hero-img-ko-'+index, slide.image_url_ko||'', 'blue')}
                                 </div>
-                                ${slide.image_url_ko ? `<img src="${slide.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">` : ''}
                             </div>
                         </div>
 
@@ -446,11 +722,32 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
-                                    <input type="text" id="hero-img-en-${index}" value="${slide.image_url_en || ''}"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Image <span class="text-xs text-green-400">(drag or click)</span></label>
+                                    ${dndZone('hero-img-en-'+index, slide.image_url_en||'', 'green')}
                                 </div>
-                                ${slide.image_url_en ? `<img src="${slide.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Chinese Language Section -->
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <div class="language-label language-cn">
+                                <i class="fa-solid fa-language mr-1"></i> 중국어 (Chinese)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (중국어)</label>
+                                    <input type="text" id="hero-title-cn-${index}" value="${slide.title_cn || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (중국어)</label>
+                                    <input type="text" id="hero-desc-cn-${index}" value="${slide.description_cn || ''}"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">图片 <span class="text-xs text-yellow-500">(拖放或点击)</span></label>
+                                    ${dndZone('hero-img-cn-'+index, slide.image_url_cn||'', 'yellow')}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -464,10 +761,13 @@
                 const slides = heroSlidesData.map((slide, index) => ({
                     title_ko: document.getElementById(`hero-title-ko-${index}`).value,
                     title_en: document.getElementById(`hero-title-en-${index}`).value,
+                    title_cn: document.getElementById(`hero-title-cn-${index}`).value,
                     description_ko: document.getElementById(`hero-desc-ko-${index}`).value,
                     description_en: document.getElementById(`hero-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`hero-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`hero-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`hero-img-en-${index}`).value
+                    image_url_en: document.getElementById(`hero-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`hero-img-cn-${index}`).value
                 })).slice(0, 3); // 3개로 제한
 
                 const response = await fetch('api.php?type=hero&action=save', {
@@ -495,7 +795,6 @@
             const container = document.getElementById('section-images-container');
 
             const sectionLabels = {
-                'problem_image': '기존방식 (Problem) 이미지',
                 'infra_mocap': '모션 캡쳐 스튜디오',
                 'infra_photo': '포토그래메트리 부스',
                 'infra_tech': 'Tech Specs',
@@ -509,40 +808,41 @@
 
             // 각 섹션을 순회
             sectionImagesData.forEach((section, sectionIndex) => {
-                // 섹션 렌더링
-                htmlContent += renderSingleSection(section, globalIndex, sectionLabels);
+                try {
+                    // 섹션 렌더링
+                    htmlContent += renderSingleSection(section, globalIndex, sectionLabels);
+                } catch(e) {
+                    console.error('섹션 렌더 오류 ('+section.section_key+'):', e);
+                    htmlContent += `<div class="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">섹션 렌더 오류: ${section.section_key}</div>`;
+                }
                 globalIndex++;
 
-                // problem_image 다음에 solution 이미지들 추가
-                if (section.section_key === 'problem_image') {
-                    // Solution 이미지들
-                    htmlContent += '<div class="my-8 border-t-4 border-orange-500 pt-6"><h3 class="text-xl font-bold text-orange-600 mb-4"><i class="fa-solid fa-layer-group mr-2"></i>메타모션 (Solution) 이미지</h3></div>';
-                    solutionSlidesData.forEach((solution, solutionIndex) => {
-                        htmlContent += renderDynamicItem(solution, globalIndex, solutionIndex, 'solution', 'Solution');
-                        globalIndex++;
-                    });
-                }
+
+                // Solution 이미지들 (problem_image 조건 제거 - solution은 별도 처리)
 
                 // tech_vrpe_bg 다음에 avatar, content, saas 이미지들 추가
                 if (section.section_key === 'tech_vrpe_bg') {
                     // Avatar 이미지들
                     htmlContent += '<div class="my-8 border-t-4 border-purple-500 pt-6"><h3 class="text-xl font-bold text-purple-600 mb-4"><i class="fa-solid fa-user-astronaut mr-2"></i>실감아바타생성 이미지</h3></div>';
                     avatarSlidesData.forEach((avatar, avatarIndex) => {
-                        htmlContent += renderDynamicItem(avatar, globalIndex, avatarIndex, 'avatar', 'Avatar');
+                        try { htmlContent += renderDynamicItem(avatar, globalIndex, avatarIndex, 'avatar', 'Avatar'); }
+                        catch(e) { console.error('avatar 렌더 오류:', e); }
                         globalIndex++;
                     });
 
                     // Content 이미지들
                     htmlContent += '<div class="my-8 border-t-4 border-green-500 pt-6"><h3 class="text-xl font-bold text-green-600 mb-4"><i class="fa-solid fa-box-archive mr-2"></i>콘텐츠자산화 이미지</h3></div>';
                     contentSlidesData.forEach((content, contentIndex) => {
-                        htmlContent += renderDynamicItem(content, globalIndex, contentIndex, 'content', 'Content');
+                        try { htmlContent += renderDynamicItem(content, globalIndex, contentIndex, 'content', 'Content'); }
+                        catch(e) { console.error('content 렌더 오류:', e); }
                         globalIndex++;
                     });
 
                     // SaaS 이미지들
                     htmlContent += '<div class="my-8 border-t-4 border-blue-500 pt-6"><h3 class="text-xl font-bold text-blue-600 mb-4"><i class="fa-solid fa-cloud mr-2"></i>SaaS&API솔루션 이미지</h3></div>';
                     saasSlidesData.forEach((saas, saasIndex) => {
-                        htmlContent += renderDynamicItem(saas, globalIndex, saasIndex, 'saas', 'SaaS');
+                        try { htmlContent += renderDynamicItem(saas, globalIndex, saasIndex, 'saas', 'SaaS'); }
+                        catch(e) { console.error('saas 렌더 오류:', e); }
                         globalIndex++;
                     });
                 }
@@ -551,7 +851,110 @@
             container.innerHTML = htmlContent;
         }
 
-        // 단일 섹션 렌더링 함수
+
+        // Hero 텍스트 렌더링
+        function renderHeroText() {
+            const t = heroTextData;
+            const colorMap = {slate:'text-slate-900', blue:'text-blue-600', orange:'text-orange-500'};
+            document.getElementById('hero-text-container').innerHTML = `
+                <div class="space-y-8">
+                    <!-- 배지 -->
+                    <div class="bg-purple-50 p-5 rounded-xl border border-purple-100">
+                        <h3 class="text-base font-bold text-purple-700 mb-4"><i class="fa-solid fa-tag mr-2"></i>배지 텍스트</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div><div class="language-label language-ko">한국어</div><input id="ht-badge-ko" type="text" value="${t.badge_ko||'Motion Tech Innovator'}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                            <div><div class="language-label language-en">English</div><input id="ht-badge-en" type="text" value="${t.badge_en||'Motion Tech Innovator'}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                            <div><div class="language-label language-cn">중국어</div><input id="ht-badge-cn" type="text" value="${t.badge_cn||'Motion Tech Innovator'}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                        </div>
+                    </div>
+                    <!-- 제목 -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <h3 class="text-base font-bold text-slate-700 mb-4"><i class="fa-solid fa-heading mr-2"></i>메인 제목</h3>
+                        <div class="space-y-4">
+                            <div><div class="language-label language-ko">한국어</div><textarea id="ht-title-ko" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.title_ko||''}</textarea></div>
+                            <div><div class="language-label language-en">English</div><textarea id="ht-title-en" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.title_en||''}</textarea></div>
+                            <div><div class="language-label language-cn">중국어</div><textarea id="ht-title-cn" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.title_cn||''}</textarea></div>
+                        </div>
+                    </div>
+                    <!-- 설명 -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <h3 class="text-base font-bold text-slate-700 mb-4"><i class="fa-solid fa-align-left mr-2"></i>설명 문구</h3>
+                        <div class="space-y-4">
+                            <div><div class="language-label language-ko">한국어</div><textarea id="ht-desc-ko" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.description_ko||''}</textarea></div>
+                            <div><div class="language-label language-en">English</div><textarea id="ht-desc-en" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.description_en||''}</textarea></div>
+                            <div><div class="language-label language-cn">중국어</div><textarea id="ht-desc-cn" rows="3" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm">${t.description_cn||''}</textarea></div>
+                        </div>
+                    </div>
+                    <!-- 통계 카드 4개 -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <h3 class="text-base font-bold text-slate-700 mb-4"><i class="fa-solid fa-chart-bar mr-2"></i>통계 카드 (4개 고정)</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            ${heroStatsData.map((s,i) => `
+                                <div class="bg-white p-4 rounded-lg border border-slate-200">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <span class="text-xs font-bold text-slate-500">통계 ${i+1}</span>
+                                        <select id="hs-color-${i}" class="text-xs border border-slate-300 rounded px-2 py-1">
+                                            <option value="slate" ${s.stat_color==='slate'?'selected':''}>Black (slate)</option>
+                                            <option value="blue" ${s.stat_color==='blue'?'selected':''}>Blue</option>
+                                            <option value="orange" ${s.stat_color==='orange'?'selected':''}>Orange</option>
+                                        </select>
+                                    </div>
+                                    <input id="hs-val-${i}" type="text" value="${s.stat_value}" placeholder="2021 / 48+ / 120+" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm font-bold mb-3">
+                                    <div class="space-y-2">
+                                        <div><div class="language-label language-ko">한국어</div><input id="hs-ko-${i}" type="text" value="${s.label_ko}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                                        <div><div class="language-label language-en">English</div><input id="hs-en-${i}" type="text" value="${s.label_en}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                                        <div><div class="language-label language-cn">중국어</div><input id="hs-cn-${i}" type="text" value="${s.label_cn}" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm"></div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Hero 텍스트 & 통계 저장
+        async function saveHeroTextAndStats() {
+            try {
+                const textPayload = {
+                    badge_ko: document.getElementById('ht-badge-ko')?.value || '',
+                    badge_en: document.getElementById('ht-badge-en')?.value || '',
+                    badge_cn: document.getElementById('ht-badge-cn')?.value || '',
+                    title_ko: document.getElementById('ht-title-ko')?.value || '',
+                    title_en: document.getElementById('ht-title-en')?.value || '',
+                    title_cn: document.getElementById('ht-title-cn')?.value || '',
+                    description_ko: document.getElementById('ht-desc-ko')?.value || '',
+                    description_en: document.getElementById('ht-desc-en')?.value || '',
+                    description_cn: document.getElementById('ht-desc-cn')?.value || ''
+                };
+                const statsPayload = { stats: heroStatsData.map((_,i) => ({
+                    stat_value: document.getElementById(`hs-val-${i}`)?.value || '',
+                    stat_color: document.getElementById(`hs-color-${i}`)?.value || 'slate',
+                    label_ko: document.getElementById(`hs-ko-${i}`)?.value || '',
+                    label_en: document.getElementById(`hs-en-${i}`)?.value || '',
+                    label_cn: document.getElementById(`hs-cn-${i}`)?.value || ''
+                })) };
+
+                const [r1,r2] = await Promise.all([
+                    fetch('api.php?type=hero_text&action=save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(textPayload)}),
+                    fetch('api.php?type=hero_stats&action=save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(statsPayload)})
+                ]);
+
+                const [b1, b2] = await Promise.all([r1.text(), r2.text()]);
+
+                if (r1.ok && r2.ok) {
+                    alert('히어로 텍스트 & 통계가 저장되었습니다!');
+                    await loadContent();
+                } else {
+                    const msg = [];
+                    if (!r1.ok) msg.push(`hero_text: HTTP ${r1.status}\n${b1}`);
+                    if (!r2.ok) msg.push(`hero_stats: HTTP ${r2.status}\n${b2}`);
+                    alert('저장 실패:\n\n' + msg.join('\n\n'));
+                }
+            } catch(e) { alert('오류: ' + e.message); }
+        }
+
+
         function renderSingleSection(section, index, sectionLabels) {
             return `
                 <div class="bg-slate-50 p-6 rounded-xl border border-slate-200" data-section-key="${section.section_key}">
@@ -579,27 +982,10 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">${section.description_ko || ''}</textarea>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
-                                    <input type="text" id="section-img-ko-${index}" value="${section.image_url_ko || ''}"
-                                        placeholder="https://example.com/image.jpg"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 <span class="text-xs text-blue-400">(드래그 or 클릭)</span></label>
+                                    ${dndZone('section-img-ko-'+index, section.image_url_ko||'', 'blue')}
                                     <p class="text-xs text-slate-500 mt-1">섹션 키: <code class="bg-slate-200 px-1 rounded">${section.section_key}</code></p>
                                 </div>
-                                ${section.image_url_ko ? `
-                                    <div class="relative">
-                                        <img src="${section.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">
-                                        <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded text-xs">
-                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
-                                        </div>
-                                    </div>
-                                ` : `
-                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
-                                        <div class="text-center text-slate-400">
-                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
-                                            <p class="text-sm">이미지 URL을 입력하세요</p>
-                                        </div>
-                                    </div>
-                                `}
                             </div>
                         </div>
 
@@ -622,27 +1008,36 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">${section.description_en || ''}</textarea>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
-                                    <input type="text" id="section-img-en-${index}" value="${section.image_url_en || ''}"
-                                        placeholder="https://example.com/image.jpg"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Image <span class="text-xs text-green-400">(drag or click)</span></label>
+                                    ${dndZone('section-img-en-'+index, section.image_url_en||'', 'green')}
                                     <p class="text-xs text-slate-500 mt-1">섹션 키: <code class="bg-slate-200 px-1 rounded">${section.section_key}</code></p>
                                 </div>
-                                ${section.image_url_en ? `
-                                    <div class="relative">
-                                        <img src="${section.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">
-                                        <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs">
-                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
-                                        </div>
-                                    </div>
-                                ` : `
-                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
-                                        <div class="text-center text-slate-400">
-                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
-                                            <p class="text-sm">이미지 URL을 입력하세요</p>
-                                        </div>
-                                    </div>
-                                `}
+                            </div>
+                        </div>
+
+                        <!-- Chinese Language Section -->
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <div class="language-label language-cn">
+                                <i class="fa-solid fa-language mr-1"></i> 중국어 (Chinese)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (중국어)</label>
+                                    <input type="text" id="section-title-cn-${index}" value="${section.title_cn || ''}"
+                                        placeholder="输入章节标题"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (중국어)</label>
+                                    <textarea id="section-desc-cn-${index}" rows="3"
+                                        placeholder="输入章节说明"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">${section.description_cn || ''}</textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">图片 <span class="text-xs text-yellow-500">(拖放或点击)</span></label>
+                                    ${dndZone('section-img-cn-'+index, section.image_url_cn||'', 'yellow')}
+                                    <p class="text-xs text-slate-500 mt-1">섹션 키: <code class="bg-slate-200 px-1 rounded">${section.section_key}</code></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -696,26 +1091,9 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">${item.description_ko || ''}</textarea>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (한국어)</label>
-                                    <input type="text" id="${type}-img-ko-${itemIndex}" value="${item.image_url_ko || ''}"
-                                        placeholder="https://example.com/image.jpg"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 <span class="text-xs text-blue-400">(드래그 or 클릭)</span></label>
+                                    ${dndZone(type+'-img-ko-'+itemIndex, item.image_url_ko||'', 'blue')}
                                 </div>
-                                ${item.image_url_ko ? `
-                                    <div class="relative">
-                                        <img src="${item.image_url_ko}" alt="Korean Preview" class="w-full h-48 object-cover rounded-lg border border-blue-300">
-                                        <div class="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded text-xs">
-                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
-                                        </div>
-                                    </div>
-                                ` : `
-                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
-                                        <div class="text-center text-slate-400">
-                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
-                                            <p class="text-sm">이미지 URL을 입력하세요</p>
-                                        </div>
-                                    </div>
-                                `}
                             </div>
                         </div>
 
@@ -738,26 +1116,34 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">${item.description_en || ''}</textarea>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-2">이미지 URL (영어)</label>
-                                    <input type="text" id="${type}-img-en-${itemIndex}" value="${item.image_url_en || ''}"
-                                        placeholder="https://example.com/image.jpg"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Image <span class="text-xs text-green-400">(drag or click)</span></label>
+                                    ${dndZone(type+'-img-en-'+itemIndex, item.image_url_en||'', 'green')}
                                 </div>
-                                ${item.image_url_en ? `
-                                    <div class="relative">
-                                        <img src="${item.image_url_en}" alt="English Preview" class="w-full h-48 object-cover rounded-lg border border-green-300">
-                                        <div class="absolute top-2 right-2 bg-green-500 text-white px-2 py-1 rounded text-xs">
-                                            <i class="fa-solid fa-check mr-1"></i>이미지 설정됨
-                                        </div>
-                                    </div>
-                                ` : `
-                                    <div class="bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg h-48 flex items-center justify-center">
-                                        <div class="text-center text-slate-400">
-                                            <i class="fa-solid fa-image text-4xl mb-2"></i>
-                                            <p class="text-sm">이미지 URL을 입력하세요</p>
-                                        </div>
-                                    </div>
-                                `}
+                            </div>
+                        </div>
+
+                        <!-- Chinese Language Section -->
+                        <div class="border-l-4 border-yellow-500 pl-4">
+                            <div class="language-label language-cn">
+                                <i class="fa-solid fa-language mr-1"></i> 중국어 (Chinese)
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">제목 (중국어)</label>
+                                    <input type="text" id="${type}-title-cn-${itemIndex}" value="${item.title_cn || ''}"
+                                        placeholder="输入${type}标题"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">설명 (중국어)</label>
+                                    <textarea id="${type}-desc-cn-${itemIndex}" rows="3"
+                                        placeholder="输入${type}说明"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">${item.description_cn || ''}</textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">图片 <span class="text-xs text-yellow-500">(拖放或点击)</span></label>
+                                    ${dndZone(type+'-img-cn-'+itemIndex, item.image_url_cn||'', 'yellow')}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -771,28 +1157,180 @@
             `;
         }
 
+        // == DnD 이미지 업로드 헬퍼 =============================================
+        async function uploadAndSetImage(file, inputId) {
+            if (!file || !file.type.startsWith('image/')) { alert('이미지 파일만 업로드할 수 있습니다.'); return; }
+            const zone=document.getElementById('dnd-'+inputId);
+            const spinner=document.getElementById('spin-'+inputId);
+            if(zone){zone.classList.add('opacity-60');zone.style.pointerEvents='none';}
+            if(spinner)spinner.classList.remove('hidden');
+            try {
+                const fd=new FormData(); fd.append('image',file);
+                const res=await fetch('upload.php',{method:'POST',body:fd});
+                // 먼저 텍스트로 받아서 JSON 파싱 실패 시 실제 응답을 표시
+                const raw=await res.text();
+                let data;
+                try { data=JSON.parse(raw); }
+                catch(e) {
+                    // 서버가 HTML을 반환한 경우 — 실제 오류 내용을 일부 표시
+                    console.error('서버 원문 응답:', raw);
+                    throw new Error('서버 응답이 JSON이 아닙니다. HTTP ' + res.status + '\n' + raw.replace(/<[^>]+>/g,'').trim().substring(0,200));
+                }
+                if(res.ok&&data.success){
+                    const input=document.getElementById(inputId);
+                    const preview=document.getElementById('prev-'+inputId);
+                    const ph=document.getElementById('ph-'+inputId);
+                    if(input)input.value=data.url;
+                    if(preview){preview.src=data.url;preview.classList.remove('hidden');}
+                    if(ph)ph.classList.add('hidden');
+                } else { alert('업로드 실패: '+(data.error||'알 수 없는 오류')); }
+            } catch(e) { alert('업로드 오류: '+e.message); }
+            finally {
+                if(zone){zone.classList.remove('opacity-60');zone.style.pointerEvents='';}
+                if(spinner)spinner.classList.add('hidden');
+            }
+        }
+        function dndOver(e,id){e.preventDefault();const z=document.getElementById('dnd-'+id);if(z)z.classList.add('ring-2','ring-blue-400','bg-blue-50');}
+        function dndLeave(id){const z=document.getElementById('dnd-'+id);if(z)z.classList.remove('ring-2','ring-blue-400','bg-blue-50');}
+        function dndDrop(e,id){e.preventDefault();dndLeave(id);uploadAndSetImage(e.dataTransfer.files[0],id);}
+        function dndClick(id){document.getElementById('fp-'+id)?.click();}
+        function dndFileChange(e,id){uploadAndSetImage(e.target.files[0],id);}
+        // HTML 속성값 이스케이프 (URL의 &, ", <, > 방어)
+        function escAttr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+        function dndZone(inputId,value,accent){
+            // 갤러리 버튼 포함
+            const accentMap={blue:'blue-300',green:'green-300',red:'red-300',yellow:'yellow-400'};
+            const border=accentMap[accent]||'blue-300';
+            const hasImg=!!value;
+            const safeVal=escAttr(value);   // URL 안전 처리
+            return `
+                <div class="flex flex-col gap-1">
+                    <div id="dnd-${inputId}" class="relative border-2 border-dashed border-${border} rounded-xl overflow-hidden cursor-pointer transition-all bg-white" style="min-height:130px;"
+                         ondragover="dndOver(event,'${inputId}')" ondragleave="dndLeave('${inputId}')" ondrop="dndDrop(event,'${inputId}')" onclick="dndClick('${inputId}')">
+                        <img id="prev-${inputId}" src="${safeVal}" class="w-full h-full object-cover absolute inset-0 rounded-xl ${hasImg?'':'hidden'}" style="min-height:130px;">
+                        ${hasImg
+                            ? `<div class="absolute inset-0 bg-black/25 flex items-end p-2 opacity-0 hover:opacity-100 transition-opacity rounded-xl"><span class="text-white text-xs font-bold bg-black/50 px-2 py-1 rounded"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>교체</span></div>`
+                            : `<div id="ph-${inputId}" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 gap-1 select-none"><i class="fa-solid fa-cloud-arrow-up text-2xl"></i><span class="text-xs font-medium">드래그 또는 클릭</span></div>`
+                        }
+                        <div id="spin-${inputId}" class="hidden absolute inset-0 bg-white/70 flex items-center justify-center rounded-xl">
+                            <i class="fa-solid fa-spinner fa-spin text-blue-500 text-2xl"></i>
+                        </div>
+                        <input type="file" id="fp-${inputId}" accept="image/*" class="hidden" onchange="dndFileChange(event,'${inputId}')">
+                    </div>
+                    <div class="flex gap-2">
+                        <input type="text" id="${inputId}" value="${safeVal}" placeholder="https://..."
+                            oninput="(function(v,id){const p=document.getElementById('prev-'+id);const ph=document.getElementById('ph-'+id);if(p){p.src=v;p.classList.toggle('hidden',!v);}if(ph)ph.classList.toggle('hidden',!!v);})(this.value,'${inputId}')"
+                            class="flex-1 px-3 py-2 border border-slate-200 rounded-lg text-xs text-slate-500 focus:outline-none focus:ring-1">
+                        <button type="button" onclick="openGallery('${inputId}')" title="서버 갤러리에서 선택"
+                            class="flex-shrink-0 px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold rounded-lg border border-slate-300 transition-all">
+                            <i class="fa-solid fa-images"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        // ========================================================================
+
+        // Solution 슬라이드 렌더링 (DnD 포함)
+        function renderSolutionSlides() {
+            const container=document.getElementById('solution-slides-admin-container');
+            if(!container)return;
+            const countEl=document.getElementById('solution-slide-count');
+            if(countEl)countEl.textContent=solutionSlidesData.length;
+            container.innerHTML=solutionSlidesData.map((slide,i)=>`
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm mb-4">
+                    <div class="flex justify-between items-center mb-5">
+                        <h3 class="text-lg font-bold text-blue-700 flex items-center gap-2">
+                            <span class="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold">${i+1}</span>
+                            슬라이드 ${i+1}
+                        </h3>
+                        <button onclick="removeSolutionImage(${i})" class="px-3 py-1 bg-red-50 hover:bg-red-100 text-red-500 text-xs font-bold rounded-lg transition-all border border-red-200">
+                            <i class="fa-solid fa-trash mr-1"></i> 삭제
+                        </button>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="space-y-3">
+                            <p class="text-xs font-bold text-blue-600 border-b border-blue-100 pb-1">🇰🇷 한국어</p>
+                            <div><label class="text-xs text-slate-400 block mb-1">제목</label>
+                                <input type="text" id="solution-title-ko-${i}" value="${slide.title_ko||''}" placeholder="슬라이드 제목" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">설명</label>
+                                <textarea id="solution-desc-ko-${i}" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">${slide.description_ko||''}</textarea></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">이미지 <span class="text-blue-400 font-normal text-xs">(드래그 or 클릭)</span></label>
+                                ${dndZone('solution-img-ko-'+i, slide.image_url_ko||'', 'blue')}</div>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="text-xs font-bold text-green-600 border-b border-green-100 pb-1">🇺🇸 English</p>
+                            <div><label class="text-xs text-slate-400 block mb-1">Title</label>
+                                <input type="text" id="solution-title-en-${i}" value="${slide.title_en||''}" placeholder="Slide Title" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-400"></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">Description</label>
+                                <textarea id="solution-desc-en-${i}" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-400">${slide.description_en||''}</textarea></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">Image <span class="text-green-400 font-normal text-xs">(drag & drop or click)</span></label>
+                                ${dndZone('solution-img-en-'+i, slide.image_url_en||'', 'green')}</div>
+                        </div>
+                        <div class="space-y-3">
+                            <p class="text-xs font-bold text-red-500 border-b border-red-100 pb-1">🇨🇳 中文</p>
+                            <div><label class="text-xs text-slate-400 block mb-1">标题</label>
+                                <input type="text" id="solution-title-cn-${i}" value="${slide.title_cn||''}" placeholder="幻灯片标题" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-400"></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">描述</label>
+                                <textarea id="solution-desc-cn-${i}" rows="2" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-red-400">${slide.description_cn||''}</textarea></div>
+                            <div><label class="text-xs text-slate-400 block mb-1">图片 <span class="text-red-400 font-normal text-xs">(拖放或点击)</span></label>
+                                ${dndZone('solution-img-cn-'+i, slide.image_url_cn||'', 'red')}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Solution 슬라이드 저장 (독립)
+        async function saveSolutionSlides() {
+            try {
+                const slides = solutionSlidesData.map((_, i) => ({
+                    title_ko:       document.getElementById(`solution-title-ko-${i}`)?.value || '',
+                    title_en:       document.getElementById(`solution-title-en-${i}`)?.value || '',
+                    title_cn:       document.getElementById(`solution-title-cn-${i}`)?.value || '',
+                    description_ko: document.getElementById(`solution-desc-ko-${i}`)?.value || '',
+                    description_en: document.getElementById(`solution-desc-en-${i}`)?.value || '',
+                    description_cn: document.getElementById(`solution-desc-cn-${i}`)?.value || '',
+                    image_url_ko:   document.getElementById(`solution-img-ko-${i}`)?.value || '',
+                    image_url_en:   document.getElementById(`solution-img-en-${i}`)?.value || '',
+                    image_url_cn:   document.getElementById(`solution-img-cn-${i}`)?.value || ''
+                }));
+                const res = await fetch('api.php?type=solution&action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ slides })
+                });
+                const data = await res.json();
+                if (res.ok) { alert('STEP MASTER 슬라이드가 저장되었습니다!'); await loadContent(); }
+                else alert('저장 실패: ' + (data.error || res.status));
+            } catch(e) { alert('저장 오류: ' + e.message); }
+        }
+
         // Solution 이미지 추가
         function addSolutionImage() {
             solutionSlidesData.push({
                 title_ko: '',
                 title_en: '',
+                title_cn: '',
                 description_ko: '',
                 description_en: '',
+                description_cn: '',
                 image_url_ko: '',
-                image_url_en: ''
+                image_url_en: '',
+                image_url_cn: ''
             });
-            renderSectionImages();
+            renderSolutionSlides();
         }
 
         // Solution 이미지 제거
         function removeSolutionImage(index) {
             if (solutionSlidesData.length > 1) {
-                if (confirm('이 Solution 이미지를 삭제하시겠습니까?')) {
+                if (confirm('이 슬라이드를 삭제하시겠습니까?')) {
                     solutionSlidesData.splice(index, 1);
-                    renderSectionImages();
+                    renderSolutionSlides();
                 }
             } else {
-                alert('최소 1개의 Solution 이미지가 필요합니다.');
+                alert('최소 1개의 슬라이드가 필요합니다.');
             }
         }
 
@@ -803,10 +1341,13 @@
                     section_key: sectionKey,
                     title_ko: document.getElementById(`section-title-ko-${index}`).value,
                     title_en: document.getElementById(`section-title-en-${index}`).value,
+                    title_cn: document.getElementById(`section-title-cn-${index}`).value,
                     description_ko: document.getElementById(`section-desc-ko-${index}`).value,
                     description_en: document.getElementById(`section-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`section-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`section-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`section-img-en-${index}`).value
+                    image_url_en: document.getElementById(`section-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`section-img-cn-${index}`).value
                 };
 
                 const response = await fetch('api.php?type=sections&action=save', {
@@ -835,10 +1376,13 @@
                 const item = {
                     title_ko: document.getElementById(`${type}-title-ko-${itemIndex}`).value,
                     title_en: document.getElementById(`${type}-title-en-${itemIndex}`).value,
+                    title_cn: document.getElementById(`${type}-title-cn-${itemIndex}`).value,
                     description_ko: document.getElementById(`${type}-desc-ko-${itemIndex}`).value,
                     description_en: document.getElementById(`${type}-desc-en-${itemIndex}`).value,
+                    description_cn: document.getElementById(`${type}-desc-cn-${itemIndex}`).value,
                     image_url_ko: document.getElementById(`${type}-img-ko-${itemIndex}`).value,
-                    image_url_en: document.getElementById(`${type}-img-en-${itemIndex}`).value
+                    image_url_en: document.getElementById(`${type}-img-en-${itemIndex}`).value,
+                    image_url_cn: document.getElementById(`${type}-img-cn-${itemIndex}`).value
                 };
 
                 const apiType = type === 'solution' ? 'solution' :
@@ -876,50 +1420,65 @@
                     section_key: section.section_key,
                     title_ko: document.getElementById(`section-title-ko-${index}`).value,
                     title_en: document.getElementById(`section-title-en-${index}`).value,
+                    title_cn: document.getElementById(`section-title-cn-${index}`).value,
                     description_ko: document.getElementById(`section-desc-ko-${index}`).value,
                     description_en: document.getElementById(`section-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`section-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`section-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`section-img-en-${index}`).value
+                    image_url_en: document.getElementById(`section-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`section-img-cn-${index}`).value
                 }));
 
                 // Solution 데이터 수집
                 const solutions = solutionSlidesData.map((solution, index) => ({
                     title_ko: document.getElementById(`solution-title-ko-${index}`).value,
                     title_en: document.getElementById(`solution-title-en-${index}`).value,
+                    title_cn: document.getElementById(`solution-title-cn-${index}`).value,
                     description_ko: document.getElementById(`solution-desc-ko-${index}`).value,
                     description_en: document.getElementById(`solution-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`solution-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`solution-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`solution-img-en-${index}`).value
+                    image_url_en: document.getElementById(`solution-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`solution-img-cn-${index}`).value
                 }));
 
                 // Avatar 데이터 수집
                 const avatars = avatarSlidesData.map((avatar, index) => ({
                     title_ko: document.getElementById(`avatar-title-ko-${index}`).value,
                     title_en: document.getElementById(`avatar-title-en-${index}`).value,
+                    title_cn: document.getElementById(`avatar-title-cn-${index}`).value,
                     description_ko: document.getElementById(`avatar-desc-ko-${index}`).value,
                     description_en: document.getElementById(`avatar-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`avatar-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`avatar-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`avatar-img-en-${index}`).value
+                    image_url_en: document.getElementById(`avatar-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`avatar-img-cn-${index}`).value
                 }));
 
                 // Content 데이터 수집
                 const contents = contentSlidesData.map((content, index) => ({
                     title_ko: document.getElementById(`content-title-ko-${index}`).value,
                     title_en: document.getElementById(`content-title-en-${index}`).value,
+                    title_cn: document.getElementById(`content-title-cn-${index}`).value,
                     description_ko: document.getElementById(`content-desc-ko-${index}`).value,
                     description_en: document.getElementById(`content-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`content-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`content-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`content-img-en-${index}`).value
+                    image_url_en: document.getElementById(`content-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`content-img-cn-${index}`).value
                 }));
 
                 // SaaS 데이터 수집
                 const saases = saasSlidesData.map((saas, index) => ({
                     title_ko: document.getElementById(`saas-title-ko-${index}`).value,
                     title_en: document.getElementById(`saas-title-en-${index}`).value,
+                    title_cn: document.getElementById(`saas-title-cn-${index}`).value,
                     description_ko: document.getElementById(`saas-desc-ko-${index}`).value,
                     description_en: document.getElementById(`saas-desc-en-${index}`).value,
+                    description_cn: document.getElementById(`saas-desc-cn-${index}`).value,
                     image_url_ko: document.getElementById(`saas-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`saas-img-en-${index}`).value
+                    image_url_en: document.getElementById(`saas-img-en-${index}`).value,
+                    image_url_cn: document.getElementById(`saas-img-cn-${index}`).value
                 }));
 
                 // Section 저장
@@ -996,52 +1555,164 @@
         }
 
         // 이미지 업로드
-        async function uploadImage() {
-            const fileInput = document.getElementById('image-upload');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('파일을 선택해주세요.');
-                return;
-            }
-
-            const statusDiv = document.getElementById('upload-status');
-            statusDiv.textContent = '업로드 중...';
-            statusDiv.className = 'mt-4 text-sm text-center text-blue-600';
-
+        // 상단 업로드 존 핸들러
+        function topZoneDrop(e) {
+            e.preventDefault();
+            const zone = document.getElementById('top-upload-zone');
+            zone.classList.remove('border-blue-500','bg-blue-50','ring-2','ring-blue-300');
+            const file = e.dataTransfer.files[0];
+            if (file) topUploadFile(file);
+        }
+        function topZoneFileChange(e) {
+            const file = e.target.files[0];
+            if (file) topUploadFile(file);
+        }
+        async function topUploadFile(file) {
+            if (!file.type.startsWith('image/')) { alert('이미지 파일만 업로드할 수 있습니다.'); return; }
+            const spinner  = document.getElementById('top-upload-spinner');
+            const preview  = document.getElementById('top-upload-preview');
+            const ph       = document.getElementById('top-upload-ph');
+            const statusDiv= document.getElementById('upload-status');
+            const urlBox   = document.getElementById('uploaded-url');
+            spinner.classList.remove('hidden');
+            statusDiv.textContent = '';
+            urlBox.classList.add('hidden');
             try {
-                const formData = new FormData();
-                formData.append('image', file);
-
-                const response = await fetch('upload.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
+                const fd = new FormData(); fd.append('image', file);
+                const res  = await fetch('upload.php', { method: 'POST', body: fd });
+                const raw  = await res.text();
+                let data;
+                try { data = JSON.parse(raw); }
+                catch(e) { throw new Error('서버 응답 오류 (HTTP ' + res.status + '): ' + raw.replace(/<[^>]+>/g,'').trim().substring(0,200)); }
+                if (res.ok && data.success) {
                     document.getElementById('uploaded-url-text').value = data.url;
-                    document.getElementById('uploaded-url').classList.remove('hidden');
-                    statusDiv.textContent = '업로드 완료!';
-                    statusDiv.className = 'mt-4 text-sm text-center text-green-600';
+                    urlBox.classList.remove('hidden');
+                    preview.src = data.url;
+                    preview.classList.remove('hidden');
+                    if (ph) ph.classList.add('hidden');
+                    statusDiv.textContent = '';
                 } else {
                     throw new Error(data.error || '업로드 실패');
                 }
-            } catch (error) {
-                console.error('업로드 오류:', error);
-                statusDiv.textContent = '업로드 실패: ' + error.message;
-                statusDiv.className = 'mt-4 text-sm text-center text-red-600';
+            } catch(err) {
+                console.error('업로드 오류:', err);
+                statusDiv.textContent = '업로드 실패: ' + err.message;
+                statusDiv.className = 'mt-2 text-sm text-center text-red-500';
+            } finally {
+                spinner.classList.add('hidden');
             }
         }
+        // 하위 호환 (uploadImage 직접 호출 방어)
+        async function uploadImage() { document.getElementById('image-upload').click(); }
 
         // URL 클립보드 복사
         function copyToClipboard() {
             const urlText = document.getElementById('uploaded-url-text');
             urlText.select();
-            document.execCommand('copy');
-            alert('URL이 클립보드에 복사되었습니다!');
+            navigator.clipboard?.writeText(urlText.value).catch(()=>document.execCommand('copy'));
+            urlText.style.background='#dcfce7';
+            setTimeout(()=>urlText.style.background='',1200);
         }
     </script>
+
+    <!-- ── 갤러리 모달 ──────────────────────────────────────── -->
+    <div id="gallery-modal" class="fixed inset-0 z-50 hidden">
+        <!-- 배경 -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeGallery()"></div>
+        <!-- 패널 -->
+        <div class="absolute inset-4 md:inset-10 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+            <!-- 헤더 -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-800">📁 서버 갤러리</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">이미지를 클릭하면 선택됩니다</p>
+                </div>
+                <button onclick="closeGallery()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 text-xl transition-all">&times;</button>
+            </div>
+            <!-- 검색 -->
+            <div class="px-6 py-3 border-b border-slate-100">
+                <input type="text" id="gallery-search" placeholder="파일명 검색..." oninput="filterGallery(this.value)"
+                    class="w-full px-4 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            <!-- 그리드 -->
+            <div id="gallery-grid" class="flex-1 overflow-y-auto p-6">
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3" id="gallery-items"></div>
+                <div id="gallery-empty" class="hidden text-center py-20 text-slate-400">
+                    <i class="fa-solid fa-image-slash text-5xl mb-3"></i>
+                    <p>업로드된 이미지가 없습니다</p>
+                </div>
+                <div id="gallery-loading" class="text-center py-20 text-slate-400">
+                    <i class="fa-solid fa-spinner fa-spin text-4xl mb-3"></i>
+                    <p>불러오는 중...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let _galleryTargetInputId = null;
+        let _galleryImages = [];
+
+        async function openGallery(inputId) {
+            _galleryTargetInputId = inputId;
+            document.getElementById('gallery-modal').classList.remove('hidden');
+            document.getElementById('gallery-loading').classList.remove('hidden');
+            document.getElementById('gallery-items').innerHTML = '';
+            document.getElementById('gallery-empty').classList.add('hidden');
+            document.getElementById('gallery-search').value = '';
+            try {
+                const res = await fetch('api.php?type=gallery');
+                const data = await res.json();
+                _galleryImages = data.images || [];
+                renderGalleryItems(_galleryImages);
+            } catch(e) {
+                document.getElementById('gallery-loading').classList.add('hidden');
+                document.getElementById('gallery-items').innerHTML = '<p class="text-red-500 text-sm col-span-full">갤러리 로드 실패: ' + e.message + '</p>';
+            }
+        }
+
+        function closeGallery() {
+            document.getElementById('gallery-modal').classList.add('hidden');
+            _galleryTargetInputId = null;
+        }
+
+        function renderGalleryItems(images) {
+            const loading = document.getElementById('gallery-loading');
+            const empty   = document.getElementById('gallery-empty');
+            const grid    = document.getElementById('gallery-items');
+            loading.classList.add('hidden');
+            if (!images.length) { empty.classList.remove('hidden'); grid.innerHTML = ''; return; }
+            empty.classList.add('hidden');
+            grid.innerHTML = images.map(img => `
+                <div class="group relative aspect-square rounded-xl overflow-hidden cursor-pointer border-2 border-transparent hover:border-blue-500 transition-all shadow-sm"
+                     onclick="selectGalleryImage('${img.url.replace(/'/g, "&apos;")}')">
+                    <img src="${img.url}" alt="${img.filename}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200" loading="lazy">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                        <i class="fa-solid fa-check-circle text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity drop-shadow"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs px-1 py-0.5 truncate opacity-0 group-hover:opacity-100 transition-opacity">${img.filename}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(query) {
+            const q = query.toLowerCase();
+            const filtered = q ? _galleryImages.filter(img => img.filename.toLowerCase().includes(q)) : _galleryImages;
+            renderGalleryItems(filtered);
+        }
+
+        function selectGalleryImage(url) {
+            if (!_galleryTargetInputId) return;
+            const input   = document.getElementById(_galleryTargetInputId);
+            const preview = document.getElementById('prev-' + _galleryTargetInputId);
+            const ph      = document.getElementById('ph-'   + _galleryTargetInputId);
+            if (input)   input.value = url;
+            if (preview) { preview.src = url; preview.classList.remove('hidden'); }
+            if (ph)      ph.classList.add('hidden');
+            closeGallery();
+        }
+    </script>
+    <!-- ─────────────────────────────────────────────────────── -->
+
 </body>
 </html>
