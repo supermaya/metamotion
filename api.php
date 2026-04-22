@@ -610,7 +610,9 @@ try {
     if ($method === 'GET' && $type === 'sections_admin') {
         checkAuth();
         // 필수 섹션이 DB에 없으면 자동 초기화
-        $required_keys = ['infra_mocap','infra_photo','infra_tech','tech_bigdata_bg','tech_ai_bg','tech_vrpe_bg'];
+        $required_keys = ['infra_mocap','infra_photo','infra_tech',
+                          'tech_bigdata_bg','tech_ai_bg','tech_vrpe_bg',
+                          'tech_avatar_bg','tech_content_bg','tech_saas_bg'];
         $init_stmt = $pdo->prepare("
             INSERT IGNORE INTO section_images (section_key, title_ko, title_en, title_cn,
                 description_ko, description_en, description_cn,

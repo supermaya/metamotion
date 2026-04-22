@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
@@ -405,8 +405,8 @@
                     <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
                         <i class="fa-solid fa-user-astronaut"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">Realistic Avatar Generation</h3>
-                    <p class="text-sm text-slate-500">Celebrity instructor Digital Twin implementation<br><span class="text-orange-600 font-semibold">Photorealistic rendering technology</span></p>
+                    <h3 id="tech-avatar-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-avatar-desc" class="text-sm text-slate-500"></p>
                 </div>
 
                 <!-- 5. Content Assetization -->
@@ -414,8 +414,8 @@
                     <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4">
                         <i class="fa-brands fa-unity"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">Content Assetization</h3>
-                    <p class="text-sm text-slate-500">Motion DB and AI training synthetic data<br><span class="text-emerald-600 font-semibold">One-Source Multi-Use</span></p>
+                    <h3 id="tech-content-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-content-desc" class="text-sm text-slate-500"></p>
                 </div>
 
                 <!-- 6. SaaS & API Solution -->
@@ -423,8 +423,8 @@
                     <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 text-2xl mb-4">
                         <i class="fa-solid fa-diagram-project"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">SaaS & API Solutions</h3>
-                    <p class="text-sm text-slate-500">B2B AI evaluation model provision<br><span class="text-slate-700 font-semibold">Global service expansion</span></p>
+                    <h3 id="tech-saas-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-saas-desc" class="text-sm text-slate-500"></p>
                 </div>
             </div>
         </section>
@@ -846,6 +846,9 @@
                             'tech_bigdata_bg':{ img: null, title: 'tech-bigdata-title', desc: 'tech-bigdata-desc', bg: 'tech-bigdata' },
                             'tech_ai_bg':     { img: null, title: 'tech-ai-title',      desc: 'tech-ai-desc',      bg: 'tech-ai'      },
                             'tech_vrpe_bg':   { img: null, title: 'tech-vrpe-title',    desc: 'tech-vrpe-desc',    bg: 'tech-vrpe'    },
+                            'tech_avatar_bg': { img: null, title: 'tech-avatar-title',  desc: 'tech-avatar-desc',  bg: null           },
+                            'tech_content_bg':{ img: null, title: 'tech-content-title', desc: 'tech-content-desc', bg: null           },
+                            'tech_saas_bg':   { img: null, title: 'tech-saas-title',    desc: 'tech-saas-desc',    bg: null           },
                             'problem_image':  { img: null, title: null, desc: null, special: 'problem' }
                         };
                         sectionsData.sections.forEach(section => {

@@ -590,7 +590,8 @@
                 // → DB에 일부만 저장돼 있어도 6개 섹션이 항상 표시됨
                 const REQUIRED_SECTIONS = [
                     'infra_mocap', 'infra_photo', 'infra_tech',
-                    'tech_bigdata_bg', 'tech_ai_bg', 'tech_vrpe_bg'
+                    'tech_bigdata_bg', 'tech_ai_bg', 'tech_vrpe_bg',
+                    'tech_avatar_bg', 'tech_content_bg', 'tech_saas_bg'
                 ];
                 const dbMap = {};
                 sectionImagesData.forEach(s => { dbMap[s.section_key] = s; });
@@ -798,9 +799,12 @@
                 'infra_mocap': '모션 캡쳐 스튜디오',
                 'infra_photo': '포토그래메트리 부스',
                 'infra_tech': 'Tech Specs',
-                'tech_bigdata_bg': '빅데이터 파이프라인 배경',
-                'tech_ai_bg': 'AI 분석 알고리즘 배경',
-                'tech_vrpe_bg': 'VRPE 배경'
+                'tech_bigdata_bg': '빅데이터 파이프라인 카드',
+                'tech_ai_bg': 'AI 분석 알고리즘 카드',
+                'tech_vrpe_bg': 'VRPE 카드',
+                'tech_avatar_bg': '실감 아바타 생성 카드',
+                'tech_content_bg': '콘텐츠 자산화 카드',
+                'tech_saas_bg': 'SaaS & API 솔루션 카드'
             };
 
             let htmlContent = '';

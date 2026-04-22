@@ -418,8 +418,8 @@
                     <div class="w-14 h-14 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl mb-4">
                         <i class="fa-solid fa-user-astronaut"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">실감 아바타 생성</h3>
-                    <p class="text-sm text-slate-500">유명 강사 Digital Twin 구현<br><span class="text-orange-600 font-semibold">실사급 렌더링 기술</span></p>
+                    <h3 id="tech-avatar-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-avatar-desc" class="text-sm text-slate-500"></p>
                 </div>
 
                 <!-- 5. Content Assetization -->
@@ -427,8 +427,8 @@
                     <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 text-2xl mb-4">
                         <i class="fa-brands fa-unity"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">콘텐츠 자산화</h3>
-                    <p class="text-sm text-slate-500">모션 DB 및 AI 학습용 합성 데이터<br><span class="text-emerald-600 font-semibold">One-Source Multi-Use</span></p>
+                    <h3 id="tech-content-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-content-desc" class="text-sm text-slate-500"></p>
                 </div>
 
                 <!-- 6. SaaS & API Solution -->
@@ -436,8 +436,8 @@
                     <div class="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 text-2xl mb-4">
                         <i class="fa-solid fa-diagram-project"></i>
                     </div>
-                    <h3 class="font-bold text-base text-slate-800 mb-2">SaaS & API 솔루션</h3>
-                    <p class="text-sm text-slate-500">B2B AI 평가 모델 제공<br><span class="text-slate-700 font-semibold">글로벌 서비스 확장</span></p>
+                    <h3 id="tech-saas-title" class="font-bold text-base text-slate-800 mb-2"></h3>
+                    <p id="tech-saas-desc" class="text-sm text-slate-500"></p>
                 </div>
             </div>
         </section>
@@ -929,9 +929,12 @@
                             'infra_mocap':    { img: 'infra-mocap-img',    title: 'infra-mocap-title',    desc: null },
                             'infra_photo':    { img: 'infra-photo-img',    title: 'infra-photo-title',    desc: null },
                             'infra_tech':     { img: 'infra-tech-img',     title: 'infra-tech-title',     desc: null },
-                            'tech_bigdata_bg':{ img: null,                 title: 'tech-bigdata-title',   desc: 'tech-bigdata-desc',  bg: 'tech-bigdata' },
-                            'tech_ai_bg':     { img: null,                 title: 'tech-ai-title',        desc: 'tech-ai-desc',       bg: 'tech-ai'      },
-                            'tech_vrpe_bg':   { img: null,                 title: 'tech-vrpe-title',      desc: 'tech-vrpe-desc',     bg: 'tech-vrpe'    },
+                            'tech_bigdata_bg':{ img: null, title: 'tech-bigdata-title', desc: 'tech-bigdata-desc', bg: 'tech-bigdata' },
+                            'tech_ai_bg':     { img: null, title: 'tech-ai-title',      desc: 'tech-ai-desc',      bg: 'tech-ai'      },
+                            'tech_vrpe_bg':   { img: null, title: 'tech-vrpe-title',    desc: 'tech-vrpe-desc',    bg: 'tech-vrpe'    },
+                            'tech_avatar_bg': { img: null, title: 'tech-avatar-title',  desc: 'tech-avatar-desc',  bg: null           },
+                            'tech_content_bg':{ img: null, title: 'tech-content-title', desc: 'tech-content-desc', bg: null           },
+                            'tech_saas_bg':   { img: null, title: 'tech-saas-title',    desc: 'tech-saas-desc',    bg: null           },
                             'problem_image':  { img: null,                 title: null,                   desc: null,                 special: 'problem' }
                         };
 
