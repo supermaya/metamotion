@@ -504,24 +504,31 @@ try {
         exit;
     }
 
-    // Section Images 가져오기 - 언어별
+    // Section Images 가져오기 - 언어별 (최신 row만 반환)
     if ($method === 'GET' && $type === 'sections') {
         $stmt = $pdo->prepare("
             SELECT
-                id,
-                section_key,
-                title_{$lang} as title,
-                description_{$lang} as description,
-                image_url_{$lang} as image_url,
-                updated_at
-            FROM section_images
-            ORDER BY section_key ASC
+                s.id,
+                s.section_key,
+                s.title_{$lang}       AS title,
+                s.description_{$lang} AS description,
+                s.image_url_{$lang}   AS image_url,
+                s.updated_at
+            FROM section_images s
+            INNER JOIN (
+                SELECT section_key, MAX(id) AS max_id
+                FROM section_images
+                GROUP BY section_key
+            ) latest ON s.section_key = latest.section_key
+                    AND s.id          = latest.max_id
+            ORDER BY s.section_key ASC
         ");
         $stmt->execute();
         $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(['sections' => $sections]);
         exit;
     }
+
 
     // Section Images 저장 (인증 필요) - 양쪽 언어
     if ($method === 'POST' && $type === 'sections' && $action === 'save') {
