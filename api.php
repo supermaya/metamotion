@@ -518,7 +518,7 @@ try {
             ORDER BY section_key ASC
         ");
         $stmt->execute();
-        $sections = $stmt->fetchAll();
+        $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(['sections' => $sections]);
         exit;
     }
@@ -613,7 +613,7 @@ try {
         foreach ($required_keys as $key) { $init_stmt->execute([$key]); }
 
         $stmt = $pdo->query("SELECT * FROM section_images ORDER BY section_key ASC");
-        $sections = $stmt->fetchAll();
+        $sections = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(['sections' => $sections]);
         exit;
     }
