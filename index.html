@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -964,14 +964,16 @@
                                 }
                             }
 
-                            // 제목 업데이트 (관리자가 입력한 값이 있을 때만)
+                            // 제목이 관리자 값이면 desc도 반드시 덮어씀 (HTML 기본값 혼합 방지)
                             if (section.title && meta.title) {
-                                const el = document.getElementById(meta.title);
-                                if (el) el.textContent = section.title;
-                            }
-
-                            // 설명 업데이트 (관리자가 입력한 값이 있을 때만)
-                            if (section.description && meta.desc) {
+                                const titleEl = document.getElementById(meta.title);
+                                if (titleEl) titleEl.textContent = section.title;
+                                // desc 항상 덮어쓰기 (비어있으면 기본값 제거)
+                                if (meta.desc) {
+                                    const descEl = document.getElementById(meta.desc);
+                                    if (descEl) descEl.innerHTML = section.description || '';
+                                }
+                            } else if (section.description && meta.desc) {
                                 const el = document.getElementById(meta.desc);
                                 if (el) el.innerHTML = section.description;
                             }
