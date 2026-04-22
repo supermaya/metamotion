@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METAMOTION | Interactive Infographic</title>
+    <title>METAMOTION | 交互式信息图表</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -98,23 +98,23 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 items-center">
-                    <button onclick="scrollToSection('hero')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">About Us</button>
-                    <button onclick="scrollToSection('solution')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Step Master</button>
-                    <button onclick="scrollToSection('tech')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Core Technology</button>
-                    <button onclick="scrollToSection('track-record')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Track Record</button>
+                    <button onclick="scrollToSection('hero')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">关于我们</button>
+                    <button onclick="scrollToSection('solution')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">STEP MASTER</button>
+                    <button onclick="scrollToSection('tech')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">核心技术</button>
+                    <button onclick="scrollToSection('track-record')" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">主要业绩</button>
                     <!-- Language Dropdown -->
                     <div class="relative">
                         <button id="lang-dropdown-btn" class="px-3 py-2 text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors flex items-center gap-1">
                             <i class="fa-solid fa-language"></i>
-                            <span>English</span>
+                            <span>中文</span>
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </button>
                         <div id="lang-dropdown-menu" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-slate-200 py-1 z-50">
                             <a href="index.html" onclick="window.location.href='index.html'; return false;" class="block px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
                                 한국어
                             </a>
-                            <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="block px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                                中文
+                            <a href="index_en.html" onclick="window.location.href='index_en.html'; return false;" class="block px-4 py-2 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                                English
                             </a>
                         </div>
                     </div>
@@ -130,10 +130,10 @@
         </div>
         <!-- Mobile Menu Panel -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-2 shadow-lg absolute w-full z-50">
-            <button onclick="scrollToSection('hero')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">About Us</button>
-            <button onclick="scrollToSection('solution')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Step Master</button>
-            <button onclick="scrollToSection('tech')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Core Technology</button>
-            <button onclick="scrollToSection('track-record')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">Track Record</button>
+            <button onclick="scrollToSection('hero')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">关于我们</button>
+            <button onclick="scrollToSection('solution')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">STEP MASTER</button>
+            <button onclick="scrollToSection('tech')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">核心技术</button>
+            <button onclick="scrollToSection('track-record')" class="block w-full text-left py-2 font-medium text-sm text-slate-700 hover:bg-slate-50 px-2 rounded">主要业绩</button>
         </div>
     </nav>
 
@@ -200,35 +200,35 @@
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-100 rounded-full blur-3xl opacity-30 -z-10 animate-blob"></div>
 
             <span id="hero-badge" class="inline-block px-4 py-1.5 bg-white border border-blue-100 text-blue-600 rounded-full text-xs font-bold tracking-wide uppercase shadow-sm">
-                Motion Tech Innovator
+                动作技术革新企业
             </span>
 
             <h1 class="text-4xl md:text-6xl font-black leading-tight text-slate-900 tracking-tight">
-                <span id="hero-title-line1">Shaping the Future of</span><br>
-                <span id="hero-title-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Immersive Education with Big Data</span>
+                <span id="hero-title-line1">用大数据实现</span><br>
+                <span id="hero-title-line2" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">沉浸式教育的未来</span>
             </h1>
 
             <p id="hero-description" class="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                METAMOTION leverages <strong>ultra-precise motion datasets and motion content production technology</strong>,<br class="hidden md:block">
-                combining <strong>HPE and VR</strong> to enable perfect motion transfer without temporal or spatial constraints.
+                METAMOTION以<strong>超精密动作数据集和动作内容制作技术</strong>为基础，<br class="hidden md:block">
+                结合<strong>HPE与VR</strong>，实现不受时空限制的完美动作传授。
             </p>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 max-w-5xl mx-auto">
                 <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
                     <div id="stat-val-0" class="text-3xl font-black text-slate-900">2021</div>
-                    <div id="stat-label-0" class="text-xs text-slate-500 mt-2 font-medium uppercase tracking-wide">Founded</div>
+                    <div id="stat-label-0" class="text-xs text-slate-500 mt-2 font-medium uppercase tracking-wide">成立年份</div>
                 </div>
                 <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
                     <div id="stat-val-1" class="text-3xl font-black text-blue-600">48+</div>
-                    <div id="stat-label-1" class="text-xs text-slate-500 mt-2 font-medium">HPE Datasets</div>
+                    <div id="stat-label-1" class="text-xs text-slate-500 mt-2 font-medium">HPE数据集</div>
                 </div>
                 <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
                     <div id="stat-val-2" class="text-3xl font-black text-orange-500">120+</div>
-                    <div id="stat-label-2" class="text-xs text-slate-500 mt-2 font-medium">VR Motion Learning Content</div>
+                    <div id="stat-label-2" class="text-xs text-slate-500 mt-2 font-medium">VR动作内容</div>
                 </div>
                 <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-sm border border-slate-100 card-hover text-center">
                     <div id="stat-val-3" class="text-3xl font-black text-slate-900">100K</div>
-                    <div id="stat-label-3" class="text-xs text-slate-500 mt-2 font-medium">App Downloads (Pre)</div>
+                    <div id="stat-label-3" class="text-xs text-slate-500 mt-2 font-medium">App下载量(预)</div>
                 </div>
             </div>
         </section>
@@ -254,22 +254,22 @@
                         <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
                             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">1</div>
                             <div>
-                                <h4 id="sm-feat-title-0" class="text-base font-bold text-slate-800">Ultra-Realistic 3D Lessons</h4>
-                                <p id="sm-feat-desc-0" class="text-sm text-slate-600 mt-1">Rotate digital twin instructors 360 degrees for immersive, realistic learning.</p>
+                                <h4 id="sm-feat-title-0" class="text-base font-bold text-slate-800">超真实3D课程</h4>
+                                <p id="sm-feat-desc-0" class="text-sm text-slate-600 mt-1">360度旋转数字孪生讲师，提供身临其境的沉浸式学习体验。</p>
                             </div>
                         </div>
                         <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
                             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">2</div>
                             <div>
-                                <h4 id="sm-feat-title-1" class="text-base font-bold text-slate-800">AI Precision Coaching (VRPE)</h4>
-                                <p id="sm-feat-desc-1" class="text-sm text-slate-600 mt-1">HPE technology tracks your joints and precisely analyzes similarity to expert movements.</p>
+                                <h4 id="sm-feat-title-1" class="text-base font-bold text-slate-800">AI精准教练(VRPE)</h4>
+                                <p id="sm-feat-desc-1" class="text-sm text-slate-600 mt-1">利用HPE技术追踪用户关节，精准分析与专家动作的相似度。</p>
                             </div>
                         </div>
                         <div class="flex items-start bg-blue-50/50 p-5 rounded-xl border border-blue-100">
                             <div class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-sm font-bold mr-4">3</div>
                             <div>
-                                <h4 id="sm-feat-title-2" class="text-base font-bold text-slate-800">Gamification</h4>
-                                <p id="sm-feat-desc-2" class="text-sm text-slate-600 mt-1">Make training enjoyable and sustainable like a game through ranking competitions, achievement systems, and reward mechanisms.</p>
+                                <h4 id="sm-feat-title-2" class="text-base font-bold text-slate-800">游戏化</h4>
+                                <p id="sm-feat-desc-2" class="text-sm text-slate-600 mt-1">通过排名竞争、成就达成、奖励系统，让训练像游戏一样持续进行。</p>
                             </div>
                         </div>
                     </div>
@@ -524,9 +524,9 @@
                 </div>
             </div>
             <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
-                <a href="info01_en.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Privacy Policy</a>
+                <a href="info01_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">隐私政策</a>
                 <span class="hidden md:inline text-slate-300">|</span>
-                <a href="info02_en.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">Terms of Service</a>
+                <a href="info02_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">用户服务协议</a>
             </div>
             <p class="mt-6 opacity-60">� 2024 METAMOTION. All Rights Reserved.</p>
         </footer>
@@ -715,10 +715,10 @@
             }
         }
 
-        // ── Hero Text & Stats 독립 로드 함수 (lang=en) ──────────
+        // ── Hero Text & Stats 독립 로드 함수 (lang=cn) ──────────
         async function loadHeroTextAndStats() {
             try {
-                const htRes = await fetch('api.php?type=hero_text&lang=en');
+                const htRes = await fetch('api.php?type=hero_text&lang=cn');
                 if (htRes.ok) {
                     const htData = await htRes.json();
                     const t = htData.text || {};
@@ -735,7 +735,7 @@
             } catch(e) { console.warn('hero_text load failed:', e); }
 
             try {
-                const hsRes = await fetch('api.php?type=hero_stats&lang=en');
+                const hsRes = await fetch('api.php?type=hero_stats&lang=cn');
                 if (hsRes.ok) {
                     const hsData = await hsRes.json();
                     const colorMap = { slate: 'text-slate-900', blue: 'text-blue-600', orange: 'text-orange-500' };
@@ -753,7 +753,7 @@
             } catch(e) { console.warn('hero_stats load failed:', e); }
 
             try {
-                const smRes = await fetch('api.php?type=stepmaster_features&lang=en');
+                const smRes = await fetch('api.php?type=stepmaster_features&lang=cn');
                 if (smRes.ok) {
                     const smData = await smRes.json();
                     (smData.features || []).forEach((f, i) => {
@@ -772,8 +772,9 @@
                 console.log('Loading data from API...');
 
                 // Hero Slides load
-                const heroResponse = await fetchWithTimeout('api.php?type=hero&lang=en');
+                const heroResponse = await fetchWithTimeout('api.php?type=hero&lang=cn');
                 if (heroResponse.ok) {
+
                     const heroData = await heroResponse.json();
                     console.log('Hero Slides data:', heroData);
                     const heroSlides = document.querySelectorAll('.hero-slide');
@@ -812,7 +813,7 @@
                 }
 
                 // Solution Image loading (use first image only)
-                const solutionResponse = await fetchWithTimeout('api.php?type=solution&lang=en');
+                const solutionResponse = await fetchWithTimeout('api.php?type=solution&lang=cn');
                 if (solutionResponse.ok) {
                     const solutionData = await solutionResponse.json();
                     console.log('Solution Image data:', solutionData);
@@ -832,7 +833,7 @@
                 }
 
                 // Section Images loading
-                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=en');
+                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=cn');
                 if (sectionsResponse.ok) {
                     const sectionsData = await sectionsResponse.json();
                     console.log('Section Images data:', sectionsData);
@@ -924,10 +925,10 @@
 
             loadHeroTextAndStats();
             loadContentFromAPI().finally(() => {
+
                 console.log('loadContentFromAPI completed, clearing timeout');
                 clearTimeout(maxLoadTimeout);
             });
-
 
             initSPARouter();
         });
@@ -1026,8 +1027,8 @@
                 // Reinitialize language dropdown
                 initLanguageDropdown();
 
-                // If loading main page (index_en), reinitialize main page functionality
-                if (pagePath === 'index_en') {
+                // If loading main page (index_cn), reinitialize main page functionality
+                if (pagePath === 'index_cn') {
                     console.log('=== REINITIALIZING MAIN PAGE ===');
                     preloadHeroImages();
                     loadContentFromAPI();
