@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -918,7 +918,7 @@
 
 
                 // Section Images 로드
-                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=ko');
+                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=ko&_t=' + Date.now());
                 if (sectionsResponse.ok) {
                     const sectionsData = await sectionsResponse.json();
                     console.log('Section Images 데이터:', sectionsData);

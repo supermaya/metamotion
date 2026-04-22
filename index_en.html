@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -832,7 +832,7 @@
                 }
 
                 // Section Images loading
-                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=en');
+                const sectionsResponse = await fetchWithTimeout('api.php?type=sections&lang=en&_t=' + Date.now());
                 if (sectionsResponse.ok) {
                     const sectionsData = await sectionsResponse.json();
                     console.log('Section Images data:', sectionsData);

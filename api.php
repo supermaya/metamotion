@@ -1,7 +1,10 @@
 <?php
 require_once 'config.php';
 
-// CORS 헤더 설정
+// 캐시 방지 헤더
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
 header('Content-Type: application/json; charset=utf-8');
 
 // 허용 도메인 화이트리스트
