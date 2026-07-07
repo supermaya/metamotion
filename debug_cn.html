@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중국어 API 디버그</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .success { color: green; }
+        .error { color: red; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; margin: 10px 5px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>중국어 API 디버그 페이지</h1>
+
+    <button onclick="testHeroAPI()">Hero Slides API 테스트</button>
+    <button onclick="testSolutionAPI()">Solution Slides API 테스트</button>
+    <button onclick="testSectionsAPI()">Sections API 테스트</button>
+    <button onclick="clearCache()">캐시 클리어</button>
+
+    <div id="results"></div>
+
+    <script>
+        async function testHeroAPI() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Hero Slides API 테스트 (lang=cn)</h2><p>로딩 중...</p>';
+
+            try {
+                const response = await fetch('api.php?type=hero&lang=cn&_=' + new Date().getTime());
+                const data = await response.json();
+
+                results.innerHTML = `
+                    <h2>Hero Slides API 응답 (lang=cn)</h2>
+                    <p class="success">✓ 성공적으로 로드됨</p>
+                    <h3>응답 데이터:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+
+                    <h3>분석:</h3>
+                    <ul>
+                        <li>총 슬라이드 수: ${data.slides ? data.slides.length : 0}</li>
+                        ${data.slides && data.slides.length > 0 ? `
+                            <li>첫 번째 슬라이드 제목: <strong>${data.slides[0].title || '없음'}</strong></li>
+                            <li>첫 번째 슬라이드 설명: <strong>${data.slides[0].description || '없음'}</strong></li>
+                        ` : ''}
+                    </ul>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <h2>Hero Slides API 테스트</h2>
+                    <p class="error">✗ 오류 발생: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testSolutionAPI() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Solution Slides API 테스트 (lang=cn)</h2><p>로딩 중...</p>';
+
+            try {
+                const response = await fetch('api.php?type=solution&lang=cn&_=' + new Date().getTime());
+                const data = await response.json();
+
+                results.innerHTML = `
+                    <h2>Solution Slides API 응답 (lang=cn)</h2>
+                    <p class="success">✓ 성공적으로 로드됨</p>
+                    <h3>응답 데이터:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <h2>Solution Slides API 테스트</h2>
+                    <p class="error">✗ 오류 발생: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testSectionsAPI() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>Sections API 테스트 (lang=cn)</h2><p>로딩 중...</p>';
+
+            try {
+                const response = await fetch('api.php?type=sections&lang=cn&_=' + new Date().getTime());
+                const data = await response.json();
+
+                results.innerHTML = `
+                    <h2>Sections API 응답 (lang=cn)</h2>
+                    <p class="success">✓ 성공적으로 로드됨</p>
+                    <h3>응답 데이터:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                results.innerHTML = `
+                    <h2>Sections API 테스트</h2>
+                    <p class="error">✗ 오류 발생: ${error.message}</p>
+                `;
+            }
+        }
+
+        async function clearCache() {
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                alert('캐시가 클리어되었습니다!');
+            } else {
+                alert('브라우저가 Cache API를 지원하지 않습니다. Ctrl+F5를 눌러 강제 새로고침하세요.');
+            }
+        }
+
+        // 페이지 로드 시 자동으로 Hero API 테스트
+        window.onload = () => {
+            testHeroAPI();
+        };
+    </script>
+</body>
+</html>

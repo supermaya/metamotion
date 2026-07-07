@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 | METAMOTION</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        /* 드롭다운 메뉴 스타일 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none !important;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            z-index: 1000;
+            border: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+        }
+        .dropdown-content a {
+            color: #475569;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f5f9;
+        }
+        .dropdown-content a:first-child {
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .dropdown-content a:last-child {
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .dropdown.active .dropdown-content {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">首页</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Privacy Policy</span>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">MetaMotion Inc. 隐私政策</h1>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-500 mt-6">公告日期:2026年2月11日 | 生效日期:2026年2月18日</p>
+            </div>
+
+            <!-- Content -->
+            <div class="prose prose-slate max-w-none space-y-8">
+
+                <!-- Preamble -->
+                <section class="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                    <p class="text-slate-700 leading-relaxed">
+                        MetaMotion Inc.(以下简称"MetaMotion"或"公司")根据本隐私政策依法处理客户的个人信息,以保护个人信息并遵守《个人信息保护法》及其他相关法律。公司公开以下隐私政策,以保障客户("客户"、"用户"或统称"用户")在我们服务中的权利,并支持用户解决与个人信息处理相关的任何投诉。
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">一、个人信息处理目的</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司出于以下目的处理个人信息,若公司打算在以下目的范围之外使用个人信息,将提前通知用户并获得其同意。</p>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>用户注册与管理:</strong>用户注册、用户身份识别、防止欺诈性使用服务、发送通知</li>
+                                <li><strong>服务提供与运营:</strong>验证服务和内容资格、处理付款、提供服务功能和内容、分析用户活动</li>
+                                <li><strong>服务开发与改进:</strong>开发新服务、改进现有服务功能和内容</li>
+                                <li><strong>客户投诉解决:</strong>接收咨询、提供客户服务、保留记录以解决法律和合同问题</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">二、我们收集的个人信息</h2>
+                    <div class="space-y-6 text-slate-700">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">【在使用公司服务期间】</h3>
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-4">
+                                <div>
+                                    <p class="font-semibold mb-2">当用户注册公司网站时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>电子邮箱地址和密码(通过电子邮件注册)</li>
+                                        <li>Meta ID 和个人资料信息(通过 Meta 账户注册)</li>
+                                        <li>Google ID 和个人资料信息(通过 Google 账户注册)</li>
+                                        <li>Apple ID 和个人资料信息(通过 Apple 账户注册)</li>
+                                        <li>出生日期、姓名、位置信息(国家名称)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">当用户使用公司移动应用程序时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>电子邮箱地址、注册日期</li>
+                                        <li>用户识别序列号</li>
+                                        <li>用户活动日志(访问日志)</li>
+                                        <li>购买记录(用于应用内购买)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">当用户在 Meta Quest 设备中使用公司 VR/AR 应用程序时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>Meta ID(显示名称)</li>
+                                        <li>Meta 用户识别序列号</li>
+                                        <li>用户活动数据(排行榜分数、成就状态)</li>
+                                        <li>购买记录(用于应用内购买)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">当用户在 PICO 设备中使用公司 VR/AR 应用程序时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>PICO ID</li>
+                                        <li>PICO 用户识别序列号</li>
+                                        <li>用户活动数据(排行榜分数、成就状态)</li>
+                                        <li>购买记录(用于应用内购买)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">当用户直接从公司购买付费内容时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>付费服务标题、购买日期和时间</li>
+                                        <li>银行卡公司名称、卡号部分信息(如通过借记卡/信用卡支付)</li>
+                                        <li>银行名称、账号、账户持有人姓名(如通过电汇支付)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">当用户申请退款时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>银行名称、账号、账户持有人姓名</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">【其他情况】</h3>
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3">
+                                <div>
+                                    <p class="font-semibold mb-2">收到用户咨询或报告时:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>电子邮箱地址、电话号码</li>
+                                        <li>Meta ID(如使用 Meta 的报告功能)</li>
+                                        <li>PICO ID(如使用 PICO 的报告功能)</li>
+                                        <li>咨询或报告内容</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold mb-2">可自动收集的信息:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>IP 地址、Cookie 数据</li>
+                                        <li>使用记录(访问日期、访问页面、访问时长等)</li>
+                                        <li>操作系统和设备信息</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm"><strong>注意:</strong></p>
+                            <ul class="text-sm space-y-1 mt-2">
+                                <li>• 根据 Meta Quest 的用户政策,通过 Meta Quest 提供的公司 VR/AR 应用程序仅适用于 10 岁及以上的用户。</li>
+                                <li>• 根据 PICO 的用户政策,通过 PICO 提供的公司 VR/AR 应用程序仅适用于 13 岁及以上的用户。</li>
+                                <li>• 公司在任何情况下均不会传输、收集或存储 VR/AR 设备提供的敏感用户数据,如身体动作、位置和生物识别数据。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">三、数据保留政策</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司根据其内部政策规定的期限处理和保留个人信息。但是,某些信息将根据相关法律规定的期限进行处理和保留以实现合规。</p>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">【根据内部政策的保留期限】</h3>
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+                                <p>• <strong>网站注册期间收集的信息:</strong>直至会员退出</p>
+                                <p>• <strong>使用移动应用程序期间收集的信息:</strong>直至会员退出</p>
+                                <p>• <strong>在 Meta Quest 设备中使用 VR/AR 应用程序期间收集的信息:</strong>直至删除 VR/AR 应用程序中使用的 Meta 账户</p>
+                                <p>• <strong>在 PICO 设备中使用 VR/AR 应用程序期间收集的信息:</strong>直至删除 VR/AR 应用程序中使用的 PICO 账户</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800 mb-3">【根据相关法律的保留期限】</h3>
+                            <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+                                <p class="font-semibold">《电子商务等消费者保护法》</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1">
+                                    <li>与标识和广告相关的记录(6个月)</li>
+                                    <li>与解决消费者投诉或纠纷相关的记录(3年)</li>
+                                    <li>与取消合同或订阅等相关的记录(5年)</li>
+                                    <li>与付款和商品供应等相关的记录(5年)</li>
+                                </ul>
+                                <p class="font-semibold mt-3">《通信秘密保护法》</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1">
+                                    <li>网站访问日志(3个月)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">四、记录销毁程序和方法</h2>
+                    <div class="space-y-3 text-slate-700">
+                        <p>公司在个人信息不再需要用于提供服务时,根据"三、数据保留政策"将个人信息转移并存储在单独的数据库或存储中一定期限后予以销毁,以遵守内部政策和相关法律。</p>
+                        <p>公司以无法恢复的方式销毁任何电子记录。</p>
+                        <p>公司通过粉碎方式销毁任何纸质记录。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">五、向外国实体转移个人信息</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司在进行用户身份验证、内容提供、收集购买记录、收集应用内游戏数据和管理用户投诉等业务运营过程中向外国实体转移信息。</p>
+
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-4">
+                            <div>
+                                <p class="font-bold text-slate-800 mb-2">使用移动应用程序时</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li><strong>法律依据:</strong>《个人信息保护法》第28-8条第(1)款第3项</li>
+                                    <li><strong>转移信息:</strong>购买记录、用户活动日志</li>
+                                    <li><strong>目的地国家:</strong>美利坚合众国</li>
+                                    <li><strong>接收方:</strong>Firebase</li>
+                                    <li><strong>日期和方法:</strong>当用户登录移动应用程序时,通过在线通信</li>
+                                    <li><strong>转移目的:</strong>处理购买、服务使用分析</li>
+                                    <li><strong>保留期限:</strong>直至删除用户账户</li>
+                                </ul>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <p class="font-bold text-slate-800 mb-2">登录网站或在移动应用程序中下载内容时</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li><strong>法律依据:</strong>《个人信息保护法》第28-8条第(1)款第3项</li>
+                                    <li><strong>转移信息:</strong>用户识别序列号</li>
+                                    <li><strong>目的地国家:</strong>美利坚合众国</li>
+                                    <li><strong>接收方:</strong>Amazon Web Services, Inc.</li>
+                                    <li><strong>日期和方法:</strong>当用户登录网站或在移动应用程序上下载内容时,通过在线通信</li>
+                                    <li><strong>转移目的:</strong>用户身份验证、处理登录、内容交付</li>
+                                    <li><strong>保留期限:</strong>直至删除用户账户</li>
+                                </ul>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <p class="font-bold text-slate-800 mb-2">在 Meta Quest 设备中使用 VR/AR 应用程序时</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li><strong>法律依据:</strong>《个人信息保护法》第28-8条第(1)款第3项</li>
+                                    <li><strong>转移信息:</strong>购买记录、用户活动日志、用户报告</li>
+                                    <li><strong>目的地国家:</strong>美利坚合众国</li>
+                                    <li><strong>接收方:</strong>Meta Platforms, Inc.</li>
+                                    <li><strong>日期和方法:</strong>当用户访问应用程序、进行购买或联系我们时,通过在线通信</li>
+                                    <li><strong>转移目的:</strong>使用 Meta Quest 提供的业务功能、处理购买、提供客户服务、服务使用分析</li>
+                                    <li><strong>保留期限:</strong>直至删除用户的 Meta 账户</li>
+                                </ul>
+                            </div>
+
+                            <div class="border-t pt-4">
+                                <p class="font-bold text-slate-800 mb-2">在 PICO 设备中使用 VR/AR 应用程序时</p>
+                                <ul class="space-y-1 text-sm">
+                                    <li><strong>法律依据:</strong>《个人信息保护法》第28-8条第(1)款第3项</li>
+                                    <li><strong>转移信息:</strong>购买记录、用户活动日志、用户报告</li>
+                                    <li><strong>目的地国家:</strong>中华人民共和国</li>
+                                    <li><strong>接收方:</strong>Pico Immersive Pte. Ltd.</li>
+                                    <li><strong>日期和方法:</strong>当用户访问应用程序、进行购买或联系我们时,通过在线通信</li>
+                                    <li><strong>转移目的:</strong>使用 PICO 提供的业务功能、处理购买、提供客户服务、服务使用分析</li>
+                                    <li><strong>保留期限:</strong>直至删除用户的 PICO 账户</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-200">
+                            <p class="text-sm">公司通过基于上述实体建立的平台提供服务来履行与用户的合同。转移的信息对于网站和应用程序功能的运营或公司服务的管理和开发是必要的。因此,如果用户拒绝向外国实体转移个人信息,可能无法使用应用程序。</p>
+                            <p class="text-sm mt-2">要拒绝向外国实体转移个人信息、退出会员、删除相关账户或提交请求,请联系以下方式。</p>
+                            <p class="text-sm mt-2"><strong>电话:</strong>070-8666-7040 或 +82 70-8666-7040</p>
+                            <p class="text-sm"><strong>电子邮件:</strong>service@metamotion.io</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">六、自动收集个人信息设备的安装、运营和拒绝</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>为向用户提供个性化服务和便利,公司使用存储和检索信息的 Cookie。</p>
+                        <p>Cookie 是由运营网站的服务器(http)发送到用户浏览器的小块信息。Cookie 存储在用户的 PC 或移动设备上。</p>
+                        <p>用户可以配置其网络浏览器选项以允许或阻止 Cookie。但是,拒绝使用 Cookie 可能会在使用个性化服务时造成困难。</p>
+
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3">
+                            <div>
+                                <p class="font-semibold">【如何在网络浏览器上允许/阻止 Cookie】</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1 mt-2">
+                                    <li>Chrome:设置 &gt; 隐私和安全 &gt; 清除浏览数据</li>
+                                    <li>Edge:设置 &gt; Cookie 和网站权限 &gt; 管理和删除 Cookie 和网站数据</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="font-semibold">【如何在移动浏览器上允许/阻止 Cookie】</p>
+                                <ul class="list-disc list-inside ml-4 space-y-1 mt-2">
+                                    <li>Chrome:设置 &gt; 隐私和安全 &gt; 清除浏览数据</li>
+                                    <li>Safari:设置(在设备上)&gt; Safari &gt; 高级 &gt; 阻止所有 Cookie</li>
+                                    <li>Samsung Internet:设置 &gt; 个人浏览数据 &gt; 删除浏览数据</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">七、确保个人信息安全的措施</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司采取以下措施确保个人信息的安全。</p>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+                            <p><strong>管理措施:</strong>制定和实施内部管理计划、定期培训员工</p>
+                            <p><strong>技术措施:</strong>控制对个人信息管理系统的访问、使用访问控制系统</p>
+                            <p><strong>物理措施:</strong>控制对办公室的访问</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">八、数据主体和法定代理人的权利和义务,以及如何行使权利</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>数据主体及其法定代理人可以行使提交访问、更正、删除以及暂停/终止个人信息处理请求的权利。</p>
+                        <p>数据主体及其法定代理人还可以要求解释个人信息的自主处理过程或拒绝此类自主处理。公司将根据请求采取适当措施。</p>
+                        <p>请将您的请求提交至以下方式。</p>
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <p><strong>电话:</strong>070-8666-7040 或 +82 70-8666-7040</p>
+                            <p><strong>电子邮件:</strong>service@metamotion.io</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">九、个人信息保护负责人及相关部门的联系信息</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                        <p class="text-slate-700 mb-4">个人信息保护负责人是管理与个人信息相关业务的负责人,包括接收请求和解决与个人信息处理相关的投诉。</p>
+                        <div class="space-y-2 text-slate-700">
+                            <p><strong>姓名:</strong>高怜準(Ko Youngjoon)</p>
+                            <p><strong>职位:</strong>总经理</p>
+                            <p><strong>电话:</strong>070-8666-7040 或 +82 70-8666-7040</p>
+                            <p><strong>电子邮件:</strong>
+                                <a href="mailto:service@metamotion.io" class="text-blue-600 hover:underline">service@metamotion.io</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十、隐私政策的修改</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司可根据需要更改隐私政策。公司将在隐私政策变更前提前通知用户,修订后的政策将在通知后 7 天生效。</p>
+                        <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
+                            <p class="text-slate-700 mb-2"><strong>公告日期:</strong>2026年2月11日</p>
+                            <p class="text-slate-700"><strong>生效日期:</strong>2026年2月18日</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Back Button -->
+            <div class="mt-12 text-center">
+                <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> 返回首页
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+        <div class="mb-6 text-2xl text-slate-300">
+            <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                <p class="mb-2"><strong>CEO:</strong> Young-Jun Ko</p>
+                <p><strong>Business Number:</strong> 558-87-02658</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                <p class="mb-2"><strong>Office:</strong> B102, Ace Twin Tower 1, 285 Digital-ro, Guro-gu, Seoul</p>
+                <p><strong>Studio:</strong> B103, Same Building</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> Tel: 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-fax mr-2 text-slate-400"></i> Fax: 02-6230-9024</p>
+                <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> Partnership: gounbada@metamotion.io</p>
+                <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> General: service@metamotion.io</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+            <a href="info01_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">隐私政策</a>
+            <span class="hidden md:inline text-slate-300">|</span>
+            <a href="info02_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">用户服务协议</a>
+        </div>
+        <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 드롭다운 토글 함수
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // 페이지 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        });
+    </script>
+
+</body>
+</html>

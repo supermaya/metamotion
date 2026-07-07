@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户服务协议 | METAMOTION</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 0.9rem;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .section-header-line {
+            width: 50px;
+            height: 3px;
+            background-color: #2563eb;
+            border-radius: 2px;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        /* 드롭다운 메뉴 스타일 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none !important;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            z-index: 1000;
+            border: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+        }
+        .dropdown-content a {
+            color: #475569;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f5f9;
+        }
+        .dropdown-content a:first-child {
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .dropdown-content a:last-child {
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .dropdown.active .dropdown-content {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-100">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                    <i class="fa-solid fa-cube text-blue-600"></i>
+                    <span>META<span class="text-blue-600">MOTION</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">首页</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-full opacity-70 blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Terms of Service</span>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">MetaMotion Inc. 用户服务协议</h1>
+                <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+                <p class="text-sm text-slate-500 mt-6">公告日期:2026年2月11日 | 生效日期:2026年2月18日</p>
+            </div>
+
+            <!-- Content -->
+            <div class="prose prose-slate max-w-none space-y-8">
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">一、目的</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        本服务协议(以下简称"本协议")旨在明确 MetaMotion Inc.(以下简称"MetaMotion"或"公司")提供的所有产品、应用程序、网站、平台及其组成部分(统称"服务")的基本条款和条件,以及您("您"、"用户"或统称"用户")与公司之间的权利、义务和责任关系。
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">二、协议的效力</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司将在其网站或各服务界面内公示本协议,供用户查阅。公司与用户之间包含本协议的合同将通过以下任一方式成立:</p>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+                            <p>1. 公司在用户服务注册过程中展示本协议,用户同意本协议后完成注册;或</p>
+                            <p>2. 本协议显示在各服务界面中,用户通过点击"同意"按钮或采取任何实质等同的行为表示同意。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">三、隐私保护</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        公司致力于保护用户的个人信息。公司将根据单独的《隐私政策》收集、使用、保留和处理用户的个人信息。《隐私政策》可在公司网站或服务内查阅。
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">四、知识产权</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 服务及其组成部分的全部知识产权和所有权,包括但不限于软件、源代码、动作捕捉数据、图形、文档和设计元素,均归公司或其许可方所有。</p>
+                        <p>2. 用户或第三方通过服务提供的任何信息、文本、内容或产品的知识产权和所有权归相应的用户或第三方所有。</p>
+                        <p>3. 用户不因使用服务而获得服务或其组成部分的任何知识产权或所有权。</p>
+                        <p>4. 用户不因使用服务而获得其他用户或第三方提供的信息、文本、内容或产品的任何知识产权或所有权。</p>
+                        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                            <p class="font-medium mb-3">5. 除非公司明确书面授权,用户不得:</p>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li>复制、传播、表演或展示服务或其任何组成部分;</li>
+                                <li>基于服务或其任何组成部分创作衍生作品;</li>
+                                <li>出售、出租或转许可服务或其任何组成部分;</li>
+                                <li>对服务或其任何组成部分进行反向工程、反编译或提取组件;</li>
+                                <li>将服务或其任何组成部分用于商业目的。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">五、许可授权</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 用户获得一项有限的、非独占的、不可转让且不可再许可的使用许可,仅可按照公司设定的条款,以个人及非商业目的使用服务。</p>
+                        <p>2. 服务及其所有组成部分的知识产权和所有权在任何情况下均不转移给用户。</p>
+                        <p>3. 用户不得以任何形式主张对服务或其任何组成部分拥有知识产权或所有权。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">六、付费服务</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 公司可能向用户提供付费服务。</p>
+                        <p>2. 用户需支付相应费用后方可使用付费服务。</p>
+                        <p>3. 公司可设定付费服务的费用、范围和期限条件,这些条件可能会发生变更。</p>
+                        <p>4. 公司将在付款前通过相关服务页面告知用户付费服务的费用、范围和期限条件。</p>
+                        <p>5. 公司可按一次性付款或定期订阅("订阅")方式收取付费服务费用。</p>
+                        <p>6. 若用户通过订阅付费,可能会按固定周期安排自动付款,并将持续至取消。取消后,用户可继续使用该服务至下一个预定付款日期。</p>
+                        <p>7. 价格、税费和退款政策受用户所在国家/地区适用法律以及购买平台(如 Meta Quest Store)政策的约束。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">七、服务的提供、变更与中止</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 公司可因维护、检查、开发或更新需要,增加、删除或修改服务组成部分,在此期间服务提供可能暂时中止。</p>
+                        <p>2. 公司可因不可避免的运营情况(如并购、业务关闭、服务出售、相关合同终止或重大财务困难导致无法继续提供服务)暂时或永久中止服务。</p>
+                        <p>3. 公司可在发生黑客攻击、网络攻击、安全漏洞、数据篡改或类似事件导致损害或潜在风险时,暂时或永久中止服务。</p>
+                        <p>4. 公司可因韩国政府或相关机构的命令、法律限制、自然灾害、紧急情况或其他类似性质的不可抗力事件,暂时或永久中止服务提供。</p>
+                        <p>5. 对于第1至4款规定的中止情况,公司应提前通知用户相关事实、原因和预计持续时间。若因紧急情况无法提前通知,可事后通知。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">八、年龄限制</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 用户必须年满13周岁才能通过 Meta Quest 设备使用应用程序。</p>
+                        <p>2. 用户必须年满13周岁才能通过 PICO 设备使用应用程序。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">九、禁止行为</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p class="font-medium">用户在使用服务时不得从事以下行为:</p>
+                        <div class="bg-red-50 p-5 rounded-xl border border-red-100">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>侵犯公司或第三方的知识产权,包括版权、专利、商标或商业秘密。</li>
+                                <li>超出公司授予的许可范围将服务用于商业目的。</li>
+                                <li>造成过量流量、破坏系统或攻击服务器以干扰服务运营。</li>
+                                <li>创建、传播或安装病毒、恶意软件、勒索软件或其他有害内容。</li>
+                                <li>通过自动化手段(包括机器人或脚本)访问或使用服务。</li>
+                                <li>提供虚假信息或非法使用他人个人信息注册服务。</li>
+                                <li>对其他用户造成不适或心理伤害的行为,包括辱骂性语言、威胁、侮辱或淫秽行为。</li>
+                                <li>欺诈、非法交易或任何其他违法或有害行为。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十、安全指引</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>公司提供涉及身体活动的沉浸式扩展现实应用程序("XR 应用")。用户在使用 XR 应用时必须阅读、理解并遵守以下安全指引:</p>
+                        <div class="bg-yellow-50 p-5 rounded-xl border border-yellow-200">
+                            <ol class="list-decimal list-inside space-y-3">
+                                <li>请勿在饮酒、服用药物或任何可能损害能力的物质影响下使用 XR 应用。</li>
+                                <li>儿童、老年人、孕妇及患有特定疾病者必须特别谨慎,仅可在监护人或负责任成年人的监督下使用 XR 应用。</li>
+                                <li>使用 XR 应用前,用户应评估自身的身心健康状况。患有心血管、肌肉骨骼、神经系统疾病、感官障碍(视觉或听觉)、怀孕或其他特殊健康问题者,应在使用前咨询医疗专业人士。</li>
+                                <li>避免在地板湿滑、有电气设备、电缆、家具、尖锐物体或易碎物品的环境中使用 XR 应用,以防发生事故。</li>
+                                <li>使用 XR 应用时要密切注意周围环境,避免与人、宠物或障碍物发生碰撞。</li>
+                                <li>每使用30分钟休息10至15分钟。</li>
+                                <li>避免长时间或连续使用 XR 应用,避免过度或剧烈的身体运动。</li>
+                                <li>用户可能会出现暂时性症状,如迷失方向、头晕、混乱、恶心、晕动病、头痛、眼睛或肌肉疲劳、视觉或听觉失真、皮肤刺激、反应迟缓或癫痫发作。</li>
+                                <li>若出现上述任何症状或不适,应立即停止使用 XR 应用。</li>
+                                <li>使用 XR 应用后,用户应休息并避免进行身体活动,直至所有异常症状完全消退。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十一、使用管理与限制</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 若用户或第三方通过公司服务提供的信息、文本、内容、产品或其他项目违反本协议或适用法律,公司可将其删除。公司也可应韩国政府或相关机构的合法要求采取相同措施。</p>
+                        <p>2. 若用户从事本协议规定的禁止行为或以其他方式违反本协议,公司可暂时或永久限制对服务的访问。用户有权对此类限制提出异议。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十二、免责声明</h2>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. 公司提供的所有服务,包括应用程序、内容、软件、网站、功能、文档及任何底层组件,均按"现状"(AS-IS)和"可用"(AS-AVAILABLE)基础提供。</p>
+                        <p>2. 原则上,与用户或第三方通过公司服务提供的信息、文本、内容或产品相关的任何保证或责任由相应的用户或第三方承担。</p>
+                        <p>3. 公司不对用户或第三方通过公司服务提供的信息、文本、内容或产品的可靠性、准确性、质量、特定目的适用性、不侵犯他人权利或合法性作出任何保证。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十三、责任限制</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3 text-slate-700">
+                        <p>1. 公司仅对因其故意不当行为或重大过失造成的损害承担责任。</p>
+                        <p>2. 公司不对因不可抗力(包括自然灾害、战争、骚乱或其他类似紧急情况)导致的任何损害承担责任。</p>
+                        <p>3. 公司不对因电子设备故障或错误、第三方软件、通信设备或电力传输设施导致的任何损害承担责任。</p>
+                        <p>4. 公司不对因第三方的黑客攻击、恶意软件传播、DDoS 攻击或其他非法入侵或运营中断导致的任何损害承担责任,前提是公司已实施韩国适用法律要求的所有信息安全措施。</p>
+                        <p>5. 公司不对因付费服务条款变更、服务修改或服务中止导致的任何损害承担责任。</p>
+                        <p>6. 公司不对因用户的故意或过失行为导致的任何损害承担责任。</p>
+                        <p>7. 公司不对因用户自身过错(包括不当使用服务、从事本协议禁止的活动或违反安全指引)导致的任何损害承担责任。</p>
+                        <p>8. 公司不对因用户未能实现超出按"现状"和"可用"基础使用服务许可范围的特定或间接期望或目标而产生的任何损害承担责任,包括但不限于获取利润或商业机会、实现其他商业目的、心理或认知满足、声誉提升或不存在小错误或缺陷。</p>
+                        <p>9. 公司不对因用户不当使用服务、操作错误、判断失误或单纯改变主意导致的任何损害承担责任,但公司故意不当行为或重大过失导致的除外。</p>
+                        <p>10. 公司不对因用户与第三方之间的纠纷导致的任何损害承担责任。</p>
+                        <p>11. 公司不对因用户或第三方通过公司服务提供的信息、文本、内容或产品导致的任何损害承担责任。</p>
+                        <p>12. 公司不对不可合理预见的或根据韩国适用法律不存在单独法律责任依据的任何间接、附带、特殊或惩罚性损害承担责任。</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十四、准据法与管辖</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        本协议应受韩国法律管辖并据其解释。公司与用户之间产生的任何争议或法律诉讼应根据适用法律,受韩国境内有管辖权的法院管辖。
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十五、仲裁</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        若公司与用户之间发生争议,应根据韩国商事仲裁院(KCAB)的仲裁规则,在韩国首尔进行仲裁解决。
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十六、协议的修改</h2>
+                    <p class="text-slate-700 leading-relaxed">
+                        公司可随时修改本协议,但应在生效日期前至少七(7)日发出修改通知。若修改对用户不利,公司应至少提前三十(30)日发出通知。任何修改均不得包含违反韩国法律的条款。若用户在上述适用通知期内未表示拒绝接受修改后的协议,则视为用户已同意修改后的协议。
+                    </p>
+                    <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
+                        <p class="text-slate-700 mb-2"><strong>公告日期:</strong>2026年2月11日</p>
+                        <p class="text-slate-700"><strong>生效日期:</strong>2026年2月18日</p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">十七、联系方式</h2>
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-100">
+                        <p class="text-slate-700">如对本协议有任何疑问,请通过以下方式联系我们:</p>
+                        <p class="text-slate-700 font-medium mt-2">
+                            <a href="mailto:service@metamotion.io" class="text-blue-600 hover:underline">service@metamotion.io</a>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Back Button -->
+            <div class="mt-12 text-center">
+                <a href="index_cn.html" onclick="window.location.href='index_cn.html'; return false;" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> 返回首页
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-20 py-12 border-t border-slate-200 bg-white text-center text-slate-500 text-sm">
+        <div class="mb-6 text-2xl text-slate-300">
+            <i class="fa-solid fa-cube"></i>
+        </div>
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-left px-8">
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">METAMOTION</h5>
+                <p class="mb-2"><strong>CEO:</strong> Young-Jun Ko</p>
+                <p><strong>Business Number:</strong> 558-87-02658</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">LOCATION</h5>
+                <p class="mb-2"><strong>Office:</strong> B102, Ace Twin Tower 1, 285 Digital-ro, Guro-gu, Seoul</p>
+                <p><strong>Studio:</strong> B103, Same Building</p>
+            </div>
+            <div>
+                <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
+                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> Tel: 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-fax mr-2 text-slate-400"></i> Fax: 02-6230-9024</p>
+                <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> Partnership: gounbada@metamotion.io</p>
+                <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> General: service@metamotion.io</p>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-slate-200 flex flex-col md:flex-row items-center justify-center gap-4 text-sm">
+            <a href="info01_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">隐私政策</a>
+            <span class="hidden md:inline text-slate-300">|</span>
+            <a href="info02_cn.html" class="text-slate-600 hover:text-blue-600 transition-colors font-medium">用户服务协议</a>
+        </div>
+        <p class="mt-6 opacity-60">© 2024 METAMOTION. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 드롭다운 토글 함수
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // 페이지 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        });
+    </script>
+
+</body>
+</html>

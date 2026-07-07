@@ -34,6 +34,5 @@ function getDBConnection() {
     }
 }
 
-// CORS 헤더는 각 API 파일에서 개별적으로 설정
-// config.php에서는 헤더를 설정하지 않음
-?>
+    // CORS 헤더는 각 API 파일에서 개별적으로 설정
+    // config.php에서는 헤더를 설정하지 않음

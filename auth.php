@@ -3,9 +3,20 @@ require_once 'config.php';
 
 // CORS 헤더 설정
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+
+// 허용 도메인 화이트리스트
+$allowedOrigins = [
+    'https://metamotion.io',
+    'https://www.metamotion.io',
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Vary: Origin');
+}
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
 
 // OPTIONS 요청 처리
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {

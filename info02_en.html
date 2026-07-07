@@ -53,6 +53,43 @@
         .animate-blob {
             animation: blob 7s infinite;
         }
+
+        /* 드롭다운 메뉴 스타일 */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none !important;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+            z-index: 1000;
+            border: 1px solid #e2e8f0;
+            margin-top: 0.5rem;
+        }
+        .dropdown-content a {
+            color: #475569;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f5f9;
+        }
+        .dropdown-content a:first-child {
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .dropdown-content a:last-child {
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+        .dropdown.active .dropdown-content {
+            display: block !important;
+        }
     </style>
 </head>
 <body class="selection:bg-blue-100">
@@ -62,17 +99,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
-                <a href="index_en.html" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
+                <a href="index_en.html" onclick="window.location.href='index_en.html'; return false;" class="text-xl font-black tracking-tighter text-slate-900 cursor-pointer flex items-center gap-2">
                     <i class="fa-solid fa-cube text-blue-600"></i>
                     <span>META<span class="text-blue-600">MOTION</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="index_en.html" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Home</a>
-                    <a href="info02_kr.html" class="px-4 py-2 text-sm text-blue-600 bg-blue-50 hover:bg-blue-100 font-medium rounded-lg transition-colors">
-                        <i class="fa-solid fa-language mr-1"></i> 한국어
-                    </a>
+                    <a href="index_en.html" onclick="window.location.href='index_en.html'; return false;" class="text-sm text-slate-600 hover:text-blue-600 font-medium transition-colors">Home</a>
                 </div>
             </div>
         </div>
@@ -86,9 +120,9 @@
             <!-- Header -->
             <div class="text-center mb-12">
                 <span class="block text-blue-600 font-bold tracking-wider uppercase mb-2 text-xs">Terms of Service</span>
-                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Terms of Service</h1>
+                <h1 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">MetaMotion Inc. Terms of Service</h1>
                 <div class="w-16 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
-                <p class="text-sm text-slate-500 mt-6">Date of Announcement: September 5, 2025 | Effective Date: September 12, 2025</p>
+                <p class="text-sm text-slate-500 mt-6">Date of Announcement: February 11, 2026 | Effective Date: February 18, 2026</p>
             </div>
 
             <!-- Content -->
@@ -174,9 +208,10 @@
 
                 <section>
                     <h2 class="text-2xl font-bold text-slate-900 mb-4 pb-2 border-b-2 border-blue-100">VIII. Age Restrictions</h2>
-                    <p class="text-slate-700 leading-relaxed">
-                        Users must be at least 13 years old to use STEPMASTER application via Meta Quest devices.
-                    </p>
+                    <div class="space-y-4 text-slate-700">
+                        <p>1. Users must be at least 13 years old to use applications via Meta Quest devices.</p>
+                        <p>2. Users must be at least 13 years old to use applications via PICO devices.</p>
+                    </div>
                 </section>
 
                 <section>
@@ -274,8 +309,8 @@
                         The Company may amend these Terms at any time, provided that notice of such amendments is given at least seven (7) days prior to their effective date. If the amendments are unfavorable to the User, the Company shall provide notice at least thirty (30) days in advance. No amendment shall contain provisions that violate the laws of the Republic of Korea. If the User does not express their refusal to accept the amended Terms within the applicable notice period specified above, the User shall be deemed to have agreed to the amended Terms.
                     </p>
                     <div class="bg-blue-50 p-5 rounded-xl border border-blue-100 mt-4">
-                        <p class="text-slate-700 mb-2"><strong>Date of Announcement:</strong> September 5, 2025</p>
-                        <p class="text-slate-700"><strong>Effective Date:</strong> September 12, 2025</p>
+                        <p class="text-slate-700 mb-2"><strong>Date of Announcement:</strong> February 11, 2026</p>
+                        <p class="text-slate-700"><strong>Effective Date:</strong> February 18, 2026</p>
                     </div>
                 </section>
 
@@ -293,7 +328,7 @@
 
             <!-- Back Button -->
             <div class="mt-12 text-center">
-                <a href="index_en.html" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
+                <a href="index_en.html" onclick="window.location.href='index_en.html'; return false;" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-full transition-all shadow-md hover:shadow-lg">
                     <i class="fa-solid fa-arrow-left mr-2"></i> Back to Home
                 </a>
             </div>
@@ -319,7 +354,8 @@
             </div>
             <div>
                 <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
-                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> Tel: 02-6925-1546</p>
+                <p class="mb-2"><i class="fa-solid fa-fax mr-2 text-slate-400"></i> Fax: 02-6230-9024</p>
                 <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> Partnership: gounbada@metamotion.io</p>
                 <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> General: service@metamotion.io</p>
             </div>
@@ -331,6 +367,21 @@
         </div>
         <p class="mt-6 opacity-60">� 2024 METAMOTION. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // 드롭다운 토글 함수
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const dropdown = event.target.closest('.dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // 페이지 클릭 시 드롭다운 닫기
+        document.addEventListener('click', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+        });
+    </script>
 
 </body>
 </html>

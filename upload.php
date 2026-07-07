@@ -1,11 +1,25 @@
 <?php
+ob_start();                    // 모든 출력을 버퍼링 — header() 전 출력 방지
+error_reporting(0);            // HTML 오류 메시지 출력 차단
+ini_set('display_errors', 0);
 require_once 'config.php';
 
 // CORS 헤더 설정
 header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
+
+// 허용 도메인 화이트리스트
+$allowedOrigins = [
+    'https://metamotion.io',
+    'https://www.metamotion.io',
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+    header('Vary: Origin');
+}
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
 
 // OPTIONS 요청 처리
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -93,4 +107,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     http_response_code(405);
     echo json_encode(['error' => 'Method not allowed']);
 }
-?>

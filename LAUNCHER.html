@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaMotion 진단 도구 - 런처</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .step {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            float: left;
+        }
+
+        .step-content {
+            margin-left: 60px;
+        }
+
+        .step-title {
+            font-size: 1.3em;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .file-path {
+            background: #2d3748;
+            color: #68d391;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .links {
+            background: #e7f3ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .links h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .links a {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .links a:hover {
+            background: #667eea;
+            color: white;
+            padding-left: 25px;
+        }
+
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .server-status {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #status-indicator {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #dc3545;
+            margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        #status-indicator.active {
+            background: #28a745;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 MetaMotion 진단 도구</h1>
+        <p class="subtitle">중국어 페이지 문제 해결을 위한 종합 진단 시스템</p>
+
+        <div class="alert alert-danger" id="file-protocol-alert">
+            <strong>⚠️ 경고:</strong> 현재 file:// 프로토콜로 페이지를 열었습니다.<br>
+            API 호출이 작동하지 않으므로, 아래 방법 중 하나를 선택하여 서버를 실행해주세요.
+        </div>
+
+        <div class="alert alert-success" id="http-protocol-alert" style="display: none;">
+            <strong>✅ 성공:</strong> 서버가 정상적으로 실행 중입니다!<br>
+            아래 링크를 클릭하여 진단 도구를 사용하세요.
+        </div>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <div class="step-title">🚀 가장 쉬운 방법 (추천!)</div>
+                <div class="step-desc">
+                    배치 파일을 더블클릭하면 자동으로 서버가 시작되고 브라우저가 열립니다.
+                </div>
+                <div class="file-path">📂 진단도구_실행.bat</div>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-success" onclick="alert('Windows 탐색기에서\n\'진단도구_실행.bat\' 파일을 더블클릭하세요!')">
+                        <span class="icon">▶️</span> 실행 방법 보기
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <div class="step-title">🔧 상세 정보 포함 실행</div>
+                <div class="step-desc">
+                    모든 페이지 링크와 자세한 서버 정보를 표시하는 스크립트입니다.
+                </div>
+                <div class="file-path">📂 START_SERVER.bat</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <div class="step-title">📦 XAMPP 사용자</div>
+                <div class="step-desc">
+                    XAMPP를 이미 사용 중이라면, 프로젝트를 htdocs로 자동 복사합니다.
+                </div>
+                <div class="file-path">📂 XAMPP로_복사.bat</div>
+            </div>
+        </div>
+
+        <div class="server-status">
+            <div>
+                <span id="status-indicator"></span>
+                <span id="status-text">서버 상태: 중지됨</span>
+            </div>
+        </div>
+
+        <div class="links" id="navigation-links" style="display: none;">
+            <h3>📊 진단 도구 링크</h3>
+            <a href="diagnose_chinese.html">🔍 종합 진단 대시보드</a>
+            <a href="direct_db_test.php">🗄️ 데이터베이스 직접 테스트</a>
+            <a href="debug_cn.html">🧪 API 엔드포인트 테스트</a>
+            <a href="test_api_cn.php">📊 서버 사이드 검증</a>
+
+            <h3 style="margin-top: 20px;">🌐 메인 페이지</h3>
+            <a href="index_cn.html">🇨🇳 중국어 메인 페이지</a>
+            <a href="index.html">🇰🇷 한국어 메인 페이지</a>
+            <a href="index_en.html">🇺🇸 영어 메인 페이지</a>
+
+            <h3 style="margin-top: 20px;">⚙️ 관리</h3>
+            <a href="admin.html">⚙️ 관리자 페이지</a>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #666;">
+            <p>📖 자세한 정보는 <strong>실행방법.txt</strong> 파일을 참고하세요</p>
+        </div>
+    </div>
+
+    <script>
+        // 프로토콜 확인
+        if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+            document.getElementById('file-protocol-alert').style.display = 'none';
+            document.getElementById('http-protocol-alert').style.display = 'block';
+            document.getElementById('navigation-links').style.display = 'block';
+            document.getElementById('status-indicator').classList.add('active');
+            document.getElementById('status-text').textContent = '서버 상태: 실행 중 ✓';
+        }
+
+        // 서버 상태 체크
+        async function checkServerStatus() {
+            if (window.location.protocol === 'file:') return;
+
+            try {
+                const response = await fetch('api.php?type=hero&lang=ko', { method: 'HEAD' });
+                if (response.ok) {
+                    document.getElementById('status-indicator').classList.add('active');
+                    document.getElementById('status-text').textContent = '서버 상태: 정상 작동 ✓';
+                }
+            } catch (error) {
+                document.getElementById('status-text').textContent = '서버 상태: API 연결 실패';
+            }
+        }
+
+        // 페이지 로드 시 서버 상태 체크
+        if (window.location.protocol !== 'file:') {
+            checkServerStatus();
+        }
+    </script>
+</body>
+</html>

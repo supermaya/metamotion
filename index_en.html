@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -315,10 +315,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p class="text-sm text-slate-600">
-                            <strong>OptiTrack Prime 41 (48 cameras)</strong><br>
-                            Korea's largest effective shooting space (10m x 8m)
-                        </p>
+                        <p id="infra-mocap-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
 
@@ -333,10 +330,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p class="text-sm text-slate-600">
-                            <strong>120 DSLR synchronized system</strong><br>
-                            Ultra-high resolution 3D modeling and texture extraction
-                        </p>
+                        <p id="infra-photo-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
 
@@ -351,9 +345,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p class="text-sm text-slate-600">
-                            <strong>Motion capture-based dynamic pose image generation</strong>
-                        </p>
+                        <p id="infra-tech-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
             </div>
@@ -518,7 +510,8 @@
                 </div>
                 <div>
                     <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
-                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> Tel: 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-fax mr-2 text-slate-400"></i> Fax: 02-6230-9024</p>
                     <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> Partnership: gounbada@metamotion.io</p>
                     <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> General: service@metamotion.io</p>
                 </div>
@@ -703,7 +696,7 @@
             const timeoutId = setTimeout(() => controller.abort(), timeout);
 
             try {
-                const response = await fetch(url, { signal: controller.signal });
+                const response = await fetch(url, { signal: controller.signal, cache: 'no-store', headers: { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' } });
                 clearTimeout(timeoutId);
                 return response;
             } catch (error) {
@@ -839,9 +832,9 @@
 
                     if (sectionsData.sections && sectionsData.sections.length > 0) {
                         const sectionMeta = {
-                            'infra_mocap':    { img: 'infra-mocap-img',    title: 'infra-mocap-title',    desc: null },
-                            'infra_photo':    { img: 'infra-photo-img',    title: 'infra-photo-title',    desc: null },
-                            'infra_tech':     { img: 'infra-tech-img',     title: 'infra-tech-title',     desc: null },
+                            'infra_mocap':    { img: 'infra-mocap-img',    title: 'infra-mocap-title',    desc: 'infra-mocap-desc' },
+                            'infra_photo':    { img: 'infra-photo-img',    title: 'infra-photo-title',    desc: 'infra-photo-desc' },
+                            'infra_tech':     { img: 'infra-tech-img',     title: 'infra-tech-title',     desc: 'infra-tech-desc' },
                             'tech_bigdata_bg':{ img: null, title: 'tech-bigdata-title', desc: 'tech-bigdata-desc', bg: 'tech-bigdata' },
                             'tech_ai_bg':     { img: null, title: 'tech-ai-title',      desc: 'tech-ai-desc',      bg: 'tech-ai'      },
                             'tech_vrpe_bg':   { img: null, title: 'tech-vrpe-title',    desc: 'tech-vrpe-desc',    bg: 'tech-vrpe'    },
@@ -865,6 +858,7 @@
                 } else {
                     console.log('Section Images data loading failed');
                 }
+
             } catch (error) {
                 console.error('API data loading error:', error);
             } finally {

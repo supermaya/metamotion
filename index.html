@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -326,10 +326,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p id="infra-mocap-desc" class="text-sm text-slate-600">
-                            <strong>OptiTrack Prime 41 (48대)</strong><br>
-                            국내 최대 유효 촬영 공간(10m x 8m)
-                        </p>
+                        <p id="infra-mocap-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
 
@@ -345,10 +342,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p id="infra-photo-desc" class="text-sm text-slate-600">
-                            <strong>120대 DSLR 동기화 시스템</strong><br>
-                            초고해상도 3D 모델링 및 텍스처 추출
-                        </p>
+                        <p id="infra-photo-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
 
@@ -364,9 +358,7 @@
                         </div>
                     </div>
                     <div class="p-6 flex-grow">
-                        <p id="infra-tech-desc" class="text-sm text-slate-600">
-                            <strong>모션캡쳐 기반 다이나믹 포즈 이미지 생성</strong>
-                        </p>
+                        <p id="infra-tech-desc" class="text-sm text-slate-600"></p>
                     </div>
                 </div>
             </div>
@@ -531,7 +523,8 @@
                 </div>
                 <div>
                     <h5 class="font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">CONTACT</h5>
-                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-phone mr-2 text-slate-400"></i> Tel: 02-6925-1546</p>
+                    <p class="mb-2"><i class="fa-solid fa-fax mr-2 text-slate-400"></i> Fax: 02-6230-9024</p>
                     <p class="mb-2"><i class="fa-solid fa-envelope mr-2 text-slate-400"></i> 제휴: gounbada@metamotion.io</p>
                     <p><i class="fa-solid fa-circle-info mr-2 text-slate-400"></i> 기타: service@metamotion.io</p>
                 </div>
@@ -712,7 +705,7 @@
             const timeoutId = setTimeout(() => controller.abort(), timeout);
 
             try {
-                const response = await fetch(url, { signal: controller.signal });
+                const response = await fetch(url, { signal: controller.signal, cache: 'no-store', headers: { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' } });
                 clearTimeout(timeoutId);
                 return response;
             } catch (error) {
@@ -926,9 +919,9 @@
                     if (sectionsData.sections && sectionsData.sections.length > 0) {
                         // section_key → {titleId, descId} 매핑
                         const sectionMeta = {
-                            'infra_mocap':    { img: 'infra-mocap-img',    title: 'infra-mocap-title',    desc: null },
-                            'infra_photo':    { img: 'infra-photo-img',    title: 'infra-photo-title',    desc: null },
-                            'infra_tech':     { img: 'infra-tech-img',     title: 'infra-tech-title',     desc: null },
+                            'infra_mocap':    { img: 'infra-mocap-img',    title: 'infra-mocap-title',    desc: 'infra-mocap-desc' },
+                            'infra_photo':    { img: 'infra-photo-img',    title: 'infra-photo-title',    desc: 'infra-photo-desc' },
+                            'infra_tech':     { img: 'infra-tech-img',     title: 'infra-tech-title',     desc: 'infra-tech-desc' },
                             'tech_bigdata_bg':{ img: null, title: 'tech-bigdata-title', desc: 'tech-bigdata-desc', bg: 'tech-bigdata' },
                             'tech_ai_bg':     { img: null, title: 'tech-ai-title',      desc: 'tech-ai-desc',      bg: 'tech-ai'      },
                             'tech_vrpe_bg':   { img: null, title: 'tech-vrpe-title',    desc: 'tech-vrpe-desc',    bg: 'tech-vrpe'    },
@@ -986,6 +979,7 @@
                 } else {
                     console.log('Section Images 데이터 로드 실패');
                 }
+
             } catch (error) {
                 console.error('API 데이터 로드 오류:', error);
             } finally {

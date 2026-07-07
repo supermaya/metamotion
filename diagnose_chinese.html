@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중국어 페이지 진단</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        h1 { color: #333; }
+        h2 { color: #666; border-bottom: 2px solid #007bff; padding-bottom: 10px; margin-top: 30px; }
+        .test-section { background: #f9f9f9; padding: 20px; margin: 15px 0; border-radius: 8px; }
+        pre { background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .warning { color: orange; font-weight: bold; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; margin: 10px 5px; border-radius: 5px; }
+        button:hover { background: #0056b3; }
+        .info { background: #e7f3ff; border-left: 4px solid #2196F3; padding: 10px; margin: 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #f2f2f2; font-weight: bold; }
+        .lang-ko { background: #ffebee; }
+        .lang-en { background: #e3f2fd; }
+        .lang-cn { background: #fff9c4; }
+    </style>
+</head>
+<body>
+    <h1>🔍 중국어 페이지 진단 도구</h1>
+
+    <div class="info">
+        <strong>현재 문제:</strong> index_cn.html에서 중국어 대신 한글이 표시됨<br>
+        <strong>목적:</strong> API 응답, 데이터베이스 데이터, 브라우저 캐시 상태를 확인
+    </div>
+
+    <button onclick="runAllTests()">🚀 전체 테스트 실행</button>
+    <button onclick="clearAllCache()">🗑️ 브라우저 캐시 클리어</button>
+
+    <div id="results"></div>
+
+    <script>
+        async function runAllTests() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<h2>⏳ 테스트 진행 중...</h2>';
+
+            let report = '';
+
+            // Test 1: API 응답 확인 (한국어, 영어, 중국어)
+            report += await testAPIResponses();
+
+            // Test 2: 실제 데이터 비교
+            report += await compareLanguageData();
+
+            // Test 3: 브라우저 캐시 상태
+            report += await checkCacheStatus();
+
+            // Test 4: Current URL 확인
+            report += checkCurrentPage();
+
+            results.innerHTML = report;
+        }
+
+        async function testAPIResponses() {
+            let html = '<div class="test-section"><h2>📡 Test 1: API 응답 확인</h2>';
+
+            const languages = [
+                { code: 'ko', name: '한국어', class: 'lang-ko' },
+                { code: 'en', name: '영어', class: 'lang-en' },
+                { code: 'cn', name: '중국어', class: 'lang-cn' }
+            ];
+
+            html += '<table><thead><tr><th>언어</th><th>API URL</th><th>상태</th><th>첫 번째 슬라이드 데이터</th></tr></thead><tbody>';
+
+            for (const lang of languages) {
+                try {
+                    const url = `api.php?type=hero&lang=${lang.code}&_=${new Date().getTime()}`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    const firstSlide = data.slides && data.slides[0];
+                    const title = firstSlide ? firstSlide.title : 'NULL';
+                    const desc = firstSlide ? firstSlide.description : 'NULL';
+
+                    html += `<tr class="${lang.class}">
+                        <td><strong>${lang.name} (${lang.code})</strong></td>
+                        <td><code>${url}</code></td>
+                        <td class="success">✓ 성공</td>
+                        <td>
+                            <strong>제목:</strong> ${title || '(비어있음)'}<br>
+                            <strong>설명:</strong> ${desc || '(비어있음)'}
+                        </td>
+                    </tr>`;
+                } catch (error) {
+                    html += `<tr class="${lang.class}">
+                        <td><strong>${lang.name}</strong></td>
+                        <td colspan="3" class="error">✗ 오류: ${error.message}</td>
+                    </tr>`;
+                }
+            }
+
+            html += '</tbody></table></div>';
+            return html;
+        }
+
+        async function compareLanguageData() {
+            let html = '<div class="test-section"><h2>🔍 Test 2: 언어별 데이터 비교</h2>';
+
+            try {
+                const [koData, enData, cnData] = await Promise.all([
+                    fetch(`api.php?type=hero&lang=ko&_=${new Date().getTime()}`).then(r => r.json()),
+                    fetch(`api.php?type=hero&lang=en&_=${new Date().getTime()}`).then(r => r.json()),
+                    fetch(`api.php?type=hero&lang=cn&_=${new Date().getTime()}`).then(r => r.json())
+                ]);
+
+                html += '<h3>Hero Slides 비교</h3>';
+                html += '<table><thead><tr><th>슬라이드</th><th>한국어 (ko)</th><th>영어 (en)</th><th>중국어 (cn)</th></tr></thead><tbody>';
+
+                const maxSlides = Math.max(
+                    koData.slides?.length || 0,
+                    enData.slides?.length || 0,
+                    cnData.slides?.length || 0
+                );
+
+                for (let i = 0; i < maxSlides; i++) {
+                    const ko = koData.slides?.[i];
+                    const en = enData.slides?.[i];
+                    const cn = cnData.slides?.[i];
+
+                    html += `<tr>
+                        <td><strong>슬라이드 ${i + 1}</strong></td>
+                        <td class="lang-ko">
+                            ${ko?.title || '<span class="warning">(비어있음)</span>'}<br>
+                            <small>${ko?.description || ''}</small>
+                        </td>
+                        <td class="lang-en">
+                            ${en?.title || '<span class="warning">(비어있음)</span>'}<br>
+                            <small>${en?.description || ''}</small>
+                        </td>
+                        <td class="lang-cn">
+                            ${cn?.title || '<span class="error">(비어있음 - 문제!)</span>'}<br>
+                            <small>${cn?.description || ''}</small>
+                        </td>
+                    </tr>`;
+                }
+
+                html += '</tbody></table>';
+
+                // 분석
+                const cnHasData = cnData.slides?.some(s => s.title && s.title.trim() !== '');
+                if (!cnHasData) {
+                    html += '<div class="error" style="padding: 15px; margin: 15px 0;">⚠️ <strong>문제 발견!</strong> 중국어 데이터가 비어있습니다. 데이터베이스에 중국어 데이터가 저장되어 있는지 확인해주세요.</div>';
+                } else {
+                    html += '<div class="success" style="padding: 15px; margin: 15px 0;">✓ 중국어 데이터가 정상적으로 반환되고 있습니다.</div>';
+                }
+
+            } catch (error) {
+                html += `<p class="error">오류: ${error.message}</p>`;
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        async function checkCacheStatus() {
+            let html = '<div class="test-section"><h2>💾 Test 3: 브라우저 캐시 상태</h2>';
+
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                html += `<p>캐시된 항목 수: <strong>${cacheNames.length}</strong></p>`;
+                if (cacheNames.length > 0) {
+                    html += '<p class="warning">⚠️ 브라우저 캐시가 존재합니다. 오래된 데이터가 표시될 수 있습니다.</p>';
+                    html += '<button onclick="clearAllCache()">캐시 클리어하기</button>';
+                } else {
+                    html += '<p class="success">✓ 브라우저 캐시가 비어있습니다.</p>';
+                }
+            } else {
+                html += '<p class="warning">이 브라우저는 Cache API를 지원하지 않습니다.</p>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        function checkCurrentPage() {
+            let html = '<div class="test-section"><h2>🌐 Test 4: 현재 페이지 확인</h2>';
+
+            html += `<p><strong>현재 URL:</strong> <code>${window.location.href}</code></p>`;
+
+            if (window.location.pathname.includes('index_cn.html')) {
+                html += '<p class="success">✓ 올바른 페이지입니다 (index_cn.html)</p>';
+            } else if (window.location.pathname.includes('index.html')) {
+                html += '<p class="error">✗ 잘못된 페이지입니다! 현재 한국어 페이지(index.html)를 보고 있습니다.</p>';
+                html += '<p><a href="index_cn.html" style="color: blue; text-decoration: underline;">중국어 페이지로 이동하기</a></p>';
+            } else if (window.location.pathname.includes('index_en.html')) {
+                html += '<p class="error">✗ 잘못된 페이지입니다! 현재 영어 페이지(index_en.html)를 보고 있습니다.</p>';
+                html += '<p><a href="index_cn.html" style="color: blue; text-decoration: underline;">중국어 페이지로 이동하기</a></p>';
+            }
+
+            html += '</div>';
+            return html;
+        }
+
+        async function clearAllCache() {
+            if ('caches' in window) {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                alert('✓ 브라우저 캐시가 클리어되었습니다!\n\nCtrl+F5를 눌러 페이지를 강제 새로고침하세요.');
+                location.reload(true);
+            } else {
+                alert('이 브라우저는 Cache API를 지원하지 않습니다.\nCtrl+F5를 눌러 강제 새로고침하세요.');
+            }
+        }
+
+        // 페이지 로드 시 자동 실행
+        window.onload = () => {
+            runAllTests();
+        };
+    </script>
+</body>
+</html>

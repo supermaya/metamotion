@@ -365,11 +365,11 @@
                 console.log('콘텐츠 로드 시작...');
 
                 // Hero 텍스트 &amp; 통계 로드
-                const htRes = await fetch('api.php?type=hero_text_admin');
+                const htRes = await fetch('api.php?type=hero_text_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const htData = await htRes.json();
                 heroTextData = htData.text || {};
 
-                const hsRes = await fetch('api.php?type=hero_stats_admin');
+                const hsRes = await fetch('api.php?type=hero_stats_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const hsData = await hsRes.json();
                 heroStatsData = (hsData.stats || []).map(s => ({
                     stat_value: s.stat_value||'', stat_color: s.stat_color||'slate',
@@ -386,7 +386,7 @@
                 renderHeroText();
 
                 // Hero Slides 로드 (최대 3개로 제한) - 다국어 버전
-                const heroResponse = await fetch('api.php?type=hero_admin');
+                const heroResponse = await fetch('api.php?type=hero_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const heroData = await heroResponse.json();
                 console.log('Hero Slides 데이터:', heroData);
                 heroSlidesData = (heroData.slides || []).slice(0, 3).map(slide => ({
@@ -420,7 +420,7 @@
 
                 // Step Master Features 로드
                 try {
-                    const smRes = await fetch('api.php?type=stepmaster_features_admin');
+                    const smRes = await fetch('api.php?type=stepmaster_features_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                     const smData = await smRes.json();
                     stepMasterFeaturesData = (smData.features || []).map(f => ({
                         title_ko: f.title_ko || '', title_en: f.title_en || '', title_cn: f.title_cn || '',
@@ -437,7 +437,7 @@
                 renderStepMasterFeatures();
 
                 // Solution Image 로드 - 다국어 버전
-                const solutionResponse = await fetch('api.php?type=solution_admin');
+                const solutionResponse = await fetch('api.php?type=solution_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const solutionData = await solutionResponse.json();
                 console.log('Solution Image 데이터:', solutionData);
                 solutionSlidesData = (solutionData.slides || []).map(slide => ({
@@ -465,7 +465,7 @@
                 renderSolutionSlides();
 
                 // Avatar Image 로드 - 다국어 버전 (하나만 관리)
-                const avatarResponse = await fetch('api.php?type=avatar_admin');
+                const avatarResponse = await fetch('api.php?type=avatar_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const avatarData = await avatarResponse.json();
                 console.log('Avatar Image 데이터:', avatarData);
                 const avatarSlides = avatarData.slides || [];
@@ -500,7 +500,7 @@
                 console.log('Avatar Image 로드 완료');
 
                 // Content Image 로드 - 다국어 버전 (하나만 관리)
-                const contentResponse = await fetch('api.php?type=content_admin');
+                const contentResponse = await fetch('api.php?type=content_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const contentData = await contentResponse.json();
                 console.log('Content Image 데이터:', contentData);
                 const contentSlides = contentData.slides || [];
@@ -535,7 +535,7 @@
                 console.log('Content Image 로드 완료');
 
                 // SaaS Image 로드 - 다국어 버전 (하나만 관리)
-                const saasResponse = await fetch('api.php?type=saas_admin');
+                const saasResponse = await fetch('api.php?type=saas_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const saasData = await saasResponse.json();
                 console.log('SaaS Image 데이터:', saasData);
                 const saasSlides = saasData.slides || [];
@@ -570,7 +570,7 @@
                 console.log('SaaS Image 로드 완료');
 
                 // Section Images 로드 - 다국어 버전
-                const sectionsResponse = await fetch('api.php?type=sections_admin');
+                const sectionsResponse = await fetch('api.php?type=sections_admin', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const sectionsData = await sectionsResponse.json();
                 console.log('Section Images 데이터:', sectionsData);
                 sectionImagesData = (sectionsData.sections || []).map(section => ({
@@ -1422,16 +1422,40 @@
                 // Section 데이터 수집
                 const sections = sectionImagesData.map((section, index) => ({
                     section_key: section.section_key,
-                    title_ko: document.getElementById(`section-title-ko-${index}`).value,
-                    title_en: document.getElementById(`section-title-en-${index}`).value,
-                    title_cn: document.getElementById(`section-title-cn-${index}`).value,
-                    description_ko: document.getElementById(`section-desc-ko-${index}`).value,
-                    description_en: document.getElementById(`section-desc-en-${index}`).value,
-                    description_cn: document.getElementById(`section-desc-cn-${index}`).value,
-                    image_url_ko: document.getElementById(`section-img-ko-${index}`).value,
-                    image_url_en: document.getElementById(`section-img-en-${index}`).value,
-                    image_url_cn: document.getElementById(`section-img-cn-${index}`).value
+                    title_ko: document.getElementById(`section-title-ko-${index}`)?.value || '',
+                    title_en: document.getElementById(`section-title-en-${index}`)?.value || '',
+                    title_cn: document.getElementById(`section-title-cn-${index}`)?.value || '',
+                    description_ko: document.getElementById(`section-desc-ko-${index}`)?.value || '',
+                    description_en: document.getElementById(`section-desc-en-${index}`)?.value || '',
+                    description_cn: document.getElementById(`section-desc-cn-${index}`)?.value || '',
+                    image_url_ko: document.getElementById(`section-img-ko-${index}`)?.value || '',
+                    image_url_en: document.getElementById(`section-img-en-${index}`)?.value || '',
+                    image_url_cn: document.getElementById(`section-img-cn-${index}`)?.value || ''
                 }));
+
+                // avatar / content / saas 전용 UI 값을 section_images의 해당 항목에도 동기화
+                // (두 UI 간 불일치로 인한 데이터 덮어쓰기 방지)
+                const syncMap = [
+                    { key: 'tech_avatar_bg',  prefix: 'avatar',  idx: 0 },
+                    { key: 'tech_content_bg', prefix: 'content', idx: 0 },
+                    { key: 'tech_saas_bg',    prefix: 'saas',    idx: 0 }
+                ];
+                syncMap.forEach(({ key, prefix, idx }) => {
+                    const secIdx = sections.findIndex(s => s.section_key === key);
+                    if (secIdx === -1) return;
+                    const tKo = document.getElementById(`${prefix}-title-ko-${idx}`);
+                    const tEn = document.getElementById(`${prefix}-title-en-${idx}`);
+                    const tCn = document.getElementById(`${prefix}-title-cn-${idx}`);
+                    const dKo = document.getElementById(`${prefix}-desc-ko-${idx}`);
+                    const dEn = document.getElementById(`${prefix}-desc-en-${idx}`);
+                    const dCn = document.getElementById(`${prefix}-desc-cn-${idx}`);
+                    if (tKo) sections[secIdx].title_ko = tKo.value;
+                    if (tEn) sections[secIdx].title_en = tEn.value;
+                    if (tCn) sections[secIdx].title_cn = tCn.value;
+                    if (dKo) sections[secIdx].description_ko = dKo.value;
+                    if (dEn) sections[secIdx].description_en = dEn.value;
+                    if (dCn) sections[secIdx].description_cn = dCn.value;
+                });
 
                 // Solution 데이터 수집
                 const solutions = solutionSlidesData.map((solution, index) => ({
@@ -1665,7 +1689,7 @@
             document.getElementById('gallery-empty').classList.add('hidden');
             document.getElementById('gallery-search').value = '';
             try {
-                const res = await fetch('api.php?type=gallery');
+                const res = await fetch('api.php?type=gallery', {cache:'no-store', headers:{'Pragma':'no-cache','Cache-Control':'no-cache'}});
                 const data = await res.json();
                 _galleryImages = data.images || [];
                 renderGalleryItems(_galleryImages);
